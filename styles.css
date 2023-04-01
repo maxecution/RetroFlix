@@ -7,7 +7,7 @@
 body{
     background-image: url(Assets/lounge.avif);
     height: 500px; 
-    
+    background-color: #0e0f1b;
     background-position: center; 
     background-repeat: no-repeat;
     background-size: cover;
@@ -19,30 +19,7 @@ body{
     font-display: center;
     font-weight: 300;
     background: -webkit-linear-gradient(rgb(247, 36, 180), rgb(77, 187, 246), rgb(154, 253, 47));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-  
- /* Navbar styling */
- #navbar-placeholder {
-    font-family: 'Rajdhani', sans-serif;
-    color: aliceblue;
-    height: 50px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-}
-
-/* Footer styling */
-#footer-placeholder {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: medium;
-    color: aliceblue;
-    padding: 20px;
-    text-align: center;
-    position: fixed;
-    bottom: -100;
-    width: 100%;
 }
