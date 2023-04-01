@@ -1,0 +1,32 @@
+body {
+    background-color: #0e0f1b;
+    color: white;
+}
+
+h1 {
+  font-size: 5pc;
+  font-display: center;
+  font-weight: 300;
+  padding: 20px;
+  background: -webkit-linear-gradient(left, rgb(64, 185, 245), rgb(246, 77, 201));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+label {
+    color: black;
+  }
+
+  p {
+    font-size: 20px;
+    
+  }
+  
+  li {
+    font-size: 18px; 
+  }
+
+  .no-bullets {
+    list-style-type: none;
+  }
