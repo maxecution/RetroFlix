@@ -33,6 +33,10 @@
             padding-top: 60vh;
         }
 
+        #sign_up_btn {
+            display: none;
+        }
+
     </style>
 
     <title>RetroFlix - Home of Retro!</title>
@@ -43,13 +47,14 @@
     <!-- Top navbar -->
 
     <nav class="navbar fixed-top navbar-expand-sm" style="background-color: #00000000;">
-        <div class="container-fluid">
-            
-            <!-- This needs changed to a proper sign in button-->
-                <form class="d-flex ms-auto">
-                    <a href="sign_in.html" class="btn btn-outline-info">Sign In</a>
-                </form>
-            </div>
+        <div class="container-fluid justify-content-end">
+
+            <!-- This needs linked to a working sign_up page-->
+            <a class="btn btn-info me-3" href="sign_up.html" role="button" id="sign_up_btn">Sign Up</a>
+
+            <!-- This needs get a sign in page/popup-->
+            <a class="btn btn-outline-info" href="sign_in.jtml" role="button" id="sign_in_btn">Sign In</a>        
+        
         </div>
     </nav>
 
@@ -61,16 +66,16 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-6">
-                    <h1 class="retro-font" style="font-size: 8em">RetroFlix</h1>
-                    <p class="lead text-center" style="font-size: 2.5em; font-weight: bold;">Welcome to the home of retro entertainment!</p>
-                    <p style="font-size: 2em; font-weight: bold;">Enter your email to create your free account today:</p>
+                    <h1 class="retro-font" style="font-size: calc(2em + 6vw)">RetroFlix</h1>
+                    <p class="lead text-center" style="font-size: calc(1em + 1.5vw); font-weight: bold;">Welcome to the home of retro entertainment!</p>
+                    <p style="font-size: calc(1em + 1vw); font-weight: bold;">Enter your email to create your free account today:</p>
                     <form>
                         <div class="input-group mb-3">
                             <input type="email" class="form-control" placeholder="Email address" aria-label="Email address" aria-describedby="button-addon2">
-                            <button class="btn btn-primary" type="submit" id="button-addon2" style="font-size: 1.5em; font-weight: bold;">Submit</button>
+                            <button class="btn btn-primary" type="submit" id="button-addon2" style="font-size: calc(0.5em + 1vw); font-weight: bold;">Submit</button>
                         </div>
                     </form>
-                    <p style="font-size: 1.5em; font-weight: bold;">We offer live streaming subscriptions, rental of physical copies, and retro merchandise sales.</p>
+                    <p style="font-size: calc(0.5em + 1vw); font-weight: bold;">We offer live streaming subscriptions, rental of physical copies, and retro merchandise sales.</p>
                 </div>
             </div>
         </div>
@@ -94,22 +99,22 @@
                     </div>
                     <div class="col-md-2">
                         <div class="card">
-                            <img src="Assets/Film_Posters/E_t_the_extra_terrestrial_ver3.jpg" alt="E T the extra terrestrial Film Poster" class="img-fluid">                 
+                            <img src="Assets/Film_Posters/E_T_film_poster.jpg" alt="E T the extra terrestrial Film Poster" class="img-fluid">                 
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
-                            <img src="/Assets/Film_Posters/Gladiator_(2000_film_poster).png" alt="Gladiator Film Poster" class="img-fluid">
+                            <img src="/Assets/Film_Posters/ghostbusters_film_poster.png" alt="Ghostbusters Film Poster" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
-                            <img src="/Assets/Film_Posters/Gremlins1.jpg" alt="Gremlins Film Poster" class="img-fluid">
+                            <img src="/Assets/Film_Posters/Gremlins_film_poster.jpg" alt="Gremlins Film Poster" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
-                            <img src="/Assets/Film_Posters/Jurassic_Park_poster.jpg" alt="Jurassic Park Film Poster" class="img-fluid">
+                            <img src="/Assets/Film_Posters/Jurassic_Park_film_poster.jpg" alt="Jurassic Park Film Poster" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -226,6 +231,17 @@
 
     <!-- JavaScript -->
     <script src="scripts.js"></script>
+    <script>
+        // Show the "Sign Up" button when the user has scrolled past the first section
+        window.addEventListener("scroll", function() {
+            var sign_up_btn = document.getElementById("sign_up_btn");
+            if (window.scrollY > 500) {
+                sign_up_btn.style.display = "block";
+            } else {
+                sign_up_btn.style.display = "none";
+            }
+        });
+    </script>
     <!-- Popper.js, and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
