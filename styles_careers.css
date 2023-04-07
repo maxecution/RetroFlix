@@ -12,7 +12,7 @@ label {
     font-display: center;
     font-weight: 300;
     padding: 20px;
-    background: -webkit-linear-gradient(left, rgb(64, 185, 245), rgb(246, 77, 201));
+    background: linear-gradient(to left, rgb(253, 2, 212), rgb(113, 122, 236), rgb(1, 221, 255));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
