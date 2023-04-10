@@ -1,4 +1,95 @@
-.cookie-banner{
-    background-color: #f8f8f8; padding: 10px; position: fixed; bottom: 0; left: 0; width: 100%; text-align: center;
+body {
+    background-color: #0e0f1b;
+    color: white;
+}
 
+h3{
+    text-align: left;
+    margin-top: 2pc;
+    padding-bottom: 0pc;
+}
+
+.container_scifi{
+    margin-top: 2pc;
+    border: 20px;
+    padding: 10px;
+}
+
+.container_romance{
+    margin-top: 2pc;
+    border: 20px;
+    padding: 10px;
+}
+
+.container_action{
+    margin-top: 2pc;
+    border: 20px;
+    padding: 10px;
+}
+
+.container_horror{
+    margin-top: 2pc;
+    border: 20px;
+    padding: 10px;
+}
+
+.card_1 {
+    border: 5px solid #39ff14; 
+    box-shadow: 0 0 50px #39ff14; 
+    height: 100%;
+    width: 75%;
+  }
+
+.card_2{
+    border: 5px solid #00ffff; 
+    box-shadow: 0 0 50px #00ffff; 
+    height: 100%;
+    width: 75%;
+}
+
+.card_3{
+    border: 5px solid #ff66ff; 
+    box-shadow: 0 0 50px #ff66ff; 
+    height: 100%;
+    width: 75%;
+}
+
+.card_4{
+    border: 5px solid #ff9900; 
+    box-shadow: 0 0 50px #ff9900;
+    height: 100%;
+    width: 75%;
+    
+}
+
+.card_5{
+    border: 5px solid #FFFF00; 
+    box-shadow: 0 0 50px #FFFF00;
+    height: 100%;
+    width: 75%;
+    
+}
+
+.card_6{
+    border: 5px solid #B900FF; 
+    box-shadow: 0 0 50px #B900FF;
+    height: 100%;
+    width: 75%;
+    
+}
+
+.card_1 img,
+.card_2 img,
+.card_3 img,
+.card_4 img,
+.card_5 img,
+.card_6 img {
+    height: 100%; 
+    width: 100%;
+    object-fit: cover; 
+    object-position: center; 
+}
+
+.card-body {
+    height: 100%; 
 }
