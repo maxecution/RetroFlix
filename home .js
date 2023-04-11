@@ -1,13 +1,10 @@
-function acceptCookies() {
-    // Set cookie to indicate that cookies have been accepted
-    document.cookie = "cookies_accepted=true; expires=Thu, 01 Jan 2099 00:00:00 UTC; path=/;";
-    
-    // Hide the cookie consent banner
-    document.getElementById("cookie-banner").style.display = "none";
+function showtitle(id) {
+    document.getElementById(id).style.display = "none"; 
+    document.getElementById("title_" + id).style.display = "block"; 
+    document.getElementById("title_" + id).style.color = "white";  
 }
 
-// Check if cookies have been accepted, if not, show the banner
-if (document.cookie.indexOf("cookies_accepted=true") === -1) {
-    document.getElementById("cookie-banner").style.display = "block";
-
+function hidetitle(id) {
+    document.getElementById("title_" + id).style.display = "none"; 
+    document.getElementById(id).style.display = "block"; 
 }
