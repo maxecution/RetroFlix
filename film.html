@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="styles_film.css" rel="stylesheet" >
+    <title>RetroFlix - Films</title>
+
+</head>
+<body>
+
+    <!-- Top navbar -->
+
+    <div id="navbar-placeholder"></div>
+
+    <!-- movie cards placeholder-->
+  
+    <section class="movies p-5" id="movies">
+        <h3>Sci-fi</h3>
+        <div class="container_scifi">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="card_1">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('jpark')" onmouseout="hidetitle('jpark')">
+                        <img id="jpark" src="Assets/Film_Posters/Jurassic_Park_film_poster.jpg" alt="" class="img-fluid">
+                        </a>
+                        <p id="title_jpark" style="display:none;">Jurassic Park</p>
+                        <div class="card-body p-2">
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_2">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('gremlins')" onmouseout="hidetitle('gremlins')">
+                        <img id="gremlins" src="Assets/Film_Posters/Gremlins_film_poster.jpg" alt="" class="img-fluid">
+                        </a>
+                        <p id="title_gremlins" style="display:none;">Gremlins</p>
+                        <div class="card-body p-2">                           
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_3">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('ghost')" onmouseout="hidetitle('ghost')">
+                        <img id="ghost" src="assets/Film_Posters/ghostbusters_film_poster.png" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_ghost" style="display:none;">Ghostbusters</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_4">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('et')" onmouseout="hidetitle('et')">
+                        <img id="et" src="Assets/Film_Posters/E_T_film_poster.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_et" style="display:none;">E.T. Extra Terrestrial</p>
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_5">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('blade')" onmouseout="hidetitle('blade')">
+                        <img id="blade" src="assets/Film_Posters/runner.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_blade" style="display:none;">Blade Runner</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_6">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('terminator')" onmouseout="hidetitle('terminator')">
+                        <img id="terminator" src="assets/Film_Posters/terminator.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_terminator" style="display:none;">Terminator</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Romance</h3>
+        <div class="container_romance">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="card_1">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('harry')" onmouseout="hidetitle('harry')">                     
+                        <img id="harry" src="Assets/Film_Posters/harry.webp" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_harry" style="display:none;">When Harry Met Sally</p>
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_2">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('seattle')" onmouseout="hidetitle('seattle')">
+                        <img id="seattle" src="Assets/Film_Posters/seattle.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_seattle" style="display:none;">Sleepless in Seattle</p>
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_3">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('pretty')" onmouseout="hidetitle('pretty')">
+                        <img id='pretty' src="Assets/Film_Posters/pretty.webp" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_pretty" style="display:none;">Pretty Woman</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_4">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('overboard')" onmouseout="hidetitle('overboard')">
+                        <img id="overboard" src="Assets/Film_Posters/overboard.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_overboard" style="display:none;">Overboard</p>
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_5">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('heathers')" onmouseout="hidetitle('heathers')">
+                        <img id="heathers" src="assets/Film_Posters/heathers.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_heathers" style="display:none;">Heathers</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_6">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('singer')" onmouseout="hidetitle('singer')">
+                        <img id="singer" src="assets/Film_Posters/singer.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_singer" style="display:none;">The Wedding Singer</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Action</h3>
+        <div class="container_action">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="card_1">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('tango')" onmouseout="hidetitle('tango')">
+                        <img id="tango" src="Assets/Film_Posters/tango.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_tango" style="display:none;">Tango and Cash</p>
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_2">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('demolition')" onmouseout="hidetitle('demolition')">
+                        <img id="demolition" src="Assets/Film_Posters/demolition.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_demolition" style="display:none;">Demolition Man</p>
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_3">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('die')" onmouseout="hidetitle('die')">
+                        <img id="die" src="assets/Film_Posters/die.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_die" style="display:none;">Die Hard</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_4">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('running')" onmouseout="hidetitle('running')">
+                        <img id="running" src="Assets/Film_Posters/running.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_running" style="display:none;">Running Man</p>
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_5">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('rambo')" onmouseout="hidetitle('rambo')">
+                        <img id="rambo" src="assets/Film_Posters/rambo.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_rambo" style="display:none;">Rambo</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_6">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('china')" onmouseout="hidetitle('china')">
+                        <img id="china" src="assets/Film_Posters/china.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_china" style="display:none;">Big Trouble in Little China</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Horror</h3>
+        <div class="container_horror">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="card_1">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('jason')" onmouseout="hidetitle('jason')">
+                        <img id="jason" src="Assets/Film_Posters/jason.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_jason" style="display:none;">Friday 13th</p>
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_2">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('freddie')" onmouseout="hidetitle('freddie')">
+                        <img id="freddie" src="Assets/Film_Posters/freddie.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_freddie" style="display:none;">A Nightmare on Elm Street</p>
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_3">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('halloween')" onmouseout="hidetitle('halloween')">
+                        <img id="halloween" src="assets/Film_Posters/halloween.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_halloween" style="display:none;">Halloween</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_4">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('hell')" onmouseout="hidetitle('hell')">
+                        <img id="hell" src="Assets/Film_Posters/hell.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_hell" style="display:none;">Hellraiser</p>
+                            <div class="d-flex justify-content-around">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_5">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('scream')" onmouseout="hidetitle('scream')">
+                        <img id="scream" src="assets/Film_Posters/scream.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_scream" style="display:none;">Scream</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="card_6">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('texas')" onmouseout="hidetitle('texas')">
+                        <img id="texas" src="assets/Film_Posters/texas.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_texas" style="display:none;">Texas Chainsaw Massacre</p>
+                            <div class="d-flex justify-content-around">                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Footer -->
+    
+   <div id="footer-placeholder"></div>
+   
+   <!-- JavaScript -->
+   <script src="scripts.js"></script>
+   <script src="film.js"></script>
+   <!-- Popper.js, and Bootstrap JS -->
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+
+</body>
+</html>
