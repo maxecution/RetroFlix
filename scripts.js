@@ -6,6 +6,14 @@ fetch('navbar.html')
 })
 .catch(error => console.error(error));
 
+// Load navbar_no_login from external file
+fetch('navbar_no_login.html')
+.then(response => response.text())
+.then(data => {
+  document.querySelector('#navbar_no_login-placeholder').innerHTML = data;
+})
+.catch(error => console.error(error));
+
 // Load footer from external file
 fetch('footer.html')
 .then(response => response.text())
