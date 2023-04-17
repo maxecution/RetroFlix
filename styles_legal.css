@@ -3,7 +3,7 @@ body {
     color: white;
 }
 
-h3 {
+h1 {
     font-size: 5pc;
     font-display: center;
     text-align: center;
@@ -13,4 +13,8 @@ h3 {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.container_text{
+    font-weight: 300;
 }

@@ -15,6 +15,10 @@ h1 {
     -webkit-text-fill-color: transparent;
 }
 
-  label {
+label {
     color: black;
-  }
+}
+
+.container_text{
+    font-weight: 300;
+}

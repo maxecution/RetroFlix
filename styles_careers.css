@@ -5,15 +5,23 @@ body {
 
 label {
     color: black;
-  }
+}
 
-  h1 {
+h1 {
     font-size: 5pc;
     font-display: center;
     font-weight: 300;
-    padding: 20px;
+    text-align: center;
+    padding-top: 20px;
     background: linear-gradient(to left, rgb(253, 2, 212), rgb(113, 122, 236), rgb(1, 221, 255));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+h4 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 300;
+  text-align: center;
 }
