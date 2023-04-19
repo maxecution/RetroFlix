@@ -126,3 +126,44 @@ INSERT INTO films (title, release_year, duration, age_rating, rating) VALUES
 ('E.T. the Extra-Terrestrial', 1982, '01:55:00', 'PG', 7.9),
 ('Blade Runner', 1982, '01:57:00', 'R', 8.1),
 ('The Terminator', 1984, '01:47:00', 'R', 8.1);
+
+
+Adding data to junction tables:
+
+INSERT INTO films_actors (film_id, actor_id) VALUES 
+(1, 1), -- Jurassic Park, Sam Neill
+(1, 2), -- Jurassic Park, Laura Dern
+(1, 3), -- Jurassic Park, Jeff Goldblum
+(2, 4), -- Gremlins, Zach Galligan
+(2, 5), -- Gremlins, Phoebe Cates
+(2, 6), -- Gremlins, Hoyt Axton
+(3, 7), -- Ghostbusters, Bill Murray
+(3, 8), -- Ghostbusters, Dan Aykroyd
+(3, 9), -- Ghostbusters, Sigourney Weaver
+(4, 10), -- E.T., Henry Thomas
+(4, 11), -- E.T., Drew Barrymore
+(4, 12), -- E.T., Dee Wallace
+(5, 13), -- Blade Runner, Harrison Ford
+(5, 14), -- Blade Runner, Rutger Hauer
+(5, 15), -- Blade Runner, Sean Young
+(6, 16), -- Terminator, Arnold Schwarzenegger
+(6, 17), -- Terminator, Michael Biehn
+(6, 18); -- Terminator, Linda Hamilton
+
+
+INSERT INTO films_genres (film_id, genre_id) VALUES 
+(1, 7), -- Jurassic Park, Science Fiction
+(1, 2), -- Jurassic Park, Adventure
+(1, 8), -- Jurassic Park, Thriller
+(2, 3), -- Gremlins, Comedy
+(2, 6), -- Gremlins, Horror
+(2, 5), -- Gremlins, Fantasy
+(3, 3), -- Ghostbusters, Comedy
+(3, 5), -- Ghostbusters, Fantasy
+(4, 7), -- E.T., Science Fiction
+(4, 4), -- E.T., Family
+(4, 2), -- E.T., Adventure
+(5, 7), -- Blade Runner, Science Fiction
+(5, 8), -- Blade Runner, Thriller
+(6, 7), -- Terminator, Science Fiction
+(6, 1); -- Terminator, Action
