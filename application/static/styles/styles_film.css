@@ -1,0 +1,130 @@
+body {
+    background-color: #0e0f1b;
+    color: white;
+}
+
+h3{
+    text-align: left;
+    font-weight: 50;
+    margin-top: 2pc;
+    padding-bottom: 0pc;
+}
+
+.container_scifi{
+    margin-top: 2pc;
+    border: 20px;
+    padding: 10px;
+}
+
+.container_romance{
+    margin-top: 2pc;
+    border: 20px;
+    padding: 10px;
+}
+
+.container_action{
+    margin-top: 2pc;
+    border: 20px;
+    padding: 10px;
+}
+
+.container_horror{
+    margin-top: 2pc;
+    border: 20px;
+    padding: 10px;
+}
+
+.card_1 {
+    border: 3px solid #39ff14; 
+    box-shadow: 0 0 30px #39ff14; 
+    height: 100%;
+    width: 75%;
+    transition: transform 0s ease-in-out;
+}
+.card_1:hover {
+    transform: scale(1.1);
+    display: grid;
+    text-align: center;
+    text-decoration: double;
+}
+.card_2{
+    border: 3px solid #00ffff; 
+    box-shadow: 0 0 30px #00ffff; 
+    height: 100%;
+    width: 75%;
+    transition: transform 0s ease-in-out;
+}
+.card_2:hover {
+    transform: scale(1.1);
+    display: grid;
+    text-align: center;
+    text-decoration: double;
+  }
+.card_3{
+    border: 3px solid #ff66ff; 
+    box-shadow: 0 0 30px #ff66ff; 
+    height: 100%;
+    width: 75%;
+    transition: transform 0s ease-in-out;
+}
+.card_3:hover {
+    transform: scale(1.1);
+    display: grid;
+    text-align: center;
+    text-decoration: double;
+}
+.card_4{
+    border: 3px solid #ff9900; 
+    box-shadow: 0 0 30px #ff9900;
+    height: 100%;
+    width: 75%;
+    transition: transform 0s ease-in-out;
+}
+.card_4:hover {
+    transform: scale(1.1);
+    display: grid;
+    text-align: center;
+    text-decoration: double;
+}
+.card_5{
+    border: 3px solid #FFFF00; 
+    box-shadow: 0 0 30px #FFFF00;
+    height: 100%;
+    width: 75%;
+    transition: transform 0s ease-in-out;
+}
+.card_5:hover {
+    transform: scale(1.1);
+    display: grid;
+    text-align: center;
+    text-decoration: double;
+}
+.card_6{
+    border: 3px solid #B900FF; 
+    box-shadow: 0 0 30px #B900FF;
+    height: 100%;
+    width: 75%;
+    transition: transform 0s ease-in-out;
+}  
+.card_6:hover {
+    transform: scale(1.1);
+    display: grid;
+    text-align: center;
+    text-decoration: double;
+}
+
+.card_1 img,
+.card_2 img,
+.card_3 img,
+.card_4 img,
+.card_5 img,
+.card_6 img {
+    height: 100%; 
+    width: 100%;
+    object-fit: cover; 
+    object-position: center; 
+}
+
+.card-body {
+    height: 100%; 
+}

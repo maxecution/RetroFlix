@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="styles_series.css" rel="stylesheet" >
+    <title>RetroFlix - Series</title>
+
+</head>
+<body>
+
+    <!-- Top navbar -->
+
+    <div id="navbar-placeholder"></div>
+
+    <!-- movie cards placeholder-->
+  
+    <section class="series p-5" id="series">
+        <h3>Binge-Worthy</h3>
+        <div class="container_scifi">
+            <div class="row">
+
+                <div class="col-md-2">
+                    <div class="card_1">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('friends')" onmouseout="hidetitle('friends')">
+                        <img id="friends" src="Assets/Series_Posters/friends.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_friends" style="display:none;">Friends</p>                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_2">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('cheers')" onmouseout="hidetitle('cheers')">
+                        <img id="cheers" src="Assets/Series_Posters/cheers.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_cheers" style="display:none;">Cheers</p>                                                  
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_3">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('fraiser')" onmouseout="hidetitle('fraiser')">
+                        <img id="fraiser" src="assets/Series_Posters/fraiser.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_fraiser" style="display:none;">Fraiser</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_4">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('married')" onmouseout="hidetitle('married')">
+                        <img id="married" src="Assets/Series_Posters/married.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_married" style="display:none;">Married...With Children</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_5">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('golden')" onmouseout="hidetitle('golden')">
+                        <img id="golden" src="assets/Series_Posters/golden.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_golden" style="display:none;">The Golden Girls</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_6">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('moon')" onmouseout="hidetitle('moon')">
+                        <img id="moon" src="assets/Series_Posters/moon.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_moon" style="display:none;">Moonlighting</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Best of British</h3>
+        <div class="container_romance">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="card_1">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('blackadder')" onmouseout="hidetitle('blackadder')">                     
+                        <img id="blackadder" src="Assets/Series_Posters/blackadder.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_blackadder" style="display:none;">Blackadder</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_2">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('fools')" onmouseout="hidetitle('fools')">
+                        <img id="fools" src="Assets/Series_Posters/fools.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_fools" style="display:none;">Only Fools and Horses</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_3">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('grave')" onmouseout="hidetitle('grave')">
+                        <img id='grave' src="Assets/Series_Posters/grave.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_grave" style="display:none;">One Foot in the Grave</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_4">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('keeping')" onmouseout="hidetitle('keeping')">
+                        <img id="keeping" src="Assets/Series_Posters/keeping.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_keeping" style="display:none;">Keeping Up Appearances</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_5">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('men')" onmouseout="hidetitle('men')">
+                        <img id="men" src="assets/Series_Posters/men.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_men" style="display:none;">Men Behaving Badly</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_6">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('abfab')" onmouseout="hidetitle('abfab')">
+                        <img id="abfab" src="assets/Series_Posters/abfab.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_abfab" style="display:none;">Absolutely Fabulous</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>American Classics</h3>
+        <div class="container_action">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="card_1">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('er')" onmouseout="hidetitle('er')">
+                        <img id="er" src="Assets/Series_Posters/er.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_er" style="display:none;">E.R</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_2">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('knight')" onmouseout="hidetitle('knight')">
+                        <img id="knight" src="Assets/Series_Posters/knight.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_knight" style="display:none;">Knight Rider</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_3">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('magnum')" onmouseout="hidetitle('magnum')">
+                        <img id="magnum" src="assets/Series_Posters/magnum.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_magnum" style="display:none;">Magnum P.I</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_4">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('miami')" onmouseout="hidetitle('miami')">
+                        <img id="miami" src="Assets/Series_Posters/miami.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_miami" style="display:none;">Miami Vice</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_5">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('baywatch')" onmouseout="hidetitle('baywatch')">
+                        <img id="baywatch" src="assets/Series_Posters/baywatch.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_baywatch" style="display:none;">Baywatch</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_6">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('dallas')" onmouseout="hidetitle('dallas')">
+                        <img id="dallas" src="assets/Series_Posters/dallas.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_dallas" style="display:none;">Dallas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Teen Dream</h3>
+        <div class="container_horror">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="card_1">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('bell')" onmouseout="hidetitle('bell')">
+                        <img id="bell" src="Assets/Series_Posters/bell.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_bell" style="display:none;">Saved by the Bell</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_2">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('buffy')" onmouseout="hidetitle('buffy')">
+                        <img id="buffy" src="Assets/Series_Posters/buffy.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_buffy" style="display:none;">Buffy the Vampire Slayer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_3">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('creek')" onmouseout="hidetitle('creek')">
+                        <img id="creek" src="assets/Series_Posters/creek.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_creek" style="display:none;">Dawson's Creek</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_4">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('hills')" onmouseout="hidetitle('hills')">
+                        <img id="hills" src="Assets/Series_Posters/hills.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_hills" style="display:none;">Beverly Hills 90210</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_5">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('kenan')" onmouseout="hidetitle('kenan')">
+                        <img id="kenan" src="assets/Series_Posters/kenan.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_kenan" style="display:none;">Kenan and Kell</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card_6">
+                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('prince')" onmouseout="hidetitle('prince')">
+                        <img id="prince" src="assets/Series_Posters/prince.jpg" alt="" class="img-fluid">
+                        </a>
+                        <div class="card-body p-2">
+                            <p id="title_prince" style="display:none;">The Fresh Prince of Bel Air</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Footer -->
+    
+   <div id="footer-placeholder"></div>
+   
+   <!-- JavaScript -->
+   <script src="scripts.js"></script>
+   <script src="series.js"></script>
+   <!-- Popper.js, and Bootstrap JS -->
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+
+</body>
+</html>
