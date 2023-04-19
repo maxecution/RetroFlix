@@ -1,8 +1,0 @@
-title, release year, duration, age rating, imdb rating, genres, main actors
-
-Jurassic Park, 1993, 127 minutes, PG-13, 8.2, [Science Fiction, Adventure, Thriller], [Sam Neill, Laura Dern, Jeff Goldblum]
-Gremlins, 1984, 106 minutes, PG, 7.3, [Comedy, Horror, Fantasy], [Zach Galligan, Phoebe Cates, Hoyt Axton]
-Ghostbusters, 1984, 105 minutes, PG, 7.8, [Comedy, Fantasy], [Bill Murray, Dan Aykroyd, Sigourney Weaver]
-E.T. the Extra-Terrestrial, 1982, 115 minutes, PG, 7.9, [Science Fiction, Family, Adventure], [Henry Thomas, Drew Barrymore, Dee Wallace]
-Blade Runner, 1982, 117 minutes, R, 8.1. [Science Fiction, Thriller], [Harrison Ford, Rutger Hauer, Sean Young]
-The Terminator, 1984, 107 minutes, R, 8.1, [Science Fiction, Action], [Arnold Schwarzenegger, Michael Biehn, Linda Hamilton]
