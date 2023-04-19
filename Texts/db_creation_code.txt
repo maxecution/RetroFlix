@@ -1,0 +1,128 @@
+Create DB:
+
+create database retroflix
+
+use retroflix
+
+
+
+Creating tables:
+
+CREATE TABLE films (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  release_year INT NOT NULL,
+  duration TIME NOT NULL,
+  age_rating TEXT NOT NULL,
+  rating DECIMAL(3,1) NOT NULL
+);
+
+CREATE TARBLE actors (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+);
+
+CREATE TABLE films_actors (
+  film_id INT NOT NULL,
+  actor_id INT NOT NULL,
+  PRIMARY KEY (film_id, actor_id),
+  FOREIGN KEY (film_id) REFERENCES films(id),
+  FOREIGN KEY (actor_id) REFERENCES actors(id)
+);
+
+CREATE TARBLE genres (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  genre VARCHAR(255) NOT NULL,
+);
+
+CREATE TABLE films_genres (
+  film_id INT NOT NULL,
+  genre_id INT NOT NULL,
+  PRIMARY KEY (film_id, genre_id),
+  FOREIGN KEY (film_id) REFERENCES films(id),
+  FOREIGN KEY (genre_id) REFERENCES actors(id)
+);
+
+CREATE TABLE tv_series (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  release_year INT NOT NULL,
+  age_rating TEXT NOT NULL,
+  rating DECIMAL(3,1) NOT NULL
+);
+
+CREATE TABLE tv_series_seasons (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  tv_series_id INT NOT NULL,
+  release_year INT NOT NULL,
+  season_number INT NOT NULL,
+  FOREIGN KEY (tv_series_id) REFERENCES tv_series(id)
+);
+
+CREATE TABLE tv_series_episodes (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  tv_series_season_id INT NOT NULL,
+  episode_number INT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  release_year INT NOT NULL,
+  duration TIME NOT NULL,
+  FOREIGN KEY (tv_series_season_id) REFERENCES tv_series_seasons(id)
+);
+
+CREATE TABLE tv_series_episodes_actors (
+  tv_series_episode_id INT NOT NULL,
+  actor_id INT NOT NULL,
+  PRIMARY KEY (tv_series_episode_id, actor_id),
+  FOREIGN KEY (tv_series_episode_id) REFERENCES tv_series_episodes(id),
+  FOREIGN KEY (actor_id) REFERENCES actors(id)
+);
+
+CREATE TABLE tv_series_episodes_genres (
+  tv_series_episode_id INT NOT NULL,
+  genre_id INT NOT NULL,
+  PRIMARY KEY (tv_series_episode_id, genre_id),
+  FOREIGN KEY (tv_series_episode_id) REFERENCES tv_series_episodes(id),
+  FOREIGN KEY (genre_id) REFERENCES genres(id)
+);
+
+
+
+Insert actors data:
+
+INSERT INTO actors (name) VALUES 
+('Sam Neill'),
+('Laura Dern'),
+('Jeff Goldblum'),
+('Zach Galligan'),
+('Phoebe Cates'),
+('Hoyt Axton'),
+('Bill Murray'),
+('Dan Aykroyd'),
+('Sigourney Weaver'),
+('Henry Thomas'),
+('Drew Barrymore'),
+('Dee Wallace'),
+('Harrison Ford'),
+('Rutger Hauer'),
+('Sean Young'),
+('Arnold Schwarzenegger'),
+('Michael Biehn'),
+('Linda Hamilton');
+
+INSERT INTO genres (genre) VALUES 
+('Action'),
+('Adventure'),
+('Comedy'),
+('Family'),
+('Fantasy'),
+('Horror'),
+('Science Fiction'),
+('Thriller');
+
+INSERT INTO films (title, release_year, duration, age_rating, rating) VALUES
+('Jurassic Park', 1993, '02:07:00', 'PG-13', 8.2),
+('Gremlins', 1984, '01:46:00', 'PG', 7.3),
+('Ghostbusters', 1984, '01:45:00', 'PG', 7.8),
+('E.T. the Extra-Terrestrial', 1982, '01:55:00', 'PG', 7.9),
+('Blade Runner', 1982, '01:57:00', 'R', 8.1),
+('The Terminator', 1984, '01:47:00', 'R', 8.1);
