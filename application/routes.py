@@ -2,15 +2,15 @@ from flask import render_template
 
 from application import app
 
-#navbar render
-@app.route('/navbar')
-def navbar():
-    return render_template('navbar.html')
+# #navbar render
+# @app.route('/navbar')
+# def navbar():
+#     return render_template('navbar.html')
 
-#footer render
-@app.route('/footer')
-def footer():
-    return render_template('footer.html')
+# #footer render
+# @app.route('/footer')
+# def footer():
+#     return render_template('footer.html')
 
 #index render
 @app.route('/index')
@@ -31,31 +31,6 @@ def sign_up():
 @app.route('/sign_in')
 def sign_in():
     return render_template('sign_in.html')
-
-#about us render
-@app.route('/about_us')
-def about_us():
-    return render_template('about_us.html')
-
-#careers render
-@app.route('/careers')
-def careers():
-    return render_template('careers.html')
-
-#contact render
-@app.route('/contactus')
-def contactus():
-    return render_template('contactus.html')
-
-#corporate info render
-@app.route('/corp_info')
-def corp_info():
-    return render_template('corp_info.html')
-
-#faqs render
-@app.route('/faq')
-def faq():
-    return render_template('faq.html')
 
 #help render
 @app.route('/help')
@@ -86,3 +61,33 @@ def film():
 @app.route('/series')
 def series():
     return render_template('series.html')
+
+#about us render
+@app.route('/about_us')
+def about_us_test():
+    return render_template('about_us.html', title='About Us')
+
+#careers render
+@app.route('/careers')
+def careers():
+    return render_template('careers.html', title='Careers')
+
+#contact us render
+@app.route('/contact_us')
+def contactus():
+    return render_template('contact_us.html', title='Contact Us')
+
+#corporate info render
+@app.route('/corp_info')
+def corp_info():
+    return render_template('corp_info.html', title='Corporate Information')
+
+#faqs render
+@app.route('/faq')
+def faq():
+    return render_template('faq.html', title='Frequently Asked Questions')
+
+#film render
+@app.route('/film')
+def film():
+    return render_template('film.html', title='Films')
