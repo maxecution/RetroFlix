@@ -1,28 +1,41 @@
 window.addEventListener('load', function() {
-    var cookiePopup = document.getElementById('cookiePopup');
+    var cookiePopup = document.getElementById('cookieAllow');
     cookiePopup.style.display = 'block';
-});
-
-document.getElementById('cookieForm').addEventListener('submit', function(event) {
+  });
+  
+  document.getElementById('cookieForm_allow').addEventListener('submit', function(event) {
     event.preventDefault();
-
-    // Get checkbox values
-    var analyticsCheckbox = document.getElementById('analyticsCheckbox').checked;
-    var personalizationCheckbox = document.getElementById('personalizationCheckbox').checked;
-    var advertisingCheckbox = document.getElementById('advertisingCheckbox').checked;
-
-    // Set cookies based on checkbox values
-    setCookie('analytics', analyticsCheckbox);
-    setCookie('personalization', personalizationCheckbox);
-    setCookie('advertising', advertisingCheckbox);
-
-    // Hide cookie popup
-    var cookiePopup = document.getElementById('cookiePopup');
+  
+    var allowCheckbox = document.getElementById('allowCheckbox').checked;
+  
+    setCookie('allow', allowCheckbox);
+    
+    var cookiePopup = document.getElementById('cookieAllow');
     cookiePopup.style.display = 'none';
-
-    // Continue loading the main content of the web page
+  
     document.body.style.overflow = 'auto';
-});
+  });
+
+  document.getElementById('cookieForm_manage').addEventListener('submit', function(event) {
+    event.preventDefault();
+  
+    var analyticsCheckbox = document.getElementById('analyticsCheckbox').checked;
+    var marketingCheckbox = document.getElementById('marketingCheckbox').checked;
+  
+    setCookie('analytics', analyticsCheckbox);
+    setCookie('marketing', marketingCheckbox);
+  
+    alert('Preferences saved!');
+  });
+
+  document.getElementById('showManageCookies').addEventListener('click', function(event) {
+    event.preventDefault();
+  
+    var manageCookies = document.getElementById('manageCookies');
+    manageCookies.style.display = 'block';
+  
+    this.style.display = 'none';
+  });
 
 function setCookie(cookieName, cookieValue) {
     var date = new Date();

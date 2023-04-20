@@ -60,18 +60,39 @@
         </button>
     </div>
 
-    <!--Cookie Preferences Pop-up  SORT THIS OUT NXT - LAUREN!!--> 
-    <div class="card bg-dark text-white" style="border-radius: 1rem;"></div>
-      <div id="cookiePopup" class="cookie_popup">
-        <h1>Cookie Preferences</h1>
-        <p>Please select your cookie preferences below:</p>
-        <form id="cookieForm">
-          <!-- Checkbox options go here--> 
-          <button type="submit">Save Preferences</button>
+    <!--Cookie Preferences Pop-up--> 
+
+    <div id="cookieAllow" class="cookie_popup col-8 col-md-4 col-lg-4 col-xl-4 bg-dark text-white">
+      <h1>Cookie Preferences</h1>
+      <p>We use cookies, pixels, tags, and similar technologies to collect personal data about your watching habits.</p>
+      <p>These help us collect info about you so we can keep making our website better, offer personalized content and keep things fresh.</p>
+      <br>
+      <p>By clicking "Accept all and continue", you agree to our use of cookies categorized by Analytics and Marketing.</p>
+      <form id="cookieForm_allow">
+        <div>
+          <input type="checkbox" id="allowCheckbox" name="allow" checked>
+          <label for="allowCheckbox">Allow Cookies</label>
+        </div>
+        <button class="btn btn-outline-info btn-md px-5" type="submit">Accept and Continue</button>
+      </form>
+      <hr>
+      <div id="manageCookies" style="display: none;">
+        <h2>Manage Cookies</h2>
+        <form id="cookieForm_manage">
+          <div>
+            <input type="checkbox" id="analyticsCheckbox" name="analytics">
+            <label for="analyticsCheckbox">Analytics Cookies</label>
+          </div>
+          <div>
+            <input type="checkbox" id="marketingCheckbox" name="marketing">
+            <label for="marketingCheckbox">Marketing Cookies</label>
+          </div>
+          <button class="btn btn-outline-info btn-md px-5" type="submit">Save Preferences</button>
         </form>
       </div>
-   
-
+      <p><a href="#" id="showManageCookies" class="text-info fw-bold" >Manage Cookies</a></p>
+    </div>
+    
    <!-- Footer -->
     
    <div id="footer-placeholder"></div>

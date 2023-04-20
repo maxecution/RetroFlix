@@ -33,11 +33,11 @@ h1{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
     padding: 20px;
-    box-sizing: border-box;
-    color: #fff;
+    border: 1px solid #00ffff;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px #00ffff;
 }
 
 .button[type="submit"] {
