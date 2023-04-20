@@ -2,87 +2,92 @@ from flask import render_template
 
 from application import app
 
-#navbar render
-@app.route('/navbar')
-def navbar():
-    return render_template('navbar.html')
+# #navbar render
+# @app.route('/navbar')
+# def navbar():
+#     return render_template('navbar.html')
 
-#footer render
-@app.route('/footer')
-def footer():
-    return render_template('footer.html')
+# #footer render
+# @app.route('/footer')
+# def footer():
+#     return render_template('footer.html')
 
 #index render
 @app.route('/index')
 def index():
-    return render_template('index.html')
-
-#home render
-@app.route('/home')
-def home():
-    return render_template('home.html')
-
-#sign up render
-@app.route('/sign_up')
-def sign_up():
-    return render_template('sign_up.html')
-
-#sign in render
-@app.route('/sign_in')
-def sign_in():
-    return render_template('sign_in.html')
+    return render_template('index.html', title='Index')
 
 #about us render
 @app.route('/about_us')
-def about_us():
-    return render_template('about_us.html')
+def about_us_test():
+    return render_template('about_us.html', title='About Us')
 
 #careers render
 @app.route('/careers')
 def careers():
-    return render_template('careers.html')
+    return render_template('careers.html', title='Careers')
 
-#contact render
-@app.route('/contactus')
+#contact us render
+@app.route('/contact_us')
 def contactus():
-    return render_template('contactus.html')
+    return render_template('contact_us.html', title='Contact Us')
 
 #corporate info render
 @app.route('/corp_info')
 def corp_info():
-    return render_template('corp_info.html')
+    return render_template('corp_info.html', title='Corporate Information')
 
 #faqs render
 @app.route('/faq')
 def faq():
-    return render_template('faq.html')
-
-#help render
-@app.route('/help')
-def help():
-    return render_template('help.html')
-
-#legal notices render
-@app.route('/legal_notice')
-def legal_notice():
-    return render_template('legal_notice.html')
-
-#privacy notice render
-@app.route('/privacy_notice')
-def privacy_notice():
-    return render_template('privacy_notice.html')
-
-#terms render
-@app.route('/terms_of_use')
-def terms_of_use():
-    return render_template('terms_of_use.html')
+    return render_template('faq.html', title='Frequently Asked Questions')
 
 #film render
 @app.route('/film')
 def film():
-    return render_template('film.html')
+    return render_template('film.html', title='Films')
+
+#account render
+@app.route('/account')
+def account():
+    return render_template('account.html', title='Account')
+
+#help render
+@app.route('/help')
+def help():
+    return render_template('help.html', title='Help')
+
+#home render
+@app.route('/home')
+def home():
+    return render_template('home.html', title='Home')
+
+#legal notices render
+@app.route('/legal_notice')
+def legal_notice():
+    return render_template('legal_notice.html', title='Legal Notice')
+
+#privacy notice render
+@app.route('/privacy_notice')
+def privacy_notice():
+    return render_template('privacy_notice.html', title='Privacy Notice')
 
 #series render
 @app.route('/series')
 def series():
-    return render_template('series.html')
+    return render_template('series.html', title='Series')
+
+#terms render
+@app.route('/terms_of_use')
+def terms_of_use():
+    return render_template('terms_of_use.html', title='Terms of Use')
+
+#sign up render
+@app.route('/sign_up')
+def sign_up():
+    return render_template('sign_up.html', title='Sign Up')
+
+#sign in render
+@app.route('/sign_in')
+def sign_in():
+    return render_template('sign_in.html', title='Sign In')

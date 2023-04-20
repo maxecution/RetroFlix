@@ -1,25 +1,20 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends "main_layout.html" %}
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    
-    <!--Landing style sheet-->
+{% block head_content %}
+    <!-- Index style sheet-->
     <link rel="stylesheet" href="{{ url_for('static', filename='/styles/styles_index.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/back_to_top.css') }}" >
+
 
     <style>
-        body {
-            background-image: url(../static/assets/lounge.avif);
+        /* body {
+            background-image: url(../Assets/lounge.avif);
             height: auto; 
             background-color: #0e0f1b;
             background-position: top; 
             background-repeat: no-repeat;
             background-size: contain;
-        }
+        } */
 
         .content-example {
             padding-top: 65vh;
@@ -38,11 +33,9 @@
         }
 
     </style>
+{% endblock %}
 
-    <title>RetroFlix - Home of Retro!</title>
-
-</head>
-<body>
+{% block navbar %}
     
     <!-- Top navbar -->
 
@@ -60,7 +53,9 @@
         
         </div>
     </nav>
+{% endblock %}
 
+{% block body_content %}
     <!-- Landing Page Content-->
 
     <!-- First block -->
@@ -198,17 +193,17 @@
 
   
 
-    <button onclick="topFunction()" id="back-to-top" title="Go to top">&UpArrowBar;</button>
+    <button onclick="topFunction()" id="back-to-top" title="Go to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="45" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+    </button>
 
-
-
-
-    <!-- Footer -->
-    
-    <div id="footer-placeholder"></div>
 
     <!-- JavaScript -->
-    <script src="{{ url_for('static', filename='/scripts/scripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='/scripts/back_to_top.js') }}"></script>
+
+
     <script>
         // Show the "Sign Up" button when the user has scrolled past the first section
         window.addEventListener("scroll", function() {
@@ -220,24 +215,20 @@
             }
         });
 
-        // Show back to top button when use has scrolled past first section
-        window.addEventListener('scroll', function() {
-            var backToTopButton = document.getElementById('back-to-top');
-            if (window.scrollY > 500) {
-                backToTopButton.style.display = 'block';
-            } else {
-                backToTopButton.style.display = 'none';
-            }
-        });
+        // // Show back to top button when use has scrolled past first section
+        // window.addEventListener('scroll', function() {
+        //     var backToTopButton = document.getElementById('back-to-top');
+        //     if (window.scrollY > 500) {
+        //         backToTopButton.style.display = 'block';
+        //     } else {
+        //         backToTopButton.style.display = 'none';
+        //     }
+        // });
 
-        // Function to move user back to top when clicking on button
-        document.getElementById('back-to-top').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        // // Function to move user back to top when clicking on button
+        // document.getElementById('back-to-top').addEventListener('click', function() {
+        //     window.scrollTo({ top: 0, behavior: 'smooth' });
+        // });
 
     </script>
-    <!-- Popper.js, and Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}

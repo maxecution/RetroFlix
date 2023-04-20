@@ -1,60 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends "main_layout.html" %}
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link href="{{ url_for('static', filename='/styles/styles_about_us.css') }}" rel="stylesheet" >
-    <title>RetroFlix - About Us</title>
+<!-- Stylesheet-->
 
-</head>
-<body>
+{% block head_content %}
 
-    <!-- Top navbar -->
+<link href="{{ url_for('static', filename='/styles/styles_about_us.css') }}" rel="stylesheet" >
 
-    {% include 'navbar.html' %}
+{% endblock %}
 
-    <!-- About Us-->
+<!--  Main page content-->
 
-    <div class="container mt-5">
-        <h1 class="text-center">About Us</h1>
-        <div class="row gx-0 mt-4">
-            <div class="col-md-4">
-                <div class="container_text border-top">
-                    <p class="lead">RetroFlix are a British media company based in London, England. Founded in 2023 MJAL inc, RetroFlix offers online video streaming services.</p>
-                    <p>At RetroFlix, we are passionate about bringing back the neon lights of the 80s and 90s through nostalgic TV shows and vintage movies. Our business ethos is that we live and breathe retro cinema and TV and our subscribers feel the same. We aim to offer our customers access to these movies and shows in a way that is both convenient and affordable; in a dedicated space for this time period.</p>
-                    <p>Our mission is to provide our customers with access to entertainment from the back catalogue which will not detract from other areas of the business. We value our customers and are committed to providing them with the best possible service. We strive to maintain the highest standards of quality and integrity in all aspects of our business. We believe that by doing so, we can earn the trust and loyalty of our customers.</p>
-                    <p>Thank you for considering RetroFlix for your entertainment needs. We are excited to have you come with us on a trip down memory lane.</p>
+{% block body_content%}
+        <!-- About Us-->
+
+        <div class="container mt-5">
+            <h1 class="text-center">About Us</h1>
+            <div class="row gx-0 mt-4">
+                <div class="col-md-4">
+                    <div class="container_text border-top">
+                        <p class="lead">RetroFlix are a British media company based in London, England. Founded in 2023 MJAL inc, RetroFlix offers online video streaming services.</p>
+                        <p>At RetroFlix, we are passionate about bringing back the neon lights of the 80s and 90s through nostalgic TV shows and vintage movies. Our business ethos is that we live and breathe retro cinema and TV and our subscribers feel the same. We aim to offer our customers access to these movies and shows in a way that is both convenient and affordable; in a dedicated space for this time period.</p>
+                        <p>Our mission is to provide our customers with access to entertainment from the back catalogue which will not detract from other areas of the business. We value our customers and are committed to providing them with the best possible service. We strive to maintain the highest standards of quality and integrity in all aspects of our business. We believe that by doing so, we can earn the trust and loyalty of our customers.</p>
+                        <p>Thank you for considering RetroFlix for your entertainment needs. We are excited to have you come with us on a trip down memory lane.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="images">
-                    <img src="{{ url_for('static', filename='/assets/neon_tv.jpg') }}" class="img-fluid" alt="">
-                    <br>
-                    <br>
-                    <img src="{{ url_for('static', filename='/assets/neon_bg.jpg') }}" class="img-fluid" alt="">
+                <div class="col-md-4">
+                    <div class="images">
+                        <img src="{{ url_for('static', filename='/assets/neon_tv.jpg') }}" class="img-fluid" alt="">
+                        <br>
+                        <br>
+                        <img src="{{ url_for('static', filename='/assets/neon_bg.jpg') }}" class="img-fluid" alt="">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="container_text border-top">
-                    <p class="lead">RetroFlix are a British media company based in London, England. Founded in 2023 MJAL inc, RetroFlix offers online video streaming services.</p>
-                    <p>At RetroFlix, we are passionate about bringing back the neon lights of the 80s and 90s through nostalgic TV shows and vintage movies. Our business ethos is that we live and breathe retro cinema and TV and our subscribers feel the same. We aim to offer our customers access to these movies and shows in a way that is both convenient and affordable; in a dedicated space for this time period.</p>
-                    <p>Our mission is to provide our customers with access to entertainment from the back catalogue which will not detract from other areas of the business. We value our customers and are committed to providing them with the best possible service. We strive to maintain the highest standards of quality and integrity in all aspects of our business. We believe that by doing so, we can earn the trust and loyalty of our customers.</p>
-                    <p>Thank you for considering RetroFlix for your entertainment needs. We are excited to have you come with us on a trip down memory lane.</p>
+                <div class="col-md-4">
+                    <div class="container_text border-top">
+                        <p class="lead">RetroFlix are a British media company based in London, England. Founded in 2023 MJAL inc, RetroFlix offers online video streaming services.</p>
+                        <p>At RetroFlix, we are passionate about bringing back the neon lights of the 80s and 90s through nostalgic TV shows and vintage movies. Our business ethos is that we live and breathe retro cinema and TV and our subscribers feel the same. We aim to offer our customers access to these movies and shows in a way that is both convenient and affordable; in a dedicated space for this time period.</p>
+                        <p>Our mission is to provide our customers with access to entertainment from the back catalogue which will not detract from other areas of the business. We value our customers and are committed to providing them with the best possible service. We strive to maintain the highest standards of quality and integrity in all aspects of our business. We believe that by doing so, we can earn the trust and loyalty of our customers.</p>
+                        <p>Thank you for considering RetroFlix for your entertainment needs. We are excited to have you come with us on a trip down memory lane.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Footer -->
-    
-    <div id="footer-placeholder"></div>
-
-    <!-- JavaScript -->
-    <script src="{{ url_for('static', filename='/scripts/scripts.js') }}"></script>
-    <!-- Popper.js, and Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1></script>
+{% endblock %}
