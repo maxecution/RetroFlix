@@ -21,7 +21,7 @@
 <body>
 
     <!-- Top navbar -->
-
+{% block navbar %}
     <nav class="navbar fixed-top navbar-expand-sm" style="background-color: #0e0f1b;">
         <div class="container-fluid" style="padding-left: 20px;">
             <a class="navbar-brand order-0" href="home.html">
@@ -59,7 +59,7 @@
             </div>
         </div>
     </nav>
-
+{% endblock %}
     <!-- Main Body-->
 
     {% block body_content %}{% endblock %}

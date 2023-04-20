@@ -15,52 +15,7 @@ from application import app
 #index render
 @app.route('/index')
 def index():
-    return render_template('index.html')
-
-#home render
-@app.route('/home')
-def home():
-    return render_template('home.html')
-
-#sign up render
-@app.route('/sign_up')
-def sign_up():
-    return render_template('sign_up.html')
-
-#sign in render
-@app.route('/sign_in')
-def sign_in():
-    return render_template('sign_in.html')
-
-#help render
-@app.route('/help')
-def help():
-    return render_template('help.html')
-
-#legal notices render
-@app.route('/legal_notice')
-def legal_notice():
-    return render_template('legal_notice.html')
-
-#privacy notice render
-@app.route('/privacy_notice')
-def privacy_notice():
-    return render_template('privacy_notice.html')
-
-#terms render
-@app.route('/terms_of_use')
-def terms_of_use():
-    return render_template('terms_of_use.html')
-
-#film render
-@app.route('/film')
-def film():
-    return render_template('film.html')
-
-#series render
-@app.route('/series')
-def series():
-    return render_template('series.html')
+    return render_template('index.html', title='Index')
 
 #about us render
 @app.route('/about_us')
@@ -91,3 +46,48 @@ def faq():
 @app.route('/film')
 def film():
     return render_template('film.html', title='Films')
+
+#account render
+@app.route('/account')
+def account():
+    return render_template('account.html', title='Account')
+
+#help render
+@app.route('/help')
+def help():
+    return render_template('help.html', title='Help')
+
+#home render
+@app.route('/home')
+def home():
+    return render_template('home.html', title='Home')
+
+#legal notices render
+@app.route('/legal_notice')
+def legal_notice():
+    return render_template('legal_notice.html', title='Legal Notice')
+
+#privacy notice render
+@app.route('/privacy_notice')
+def privacy_notice():
+    return render_template('privacy_notice.html', title='Privacy Notice')
+
+#series render
+@app.route('/series')
+def series():
+    return render_template('series.html', title='Series')
+
+#terms render
+@app.route('/terms_of_use')
+def terms_of_use():
+    return render_template('terms_of_use.html', title='Terms of Use')
+
+#sign up render
+@app.route('/sign_up')
+def sign_up():
+    return render_template('sign_up.html', title='Sign Up')
+
+#sign in render
+@app.route('/sign_in')
+def sign_in():
+    return render_template('sign_in.html', title='Sign In')
