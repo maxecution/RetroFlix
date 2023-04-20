@@ -4,6 +4,9 @@ body {
 }
 
 .card_sign_in {
-    border: 1px solid #00ffff;
+    border: 1px solid #00ffff; 
+    border-radius: 1rem;
     box-shadow: 0 0 10px #00ffff;
+    margin: 20px;
+    padding: 20px;
 }

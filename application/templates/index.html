@@ -13,7 +13,7 @@
 
     <style>
         body {
-            background-image: url(application/static/Assets/lounge.avif);
+            background-image: url(../static/assets/lounge.avif);
             height: auto; 
             background-color: #0e0f1b;
             background-position: top; 
@@ -53,12 +53,9 @@
             <a class="btn btn-info" href="shop_main.html" role="button" id="shop_main_btn">Go to shop</a>
 
             <div class="mr-auto"></div> 
-
+<!--these pages needs a specif route definied, need help with that-->
             <div class="d-flex">
-                <!-- This needs linked to a working sign_up page-->
                 <a class="btn btn-info me-3" href="sign_up.html" role="button" id="sign_up_btn">Sign Up</a>
-
-                <!-- This needs to get a sign in page/popup-->
                 <a class="btn btn-outline-info" href="sign_in.html" role="button" id="sign_in_btn">Sign In</a>   
             </div>     
         
@@ -79,7 +76,7 @@
                     <form>
                         <div class="input-group mb-3">
                             <input type="email" class="form-control" placeholder="Email address" aria-label="Email address" aria-describedby="button-addon2">
-                            <button class="btn btn-info" type="submit" id="button-addon2" style="font-size: calc(0.5em + 1vw); font-weight: bold;">Sign Up</button>
+                            <button class="btn btn-info" href="sign_up.html" type="submit" id="button-addon2" style="font-size: calc(0.5em + 1vw); font-weight: bold;">Sign Up</button>
                         </div>
                     </form>
                     <p style="font-size: calc(0.5em + 1vw); font-weight: bold;">Join our 31-day rolling plan, or sign up for 12 months for the best value deal, and enjoy our huge catalogue of retro films and TV series.</p>
@@ -101,27 +98,27 @@
                 <div class="row justify-content-center">
                     <div class="col-md-2">
                         <div class="card">
-                            <img src="Assets\Film_Posters\Cast_away_film_poster.jpg" alt="Cast Away Film Poster" class="img-fluid">
+                            <img src="{{ url_for('static', filename='/assets/film_Posters/Cast_away_film_poster.jpg') }}" alt="Cast Away Film Poster" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
-                            <img src="Assets/Film_Posters/E_T_film_poster.jpg" alt="E T the extra terrestrial Film Poster" class="img-fluid">                 
+                            <img src="{{ url_for('static', filename='/assets/film_Posters/E_T_film_poster.jpg') }}" alt="E T the extra terrestrial Film Poster" class="img-fluid">                 
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
-                            <img src="/Assets/Film_Posters/ghostbusters_film_poster.png" alt="Ghostbusters Film Poster" class="img-fluid">
+                            <img src="{{ url_for('static', filename='/assets/film_Posters/ghostbusters_film_poster.png') }}" alt="Ghostbusters Film Poster" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
-                            <img src="/Assets/Film_Posters/Gremlins_film_poster.jpg" alt="Gremlins Film Poster" class="img-fluid">
+                            <img src="{{ url_for('static', filename='/assets/film_Posters/Gremlins_film_poster.jpg') }}" alt="Gremlins Film Poster" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
-                            <img src="/Assets/Film_Posters/Jurassic_Park_film_poster.jpg" alt="Jurassic Park Film Poster" class="img-fluid">
+                            <img src="{{ url_for('static', filename='/assets/film_Posters/Jurassic_Park_film_poster.jpg') }}" alt="Jurassic Park Film Poster" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -140,7 +137,7 @@
                 <br>
             </div>
             <div class="text-center">
-                <img src="Assets/device_options_clearbg.png" class="img-fluid" style="width: 75%;" alt="Device Options">
+                <img src="{{ url_for('static', filename='/assets/device_options_clearbg.png') }}" class="img-fluid" style="width: 75%;" alt="Device Options">
             </div>
 
         </div>    
@@ -212,7 +209,7 @@
     <div id="footer-placeholder"></div>
 
     <!-- JavaScript -->
-    <script src="application\static\scripts\scripts.js"></script>
+    <script src="{{ url_for('static', filename='/scripts/scripts.js') }}"></script>
     <script>
         // Show the "Sign Up" button when the user has scrolled past the first section
         window.addEventListener("scroll", function() {
