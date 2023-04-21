@@ -2,24 +2,14 @@ from flask import render_template
 
 from application import app
 
-# #navbar render
-# @app.route('/navbar')
-# def navbar():
-#     return render_template('navbar.html')
-
-# #footer render
-# @app.route('/footer')
-# def footer():
-#     return render_template('footer.html')
-
-#index render
-@app.route('/index')
-def index():
-    return render_template('index.html', title='Index')
+#terms render
+@app.route('/terms_of_use')
+def terms_of_use():
+    return render_template('terms_of_use.html', title='Terms of Use')
 
 #about us render
 @app.route('/about_us')
-def about_us_test():
+def about_us():
     return render_template('about_us.html', title='About Us')
 
 #careers render
@@ -29,7 +19,7 @@ def careers():
 
 #contact us render
 @app.route('/contact_us')
-def contactus():
+def contact_us():
     return render_template('contact_us.html', title='Contact Us')
 
 #corporate info render
@@ -42,25 +32,10 @@ def corp_info():
 def faq():
     return render_template('faq.html', title='Frequently Asked Questions')
 
-#film render
-@app.route('/film')
-def film():
-    return render_template('film.html', title='Films')
-
-#account render
-@app.route('/account')
-def account():
-    return render_template('account.html', title='Account')
-
 #help render
 @app.route('/help')
 def help():
     return render_template('help.html', title='Help')
-
-#home render
-@app.route('/home')
-def home():
-    return render_template('home.html', title='Home')
 
 #legal notices render
 @app.route('/legal_notice')
@@ -72,15 +47,25 @@ def legal_notice():
 def privacy_notice():
     return render_template('privacy_notice.html', title='Privacy Notice')
 
+#film render
+@app.route('/film')
+def film():
+    return render_template('film.html', title='Films')
+
 #series render
 @app.route('/series')
 def series():
     return render_template('series.html', title='Series')
 
-#terms render
-@app.route('/terms_of_use')
-def terms_of_use():
-    return render_template('terms_of_use.html', title='Terms of Use')
+#home render
+@app.route('/home')
+def home():
+    return render_template('home.html', title='Home')
+
+#account render
+@app.route('/account')
+def account():
+    return render_template('account.html', title='Account')
 
 #sign up render
 @app.route('/sign_up')
@@ -91,3 +76,8 @@ def sign_up():
 @app.route('/sign_in')
 def sign_in():
     return render_template('sign_in.html', title='Sign In')
+
+#index render
+@app.route('/index')
+def index():
+    return render_template('index.html', title='Index')
