@@ -8,9 +8,9 @@
 
 {%  block navbar %}
 
-  <nav class="navbar fixed-top navbar-expand-sm" style="background-color: #0e0f1b;">
+  <nav class="navbar fixed-top navbar-expand-sm" style="background-color: #00000000;">
     <div class="container-fluid" style="padding-left: 25px;">
-        <a class="navbar-brand order-0" href="index.html">
+        <a class="navbar-brand order-0" href="{{ url_for('index') }}">
             <img src="{{ url_for('static', filename='/Assets/logo_clear.png') }}" alt="RetroFlix" height="30">
         </a>
         <button 
@@ -35,7 +35,7 @@
 {% block body_content %}
     <!-- Sign In -->
     
-<section class="vh-100 gradient-custom">
+<section class="gradient-custom" style="padding-top: 80px; padding-bottom: 80px;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">

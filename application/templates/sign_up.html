@@ -6,9 +6,9 @@
 
     <!-- Top navbar -->
 {% block navbar %}
-    <nav class="navbar fixed-top navbar-expand-sm" style="background-color: #0e0f1b;">
+    <nav class="navbar fixed-top navbar-expand-sm" style="background-color: #00000000;">
       <div class="container-fluid" style="padding-left: 25px;">
-          <a class="navbar-brand order-0" href="index.html">
+          <a class="navbar-brand order-0" href="{{ url_for('index') }}">
               <img src="{{ url_for('static', filename='/Assets/logo_clear.png') }}" alt="RetroFlix" height="30">
           </a>
           <button 
@@ -33,7 +33,7 @@
 
     <!-- Sign In -->
     
-<section class="vh-100 bg-image">
+<section class="bg-image" style="padding-top: 80px; padding-bottom: 80px;">
   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -98,6 +98,6 @@
 </section>
 
    <!-- JavaScript -->
-   <script src="{{ url_for('static', filename='/scripts/scripts.js') }}"></script>
+
 
 {%  endblock %}
