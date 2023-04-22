@@ -1,14 +1,13 @@
 window.addEventListener('load', function() {
     var cookiePopup = document.getElementById('cookieAllow');
+    var manageCookies = document.getElementById('manageCookies');
+
     cookiePopup.style.display = 'block';
+    manageCookies.style.display = 'block';
   });
   
   document.getElementById('cookieForm_allow').addEventListener('submit', function(event) {
     event.preventDefault();
-  
-    var allowCheckbox = document.getElementById('allowCheckbox').checked;
-  
-    setCookie('allow', allowCheckbox);
     
     var cookiePopup = document.getElementById('cookieAllow');
     cookiePopup.style.display = 'none';
@@ -16,26 +15,26 @@ window.addEventListener('load', function() {
     document.body.style.overflow = 'auto';
   });
 
+  const manageCookiesButton = document.getElementById('manageCookiesButton');
+  const manageCookies = document.getElementById('manageCookies');
+  
+  manageCookiesButton.addEventListener('click', function() {
+    manageCookies.classList.toggle('d-none');
+  });
+
   document.getElementById('cookieForm_manage').addEventListener('submit', function(event) {
     event.preventDefault();
   
     var analyticsCheckbox = document.getElementById('analyticsCheckbox').checked;
     var marketingCheckbox = document.getElementById('marketingCheckbox').checked;
-  
+
     setCookie('analytics', analyticsCheckbox);
     setCookie('marketing', marketingCheckbox);
   
-    alert('Preferences saved!');
+    alert('Preferences saved.');
   });
 
-  document.getElementById('showManageCookies').addEventListener('click', function(event) {
-    event.preventDefault();
-  
-    var manageCookies = document.getElementById('manageCookies');
-    manageCookies.style.display = 'block';
-  
-    this.style.display = 'none';
-  });
+
 
 function setCookie(cookieName, cookieValue) {
     var date = new Date();
