@@ -21,6 +21,11 @@ h1{
     font-size: 60px;
 }
 
+h2{
+    padding: 20px; 
+    text-align: center;
+}
+
 .img-fluid{
     max-height: 150px;
     object-fit:contain;
@@ -40,10 +45,4 @@ h1{
     box-shadow: 0 0 10px #00ffff;
 }
 
-.button[type="submit"] {
-    margin-top: 10px;
-    border: 2px;
-    border: 1px solid #00ffff;
-    box-shadow: 0 0 10px #00ffff;
-}
 

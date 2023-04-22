@@ -50,22 +50,19 @@
 
     <!--Cookie Preferences Pop-up--> 
 
-    <div id="cookieAllow" class="cookie_popup bg-dark text-white text-center" style="height:360px;">
-      <h1>Cookie Preferences</h1>
+    <div id="cookieAllow" class="cookie_popup bg-dark text-white text-center" style="height:460px; width:1000px; margin:auto;">
+      <h2>Cookie Preferences</h2>
       <p>We use cookies, pixels, tags, and similar technologies to collect personal data about your watching habits.</p>
       <p>These help us collect info about you so we can keep making our website better, offer personalized content and keep things fresh.</p>
-      <br>
-      <p>By clicking "Accept all and continue", you agree to our use of cookies categorized by Analytics and Marketing.</p>
+      <p>For more information please view our <a href="{{ url_for('legal_notice') }}" class="text-info fw-bold">Cookie Policy</a></p>
+      <p>By clicking "Accept and continue", you agree to our use of cookies categorised by Analytics and Marketing.</p>
       <form id="cookieForm_allow">
         <div>
-          <input type="checkbox" id="allowCheckbox" name="allow" checked>
-          <label for="allowCheckbox">Allow Cookies</label>
-        </div>
-        <button class="btn btn-outline-info btn-md px-5" type="submit">Accept and Continue</button>
+          <button class="btn btn-outline-info btn-md px-5" id="allowCheckbox" name="allow" type="submit">Accept and Continue</button>
+        </div>  
       </form>
-      <hr>
-      <div id="manageCookies" style="display: none;">
-        <h2>Manage Cookies</h2>
+      <button class="btn btn-outline-info btn-md px-5 mt-3" id="manageCookiesButton">Manage Cookies</button>
+      <div id="manageCookies" style="display: block;">
         <form id="cookieForm_manage">
           <div>
             <input type="checkbox" id="analyticsCheckbox" name="analytics">
@@ -79,9 +76,7 @@
         </form>
       </div>
     </div>
-   
-
-   <script src="{{ url_for('static', filename='/scripts/scripts.js') }}"></script>
+ 
    <script src="{{ url_for('static', filename='/scripts/home.js') }}"></script>
 
 {% endblock %}
