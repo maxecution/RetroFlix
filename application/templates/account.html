@@ -7,9 +7,47 @@
 {% endblock %}
 
 {% block body_content%}
-<!--  Main page content-->        
 
+<h1>Welcome to your Account {{ first_name }}!</h1>
 
-   <script src="{{ url_for('static', filename='/scripts/account.js') }}"></script>
+<section class="bg-image" style="padding-top: 80px; padding-bottom: 80px;">
+   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+     <div class="container h-100">
+       <div class="row d-flex justify-content-center align-items-center h-100">
+         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+           <div class="card_account bg-dark text-white">
+             <div class="card-body p-5 text-left">
+   
+               <form>
+   
+                 <div class="form-outline mb-4">
+                  <p>Email: {{ email }}</p>
+                 </div>
+ 
+                 <div class="form-outline mb-4">
+                  <p>Password: {{ password }}</p>
+                 </div>
+               
+                 <div class="form-outline mb-4">
+                  <p>First Name: {{ first_name }}</p>
+                 </div>                       
+ 
+                 <div class="form-outline mb-4">
+                  <p>Last Name: {{ last_name }}</p>
+                 </div>
+ 
+                 <div class="form-outline mb-4">
+                  <p>Date of Birth: {{ dob }}</p>
+                 </div>                  
+               </form>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
+<script src="{{ url_for('static', filename='/scripts/account.js') }}"></script>
    
 {% endblock %}

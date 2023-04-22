@@ -1,0 +1,20 @@
+
+{% extends "main_layout.html" %}
+
+{% block head_content %}
+
+<link href="{{ url_for('static', filename='/styles/search_results.css') }}" rel="stylesheet" >
+
+{% endblock %}
+
+{% block body_content%}
+
+<h1>Search Results</h1>
+<ul>
+  {% for result in results %}
+    <li>{{ result }}</li>
+  {% endfor %}
+</ul>       
+
+<!-- Can include additional scripts as well-->
+{% endblock %}

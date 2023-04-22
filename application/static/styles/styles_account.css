@@ -6,4 +6,11 @@ body {
 .card_account {
     border: 1px solid #00ffff;
     box-shadow: 0 0 10px #00ffff;
+    border-radius: 1rem;
+}
+
+h1{
+    padding-top: 50px;
+    margin-top: 50px;
+    text-align: center;
 }
