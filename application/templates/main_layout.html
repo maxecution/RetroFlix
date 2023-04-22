@@ -24,7 +24,7 @@
 {% block navbar %}
     <nav class="navbar fixed-top navbar-expand-sm" style="background-color: #0e0f1b;">
         <div class="container-fluid" style="padding-left: 20px;">
-            <a class="navbar-brand order-0" href="home.html">
+            <a class="navbar-brand order-0" href="{{ url_for('home')}}">
                 <img src="{{ url_for('static', filename='/assets/R_clear.png') }}" alt="RetroFlix" width="25" height="24">
             </a>
             <button 
@@ -52,8 +52,8 @@
                         <a class="nav-link" href="{{ url_for('series')}}" style="color: white;"><i class="fas fa-tv">&nbsp;</i>Series</a>
                     </li>
                 </ul>
-                <form class="d-flex ms-right" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex ms-right" role="search" action="{{ url_for('search') }}" method="GET">
+                    <input name="query" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-info" type="submit">Search</button>
                 </form>
             </div>
