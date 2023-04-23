@@ -16,9 +16,9 @@
        <div class="row d-flex justify-content-center align-items-center h-100">
          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
            <div class="card_account bg-dark text-white">
-             <div class="card-body p-5 text-left">
+             <div class="card-body p-5">
    
-               <form>
+               <form style="display: flex; flex-direction: column; align-items: flex-start;">
    
                  <div class="form-outline mb-4">
                   <p>Email: {{ email }}</p>
@@ -38,7 +38,11 @@
  
                  <div class="form-outline mb-4">
                   <p>Date of Birth: {{ dob }}</p>
-                 </div>                  
+                 </div>      
+                 
+                 <div style="align-self: center;">
+                  <button class="btn btn-outline-info btn-md px-5 mt-3">Log Out</button>
+                </div>
                </form>
              </div>
            </div>
