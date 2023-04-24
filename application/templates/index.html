@@ -83,27 +83,27 @@
             <div class="grid">
                 <div class="row justify-content-center">
                     <div class="col-md-2">
-                        <div class="card">
-                            <img src="{{ url_for('static', filename='/assets/film_Posters/Cast_away_film_poster.jpg') }}" alt="Cast Away Film Poster" class="img-fluid">
+                        <div class="card_1">
+                            <img src="{{ url_for('static', filename='/assets/film_Posters/die.jpg') }}" alt="Die Hard Film Poster" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="card">
+                        <div class="card_2">
                             <img src="{{ url_for('static', filename='/assets/film_Posters/E_T_film_poster.jpg') }}" alt="E T the extra terrestrial Film Poster" class="img-fluid">                 
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="card">
+                        <div class="card_3">
                             <img src="{{ url_for('static', filename='/assets/film_Posters/ghostbusters_film_poster.png') }}" alt="Ghostbusters Film Poster" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="card">
+                        <div class="card_4">
                             <img src="{{ url_for('static', filename='/assets/film_Posters/Gremlins_film_poster.jpg') }}" alt="Gremlins Film Poster" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="card">
+                        <div class="card_5">
                             <img src="{{ url_for('static', filename='/assets/film_Posters/Jurassic_Park_film_poster.jpg') }}" alt="Jurassic Park Film Poster" class="img-fluid">
                         </div>
                     </div>
@@ -123,13 +123,40 @@
                 <br>
             </div>
             <div class="text-center">
-                <img src="{{ url_for('static', filename='/assets/device_options_clearbg.png') }}" class="img-fluid" style="width: 75%;" alt="Device Options">
+                <img src="{{ url_for('static', filename='/assets/device_options.png') }}" class="img-fluid" style="width: 60%;" alt="Device Options">
             </div>
 
         </div>    
     </section>
 
 <!-- Fourth Block -->
+
+    <section class="subs" id="subs">
+        <h1>Watch anywhere. Cancel at any time</h1>
+                <br>
+                <h2><small>Chose your retro package, with a retro price!</small></h2>
+                <br>
+        <div class="subs-container">
+            <div class="card_sub">
+                <h2 style="font-weight: bold;">Monthly</h2><h5>no contract</h5>
+                <br>
+                <h1 style="font-weight: bold; border-bottom: 3px solid #ff66ff;">£4.99</h1>
+                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{{ url_for('legal_notice')}}">Click here for T&C's</a></p>
+                <a class="btn btn-outline-info me-3" href="{{ url_for('sign_up') }}" role="button" id="">Select</a>
+            </div>
+            <div class="card_sub">
+                <h2 style="font-weight: bold;">Yearly</h2><h5>12 months</h5>
+                <br>
+                <h1 style="font-weight: bold; border-bottom: 3px solid #ff66ff;">£49.99</h1>
+                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{{ url_for('legal_notice')}}">Click here for T&C's</a></p>
+                <div>
+                    <a class="btn btn-outline-info me-3" href="{{ url_for('sign_up') }}" role="button" id="">Select</a>
+                </div>
+            </div>
+        </div>   
+    </section>
+
+<!-- Fifth Block -->
 
     <section class="FAQs" id="FAQs">
         <div class="container-fluid">
