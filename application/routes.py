@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 #from flask_sqlalchemy import SQLAlchemy
 from application import app
 
@@ -140,3 +140,9 @@ def search():
     
     results = perform_search(query)
     return render_template('search_results.html', results=[results])
+
+#log out process - cannoty fully test until we have active 'users'
+@app.route('/logout')
+def logout():
+    session.pop('email', None)
+    return redirect(url_for('index'))

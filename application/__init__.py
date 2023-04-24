@@ -6,3 +6,5 @@ app = Flask(__name__)
 #db = SQLAlchemy(app)
 
 from application import routes
+
+app.secret_key = 'retroflix_is_better_than_netflix'
