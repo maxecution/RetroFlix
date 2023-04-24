@@ -56,6 +56,12 @@ body {
   width: 75%;
 }
 
+.device-example{
+  margin-top: 200px;
+  border-top: 30px;
+  padding-top: 30px;
+}
+
 .subs{
   margin-top: 200px;
   border-top: 30px;
