@@ -2,7 +2,7 @@ window.addEventListener('load', function() {
     var cookiePopup = document.getElementById('cookieAllow');
     var manageCookies = document.getElementById('manageCookies');
   
-    if (!getCookie('cookiePreferencesSet')) {
+    if (!getCookie('cookieSetPreferences')) {
     cookiePopup.style.display = 'block';
     manageCookies.style.display = 'none'; // hide the manageCookies element and its child elements
   
@@ -17,8 +17,8 @@ window.addEventListener('load', function() {
   
     document.body.style.overflow = 'auto';
 
-    // Set cookie to indicate that cookie preferences have been set
-  setCookie('cookiePreferencesSet', true);
+  
+  setCookie('cookieSetPreferences', true);
 
   });
   
@@ -26,7 +26,7 @@ window.addEventListener('load', function() {
   const manageCookies = document.getElementById('manageCookies');
   
   manageCookiesButton.addEventListener('click', function() {
-    manageCookies.style.display = 'block'; // show the manageCookies element and its child elements
+    manageCookies.style.display = 'block'; 
 
   });
   
@@ -45,14 +45,16 @@ window.addEventListener('load', function() {
 
   });
   
-function setCookie(cookieName, cookieValue) {
-  var date = new Date();
-  date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
-  var expires = "expires=" + date.toUTCString();
-  document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
-}
+  function setCookie(cookieName, cookieValue) {
+    if (sessionStorage.getItem(cookieName) !== 'accepted') {
+      var date = new Date();
+      date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
+      var expires = "expires=" + date.toUTCString();
+      document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+      sessionStorage.setItem(cookieName, 'accepted');
+    }
+  }
 
-//this function helps retrieve the value of a cookie from the current document's cookie by specifying the name of the cookie
 function getCookie(cookieName) {
   var name = cookieName + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
