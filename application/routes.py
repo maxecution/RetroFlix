@@ -81,26 +81,19 @@ def home():
 #account render
 @app.route('/account', methods=['GET', 'POST'])
 def account():
-    if request.method == 'POST':
-        #user.email = request.form['email']
-        #user.password = request.form['password']
-        #user.first_name = request.form['first_name']
-        #user.last_name = request.form['last_name']
-        #user.dob = request.form['dob']
-        
-        return redirect(url_for('account'))
-    else:
-        return render_template('account.html', title='Account') #user=user
+    return render_template('account.html', title='Account') #user=user
 
 #sign up render
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
+
         email = request.form['email']
         password = request.form['password']
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         dob = request.form['dob']
+        
 
         #db.session.add(user)
         #db.session.commit()
