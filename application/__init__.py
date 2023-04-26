@@ -2,8 +2,8 @@ import os
 from flask import Flask
 from dotenv import load_dotenv
 
-from application.database import db
-from application.models import *
+from .database import db
+from .models import *
 
 load_dotenv()
 
@@ -20,4 +20,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://{db_user}:{db_password}@{db_ho
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 db.init_app(app)
 
-from application import routes
+from . import routes

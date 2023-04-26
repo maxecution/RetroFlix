@@ -1,4 +1,42 @@
-from application.database import db
+from .database import db
+
+# Association tables need defined before classes
+
+film_actor = db.Table(
+    "film_actor",
+    db.Column("film_id", db.Integer, db.ForeignKey("films.id"), primary_key=True),
+    db.Column("actor_id", db.Integer, db.ForeignKey("actors.id"), primary_key=True),
+)
+
+film_genre = db.Table(
+    "film_genre",
+    db.Column("film_id", db.Integer, db.ForeignKey("films.id"), primary_key=True),
+    db.Column("actor_id", db.Integer, db.ForeignKey("genres.id"), primary_key=True),
+)
+
+episode_actor = db.Table(
+    "episode_actor",
+    db.Column("episode_id", db.Integer, db.ForeignKey("tv_series_episodes.id"), primary_key=True),
+    db.Column("actor_id", db.Integer, db.ForeignKey("actors.id"), primary_key=True),
+)
+
+episode_genre = db.Table(
+    "episode_genre",
+    db.Column("episode_id", db.Integer, db.ForeignKey("tv_series_episodes.id"), primary_key=True),
+    db.Column("genre_id", db.Integer, db.ForeignKey("genres.id"), primary_key=True),
+)
+
+
+"""
+When you define relationships, ensure you are consistently naming both sides the same when using back_populates eg:
+class Parent(db.Model):
+    ...
+    children = relationship(back_populates="parents_with_different_relationship_name")
+
+class Child(db.Model):
+    ...
+    parents_with_different_relationship_name = relationship(back_populates="children") 
+"""
 
 class Film(db.Model):
     __tablename__ = 'films'
@@ -11,8 +49,9 @@ class Film(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
-    actors = db.relationship('Actor', secondary='films_actors', back_populates='films')
-    genres = db.relationship('Genre', secondary='films_genres', back_populates='films')
+    actors = db.relationship('Actor', secondary='film_actor', back_populates='films')
+    genres = db.relationship('Genre', secondary='film_genre', back_populates='films')
+
 
 class Actor(db.Model):
     __tablename__ = 'actors'
@@ -21,7 +60,9 @@ class Actor(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
-    films = db.relationship('Film', secondary='films_actors', back_populates='actors')
+    films = db.relationship('Film', secondary='film_actor', back_populates='actors')
+    episodes = db.relationship('TVSeriesEpisode', secondary='episode_actor', back_populates='actors')
+
 
 class Genre(db.Model):
     __tablename__ = 'genres'
@@ -30,24 +71,8 @@ class Genre(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
-    films = db.relationship('Film', secondary='films_genres', back_populates='genres')
-
-class FilmActor(db.Model):
-    __tablename__ = 'films_actors'
-    id = db.Column(db.Integer, primary_key=True)
-    film_id = db.Column(db.Integer, db.ForeignKey('Film.id'))
-    actor_id = db.Column(db.Integer, db.ForeignKey('Actor.id'))
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
-
-
-class FilmGenre(db.Model):
-    __tablename__ = 'films_genres'
-    id = db.Column(db.Integer, primary_key=True)
-    film_id = db.Column(db.Integer, db.ForeignKey('Film.id'))
-    genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'))
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    films = db.relationship('Film', secondary='film_genre', back_populates='genres')
+    episodes = db.relationship('TVSeriesEpisode', secondary='episode_genre', back_populates='genres')
 
 
 class TVSeries(db.Model):
@@ -79,7 +104,7 @@ class TVSeriesSeason(db.Model):
 class TVSeriesEpisode(db.Model):
     __tablename__ = 'tv_series_episodes'
     id = db.Column(db.Integer, primary_key=True)
-    tv_series_season_id = db.Column(db.Integer, db.ForeignKey('TVSeriesSeason.id'))
+    tv_series_season_id = db.Column(db.Integer, db.ForeignKey('tv_series_seasons.id'))
     episode_number = db.Column(db.Integer)
     title = db.Column(db.String(255))
     release_year = db.Column(db.Integer)
@@ -87,24 +112,6 @@ class TVSeriesEpisode(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
     
-    season = db.relationship('TVSeriesSeason', back_populates='episodes')
-    actors = db.relationship('Actor', secondary='tv_series_episodes_actors', back_populates='episodes')
-    genres = db.relationship('Genre', secondary='tv_series_episodes_genres', back_populates='episodes')
-
-
-class TVSeriesEpisodeActors(db.Model):
-    __tablename__ = 'tv_series_episodes_actors'
-    id = db.Column(db.Integer, primary_key=True)
-    tv_series_episode_id = db.Column(db.Integer, db.ForeignKey('TVSeriesEpisode.id'))
-    actor_id = db.Column(db.Integer, db.ForeignKey('Actor.id'))
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
-
-
-class TVSeriesEpisodeGenre(db.Model):
-    __tablename__ = 'tv_series_episodes_genres'
-    id = db.Column(db.Integer, primary_key=True)
-    tv_series_episode_id = db.Column(db.Integer, db.ForeignKey('TVSeriesEpisode.id'))
-    genre_id = db.Column(db.Integer, db.ForeignKey('Genre.id'))
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    seasons = db.relationship('TVSeriesSeason', back_populates='episodes')
+    actors = db.relationship('Actor', secondary='episode_actor', back_populates='episodes')
+    genres = db.relationship('Genre', secondary='episode_genre', back_populates='episodes')
