@@ -1,21 +1,7 @@
 from flask import render_template, request, redirect, url_for, session
-#from flask_sqlalchemy import SQLAlchemy
+
 from application import app
-
-#!!!this code should import an external db and then store the data in it from the sign up page. It should then
-#import that data into the account page!!!
-
-#app = Flask(__name__)
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'<----DB link
-#db = SQLAlchemy(app)
-
-#class User(db.*insert_name_here*):
-    #id = db.Column(db.Integer, primary_key=True)
-    #email = db.Column(db.String(80), unique=True, nullable=False)
-    #password = db.Column(db.String(120), unique=True, nullable=False)
-    #first_name = db.Column(db.String(120), nullable=False)
-    #last_name = db.Column(db.String(120), nullable=False)
-    #dob = db.Column(db.String(120), nullable=False)
+from application.models import *
 
 
 #terms render
@@ -120,19 +106,22 @@ def index():
 def search():
     query = request.args.get('query')
     
-    def perform_search(query):
-        pages = []
-        results = []
-        for page in pages:
-            if query.lower() in page.lower():
-                results.append(page)
-        if len(results) == 0:
-            return "No results found for '{}'".format(query)
-        else:
-            return results
+    # Search for matching films
+    film_results = Film.query.filter(Film.title.contains(query)).all()
     
-    results = perform_search(query)
-    return render_template('search_results.html', results=[results])
+    # Search for matching actors
+    actor_results = Actor.query.filter(Actor.name.contains(query)).all()
+    
+    # Search for matching genres
+    genre_results = Genre.query.filter(Genre.genre.contains(query)).all()
+
+    
+    results = film_results + actor_results + genre_results
+
+    if len(results) == 0:
+        return "No results found for '{}'".format(query)
+    else:
+        return render_template('search_results.html', results=[results])
 
 #log out process - cannoty fully test until we have active 'users'
 @app.route('/logout')
