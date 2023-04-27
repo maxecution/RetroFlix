@@ -1,4 +1,4 @@
-from application import db, Actor, Genre, Film
+from application import db, Actor, Genre, Film, TVSeries, TVSeriesSeason, TVSeriesEpisode, User, CardDetail, Subscription
 from application import app
 
 # Create actors
@@ -21,6 +21,25 @@ sean_young = Actor(name='Sean Young')
 arnold_schwarzenegger = Actor(name='Arnold Schwarzenegger')
 michael_biehn = Actor(name='Michael Biehn')
 linda_hamilton = Actor(name='Linda Hamilton')
+jennifer_aniston = Actor(name='Jennifer Aniston')
+lisa_kudrow = Actor(name='Lisa Kudrow')
+matt_le_blanc = Actor(name='Matt Le Blanc')
+kirstie_alley = Actor(name='Kirstie Alley')
+ted_danson = Actor(name='Ted Danson')
+rhea_perlman = Actor(name='Rhea Perlman')
+kelsey_grammer = Actor(name='Kelsey Grammer')
+jane_leeves = Actor(name='Jane Leeves')
+john_mahoney = Actor(name='John Mahoney')
+ed_oneill = Actor(name="Ed O'Neill")
+katy_sagal = Actor(name='Katy Sagal')
+christina_applegate = Actor(name='Christina Applegate')
+bea_arthur = Actor(name='Bea Arthur')
+betty_white = Actor(name='Betty White')
+rue_mclanahan = Actor(name='Rue McClanahan')
+cybill_shepherd = Actor(name='Cybill Shepherd')
+bruce_willis = Actor(name='Bruce Willis')
+allyce_beasley = Actor(name='Allyce Beasley')
+
 
 
 actors = [
@@ -41,7 +60,25 @@ actors = [
     sean_young,   
     arnold_schwarzenegger,   
     michael_biehn,   
-    linda_hamilton
+    linda_hamilton,
+    jennifer_aniston,
+    lisa_kudrow,
+    matt_le_blanc,
+    kirstie_alley,
+    ted_danson,
+    rhea_perlman,
+    kelsey_grammer,
+    jane_leeves,
+    john_mahoney,
+    ed_oneill,
+    katy_sagal,
+    christina_applegate,
+    bea_arthur,
+    betty_white,
+    rue_mclanahan,
+    cybill_shepherd,
+    bruce_willis,
+    allyce_beasley
 ]
 
 
@@ -86,13 +123,215 @@ films = [
     terminator
 ]
 
+# Create tv series
 
-# Add genre, actor and film data to the database
+friends = TVSeries(title='Friends', release_year=1994, age_rating='TV-PG', rating=8.9)
+cheers = TVSeries(title='Cheers', release_year=1982, age_rating='TV-PG', rating=8.0)
+frasier = TVSeries(title='Frasier', release_year=1993, age_rating='TV-PG', rating=8.2)
+married_with_children = TVSeries(title='Married Eith Children', release_year=1987, age_rating='TV-PG', rating=8.1)
+golden_girls = TVSeries(title='The Golden Girls', release_year=1985, age_rating='TV-PG', rating=8.2)
+moonlighting = TVSeries(title='Moonlighting', release_year=1985, age_rating='TV-PG', rating=7.6)
+
+tv_series = [
+    friends,
+    cheers,
+    frasier,
+    married_with_children,
+    golden_girls,
+    moonlighting
+]
+
+# Create tv series seasons
+
+friends_s_1 = TVSeriesSeason(release_year=1994, season_number=1)
+friends_s_2 = TVSeriesSeason(release_year=1995, season_number=2)
+friends_s_3 = TVSeriesSeason(release_year=1996, season_number=3)
+cheers_s_1 = TVSeriesSeason(release_year=1982, season_number=1)
+cheers_s_2 = TVSeriesSeason(release_year=1983, season_number=2)
+cheers_s_3 = TVSeriesSeason(release_year=1984, season_number=3)
+frasier_s_1 = TVSeriesSeason(release_year=1993, season_number=1)
+frasier_s_2 = TVSeriesSeason(release_year=1994, season_number=2)
+frasier_s_3 = TVSeriesSeason(release_year=1995, season_number=3) 
+married_with_children_s_1 = TVSeriesSeason(release_year=1987, season_number=1)
+married_with_children_s_2 = TVSeriesSeason(release_year=1988, season_number=2)
+married_with_children_s_3 = TVSeriesSeason(release_year=1989, season_number=3)
+golden_girls_s_1 = TVSeriesSeason(release_year=1985, season_number=1)
+golden_girls_s_2 = TVSeriesSeason(release_year=1986, season_number=3)
+golden_girls_s_3 = TVSeriesSeason(release_year=1987, season_number=3)
+moonlighting_s_1 = TVSeriesSeason(release_year=1985, season_number=1)
+moonlighting_s_2 = TVSeriesSeason(release_year=1986, season_number=2)
+moonlighting_s_3 = TVSeriesSeason(release_year=1987, season_number=3)
+
+tv_series_seasons = [
+    friends_s_1,
+    friends_s_2,
+    friends_s_3,
+    cheers_s_1,
+    cheers_s_2,
+    cheers_s_3,
+    frasier_s_1,
+    frasier_s_2,
+    frasier_s_3,
+    married_with_children_s_1,
+    married_with_children_s_2,
+    married_with_children_s_3,
+    golden_girls_s_1,
+    golden_girls_s_2,
+    golden_girls_s_3,
+    moonlighting_s_1,
+    moonlighting_s_2,
+    moonlighting_s_3
+]
+# Create tv series episodes
+
+friends_s_1_ep_1 = TVSeriesEpisode()
+friends_s_1_ep_2 = TVSeriesEpisode()
+friends_s_1_ep_3 = TVSeriesEpisode()
+friends_s_2_ep_1 = TVSeriesEpisode()
+friends_s_2_ep_2 = TVSeriesEpisode()
+friends_s_2_ep_3 = TVSeriesEpisode()
+friends_s_3_ep_1 = TVSeriesEpisode()
+friends_s_3_ep_2 = TVSeriesEpisode()
+friends_s_3_ep_3 = TVSeriesEpisode()
+cheers_s_1_ep_1 = TVSeriesEpisode()
+cheers_s_1_ep_2 = TVSeriesEpisode()
+cheers_s_1_ep_3 = TVSeriesEpisode()
+cheers_s_2_ep_1 = TVSeriesEpisode()
+cheers_s_2_ep_2 = TVSeriesEpisode()
+cheers_s_2_ep_3 = TVSeriesEpisode()
+cheers_s_3_ep_1 = TVSeriesEpisode()
+cheers_s_3_ep_2 = TVSeriesEpisode()
+cheers_s_3_ep_3 = TVSeriesEpisode()
+frasier_s_1_ep_1 = TVSeriesEpisode()
+frasier_s_1_ep_2 = TVSeriesEpisode()
+frasier_s_1_ep_3 = TVSeriesEpisode()
+frasier_s_2_ep_1 = TVSeriesEpisode()
+frasier_s_2_ep_2 = TVSeriesEpisode()
+frasier_s_2_ep_3 = TVSeriesEpisode()
+frasier_s_3_ep_1 = TVSeriesEpisode()
+frasier_s_3_ep_2 = TVSeriesEpisode()
+frasier_s_3_ep_3 = TVSeriesEpisode()
+married_with_children_s_1_ep_1 = TVSeriesEpisode()
+married_with_children_s_1_ep_2 = TVSeriesEpisode()
+married_with_children_s_1_ep_3 = TVSeriesEpisode()
+married_with_children_s_2_ep_1 = TVSeriesEpisode()
+married_with_children_s_2_ep_2 = TVSeriesEpisode()
+married_with_children_s_2_ep_3 = TVSeriesEpisode()
+married_with_children_s_3_ep_1 = TVSeriesEpisode()
+married_with_children_s_3_ep_2 = TVSeriesEpisode()
+married_with_children_s_3_ep_3 = TVSeriesEpisode()
+golden_girls_s_1_ep_1 = TVSeriesEpisode()
+golden_girls_s_1_ep_2 = TVSeriesEpisode()
+golden_girls_s_1_ep_3 = TVSeriesEpisode()
+golden_girls_s_2_ep_1 = TVSeriesEpisode()
+golden_girls_s_2_ep_2 = TVSeriesEpisode()
+golden_girls_s_2_ep_3 = TVSeriesEpisode()
+golden_girls_s_3_ep_1 = TVSeriesEpisode()
+golden_girls_s_3_ep_2 = TVSeriesEpisode()
+golden_girls_s_3_ep_3 = TVSeriesEpisode()
+moonlighting_s_1_ep_1 = TVSeriesEpisode()
+moonlighting_s_1_ep_2 = TVSeriesEpisode()
+moonlighting_s_1_ep_3 = TVSeriesEpisode()
+moonlighting_s_2_ep_1 = TVSeriesEpisode()
+moonlighting_s_2_ep_2 = TVSeriesEpisode()
+moonlighting_s_2_ep_3 = TVSeriesEpisode()
+moonlighting_s_3_ep_1 = TVSeriesEpisode()
+moonlighting_s_3_ep_2 = TVSeriesEpisode()
+moonlighting_s_3_ep_3 = TVSeriesEpisode()
+
+tv_series_episodes = [
+    friends_s_1_ep_1,
+    friends_s_1_ep_2,
+    friends_s_1_ep_3,
+    friends_s_2_ep_1,
+    friends_s_2_ep_2,
+    friends_s_2_ep_3,
+    friends_s_3_ep_1,
+    friends_s_3_ep_2,
+    friends_s_3_ep_3,
+    cheers_s_1_ep_1,
+    cheers_s_1_ep_2,
+    cheers_s_1_ep_3,
+    cheers_s_2_ep_1,
+    cheers_s_2_ep_2,
+    cheers_s_2_ep_3,
+    cheers_s_3_ep_1,
+    cheers_s_3_ep_2,
+    cheers_s_3_ep_3,
+    frasier_s_1_ep_1,
+    frasier_s_1_ep_2,
+    frasier_s_1_ep_3,
+    frasier_s_2_ep_1,
+    frasier_s_2_ep_2,
+    frasier_s_2_ep_3,
+    frasier_s_3_ep_1,
+    frasier_s_3_ep_2,
+    frasier_s_3_ep_3,
+    married_with_children_s_1_ep_1,
+    married_with_children_s_1_ep_2,
+    married_with_children_s_1_ep_3,
+    married_with_children_s_2_ep_1,
+    married_with_children_s_2_ep_2,
+    married_with_children_s_2_ep_3,
+    married_with_children_s_3_ep_1,
+    married_with_children_s_3_ep_2,
+    married_with_children_s_3_ep_3,
+    golden_girls_s_1_ep_1,
+    golden_girls_s_1_ep_2,
+    golden_girls_s_1_ep_3,
+    golden_girls_s_2_ep_1,
+    golden_girls_s_2_ep_2,
+    golden_girls_s_2_ep_3,
+    golden_girls_s_3_ep_1,
+    golden_girls_s_3_ep_2,
+    golden_girls_s_3_ep_3,
+    moonlighting_s_1_ep_1,
+    moonlighting_s_1_ep_2,
+    moonlighting_s_1_ep_3,
+    moonlighting_s_2_ep_1,
+    moonlighting_s_2_ep_2, 
+    moonlighting_s_2_ep_3,
+    moonlighting_s_3_ep_1,
+    moonlighting_s_3_ep_2,
+    moonlighting_s_3_ep_3
+]
+
+
+
+# Create users
+
+harry_kane = User(email_address='harry@retro.com', _password='password', first_name='Harry', last_name='Kane', dob='1993-07-28', mailing=True, creation_date='2023-04-27', last_login='2023-04-27', pin=1234)
+judy_dench = User(email_address='judy@retro.com', _password='password', first_name='Judy', last_name='Dench', dob='1934-12-09', mailing=True, creation_date='2023-04-27', last_login='2023-04-27', pin=4567)
+jimmy_carr = User(email_address='jimmy@retro.com', _password='password', first_name='Jimmy', last_name='Carr', dob='1972-11-15', mailing=True, creation_date='2023-04-27', last_login='2023-04-27', pin=8912)
+
+users = [
+    harry_kane,
+    judy_dench,
+    jimmy_carr
+]
+
+# Create card details
+
+# Create subscriptions
+
+subscription_1 = Subscription(duration='rolling', price=4.99, sub_type='Monthly')
+subscription_2 = Subscription(duration='12 months', price=49.99, sub_type='Yearly')
+
+subscriptions = [
+    subscription_1,
+    subscription_2
+] 
+
+# Add genre, actor, film, tv series, tv series seasons user, subscriptions data to the database
 
 with app.app_context():
     db.session.add_all(actors)
     db.session.add_all(genres)
     db.session.add_all(films)
+    db.session.add_all(tv_series)
+    db.session.add_all(tv_series_seasons)
+    db.session.add_all(users)
+    db.session.add_all(subscriptions)
     db.session.commit()
     
     # Create film_actor associations
@@ -116,6 +355,9 @@ with app.app_context():
     terminator.actors.append(michael_biehn)
     terminator.actors.append(linda_hamilton)
 
+    # Create episode_actor associations
+
+
     # Create film_genre associations
 
     jurassic_park.genres.append(science_fiction)
@@ -133,6 +375,10 @@ with app.app_context():
     blade_runner.genres.append(thriller)
     terminator.genres.append(science_fiction)
     terminator.genres.append(action)
+
+    # Create episode_genre associations
+
+   
 
     db.session.commit()
 

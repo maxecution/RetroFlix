@@ -129,6 +129,7 @@ class User(db.Model):
     mailing = db.Column(db.Boolean)
     creation_date = db.Column(db.Date)
     last_login = db.Column(db.DateTime)
+    pin = db.Column(db.Integer)
 
     subscription_id = db.Column(db.Integer, db.ForeignKey('subscriptions.id'))
     
@@ -153,7 +154,7 @@ class Subscription(db.Model):
     __tablename__ = 'subscriptions'
     id = db.Column(db.Integer, primary_key=True)
     duration = db.Column(db.String(255))
-    price = db.Column(db.Integer)
+    price = db.Column(db.Float(3, 2))
     sub_type = db.Column(db.String(255))
 
     users = db.relationship('User', back_populates='subscription')
