@@ -115,3 +115,47 @@ class TVSeriesEpisode(db.Model):
     seasons = db.relationship('TVSeriesSeason', back_populates='episodes')
     actors = db.relationship('Actor', secondary='episode_actor', back_populates='episodes')
     genres = db.relationship('Genre', secondary='episode_genre', back_populates='episodes')
+
+# First draft of user related tables below
+
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    email_address = db.Column(db.String(255), unique=True)
+    _password = db.Column(db.String(255))
+    first_name = db.Column(db.String(255))
+    last_name = db.Column(db.String(255))
+    dob = db.Column(db.Date)
+    mailing = db.Column(db.Boolean)
+    creation_date = db.Column(db.Date)
+    last_login = db.Column(db.DateTime)
+
+    subscription_id = db.Column(db.Integer, db.ForeignKey('subscriptions.id'))
+    
+    subscription = db.relationship('Subscription', back_populates='users')
+    cards = db.relationship('CardDetail', back_populates='users')
+
+
+class CardDetail(db.Model):
+    __tablename__ = 'card_details'
+    id = db.Column(db.Integer, primary_key=True)
+    name_on_card = db.Column(db.String(255))
+    card_number = db.Column(db.String(255))
+    expiry_date = db.Column(db.Date)
+    cvv = db.Column(db.Integer)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    users = db.relationship('User', back_populates='cards')
+
+
+class Subscription(db.Model):
+    __tablename__ = 'subscriptions'
+    id = db.Column(db.Integer, primary_key=True)
+    duration = db.Column(db.String(255))
+    price = db.Column(db.Integer)
+    sub_type = db.Column(db.String(255))
+
+    users = db.relationship('User', back_populates='subscription')
+
+
