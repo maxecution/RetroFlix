@@ -116,6 +116,7 @@ class TVSeriesEpisode(db.Model):
     actors = db.relationship('Actor', secondary='episode_actor', back_populates='episodes')
     genres = db.relationship('Genre', secondary='episode_genre', back_populates='episodes')
 
+
 # First draft of user related tables below
 
 class User(db.Model):
@@ -129,7 +130,7 @@ class User(db.Model):
     mailing = db.Column(db.Boolean)
     creation_date = db.Column(db.Date)
     last_login = db.Column(db.DateTime)
-    pin = db.Column(db.Integer)
+    pin = db.Column(db.String(255))
 
     subscription_id = db.Column(db.Integer, db.ForeignKey('subscriptions.id'))
     
