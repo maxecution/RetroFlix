@@ -12,12 +12,12 @@
   
     <section class="series p-5" id="series">
         <h3>Binge-Worthy</h3>
-        <div class="container_scifi">
+        <div class="container_binge_worthy">
             <div class="row">
 
                 <div class="col-md-2">
                     <div class="card_1">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('friends')" onmouseout="hidetitle('friends')">
+                        <a class="btn-btn-link"  onmouseover="showtitle('friends')" onmouseout="hidetitle('friends')">
                         <img id="friends" src="{{ url_for('static', filename='assets/Series_Posters/friends.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
@@ -28,7 +28,7 @@
 
                 <div class="col-md-2">
                     <div class="card_2">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('cheers')" onmouseout="hidetitle('cheers')">
+                        <a class="btn-btn-link"  onmouseover="showtitle('cheers')" onmouseout="hidetitle('cheers')">
                         <img id="cheers" src="{{ url_for('static', filename='assets/Series_Posters/cheers.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
@@ -39,7 +39,7 @@
 
                 <div class="col-md-2">
                     <div class="card_3">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('fraiser')" onmouseout="hidetitle('fraiser')">
+                        <a class="btn-btn-link"  onmouseover="showtitle('fraiser')" onmouseout="hidetitle('fraiser')">
                         <img id="fraiser" src="{{ url_for('static', filename='assets/Series_Posters/fraiser.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
@@ -50,33 +50,33 @@
 
                 <div class="col-md-2">
                     <div class="card_4">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('married')" onmouseout="hidetitle('married')">
-                        <img id="married" src="{{ url_for('static', filename='assets/Series_Posters/married.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('married_with_children')" onmouseout="hidetitle('married_with_children')">
+                        <img id="married_with_children" src="{{ url_for('static', filename='assets/Series_Posters/married_with_children.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_married" style="display:none;">Married...With Children</p>
+                            <p id="title_married_with_children" style="display:none;">Married...With Children</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_5">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('golden')" onmouseout="hidetitle('golden')">
-                        <img id="golden" src="{{ url_for('static', filename='assets/Series_Posters/golden.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('the_golden_girls')" onmouseout="hidetitle('the_golden_girls')">
+                        <img id="the_golden_girls" src="{{ url_for('static', filename='assets/Series_Posters/the_golden_girls.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_golden" style="display:none;">The Golden Girls</p>
+                            <p id="title_the_golden_girls" style="display:none;">The Golden Girls</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_6">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('moon')" onmouseout="hidetitle('moon')">
-                        <img id="moon" src="{{ url_for('static', filename='assets/Series_Posters/moon.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('moonlighting')" onmouseout="hidetitle('moonlighting')">
+                        <img id="moonlighting" src="{{ url_for('static', filename='assets/Series_Posters/moonlighting.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_moon" style="display:none;">Moonlighting</p>
+                            <p id="title_moonlighting" style="display:none;">Moonlighting</p>
                         </div>
                     </div>
                 </div>
@@ -84,11 +84,11 @@
         </div>
 
         <h3>Best of British</h3>
-        <div class="container_romance">
+        <div class="container_best_of_british">
             <div class="row">
                 <div class="col-md-2">
                     <div class="card_1">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('blackadder')" onmouseout="hidetitle('blackadder')">                     
+                        <a class="btn-btn-link"  onmouseover="showtitle('blackadder')" onmouseout="hidetitle('blackadder')">                     
                         <img id="blackadder" src="{{ url_for('static', filename='assets/Series_Posters/blackadder.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
@@ -99,55 +99,55 @@
 
                 <div class="col-md-2">
                     <div class="card_2">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('fools')" onmouseout="hidetitle('fools')">
-                        <img id="fools" src="{{ url_for('static', filename='assets/Series_Posters/fools.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('only_fools_and_horses')" onmouseout="hidetitle('only_fools_and_horses')">
+                        <img id="only_fools_and_horses" src="{{ url_for('static', filename='assets/Series_Posters/only_fools_and_horses.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_fools" style="display:none;">Only Fools and Horses</p>
+                            <p id="title_only_fools_and_horses" style="display:none;">Only Fools and Horses</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_3">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('grave')" onmouseout="hidetitle('grave')">
-                        <img id='grave' src="{{ url_for('static', filename='assets/Series_Posters/grave.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('one_foot_in_the_grave')" onmouseout="hidetitle('one_foot_in_the_grave')">
+                        <img id='one_foot_in_the_grave' src="{{ url_for('static', filename='assets/Series_Posters/one_foot_in_the_grave.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_grave" style="display:none;">One Foot in the Grave</p>
+                            <p id="title_one_foot_in_the_grave" style="display:none;">One Foot in the Grave</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_4">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('keeping')" onmouseout="hidetitle('keeping')">
-                        <img id="keeping" src="{{ url_for('static', filename='assets/Series_Posters/keeping.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('keeping_up_appearances')" onmouseout="hidetitle('keeping_up_appearances')">
+                        <img id="keeping_up_appearances" src="{{ url_for('static', filename='assets/Series_Posters/keeping_up_appearances.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_keeping" style="display:none;">Keeping Up Appearances</p>
+                            <p id="title_keeping_up_appearances" style="display:none;">Keeping Up Appearances</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_5">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('men')" onmouseout="hidetitle('men')">
-                        <img id="men" src="{{ url_for('static', filename='assets/Series_Posters/men.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('men_behaving_badly')" onmouseout="hidetitle('men_behaving_badly')">
+                        <img id="men_behaving_badly" src="{{ url_for('static', filename='assets/Series_Posters/men_behaving_badly.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_men" style="display:none;">Men Behaving Badly</p>
+                            <p id="title_men_behaving_badly" style="display:none;">Men Behaving Badly</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_6">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('abfab')" onmouseout="hidetitle('abfab')">
-                        <img id="abfab" src="{{ url_for('static', filename='assets/Series_Posters/abfab.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('absolutely_fabulous')" onmouseout="hidetitle('absolutely_fabulous')">
+                        <img id="absolutely_fabulous" src="{{ url_for('static', filename='assets/Series_Posters/absolutely_fabulous.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_abfab" style="display:none;">Absolutely Fabulous</p>
+                            <p id="title_absolutely_fabulous" style="display:none;">Absolutely Fabulous</p>
                         </div>
                     </div>
                 </div>
@@ -155,11 +155,11 @@
         </div>
 
         <h3>American Classics</h3>
-        <div class="container_action">
+        <div class="container_american_classics">
             <div class="row">
                 <div class="col-md-2">
                     <div class="card_1">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('er')" onmouseout="hidetitle('er')">
+                        <a class="btn-btn-link"  onmouseover="showtitle('er')" onmouseout="hidetitle('er')">
                         <img id="er" src="{{ url_for('static', filename='assets/Series_Posters/er.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
@@ -170,40 +170,40 @@
 
                 <div class="col-md-2">
                     <div class="card_2">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('knight')" onmouseout="hidetitle('knight')">
-                        <img id="knight" src="{{ url_for('static', filename='assets/Series_Posters/knight.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('knight_rider')" onmouseout="hidetitle('knight_rider')">
+                        <img id="knight_rider" src="{{ url_for('static', filename='assets/Series_Posters/knight_rider.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_knight" style="display:none;">Knight Rider</p>
+                            <p id="title_knight_rider" style="display:none;">Knight Rider</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_3">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('magnum')" onmouseout="hidetitle('magnum')">
-                        <img id="magnum" src="{{ url_for('static', filename= 'assets/Series_Posters/magnum.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('magnum_p_i')" onmouseout="hidetitle('magnum_p_i')">
+                        <img id="magnum_p_i" src="{{ url_for('static', filename= 'assets/Series_Posters/magnum_p_i.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_magnum" style="display:none;">Magnum P.I</p>
+                            <p id="title_magnum_p_i" style="display:none;">Magnum P.I</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_4">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('miami')" onmouseout="hidetitle('miami')">
-                        <img id="miami" src="{{ url_for('static', filename='assets/Series_Posters/miami.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('miami_vice')" onmouseout="hidetitle('miami_vice')">
+                        <img id="miami_vice" src="{{ url_for('static', filename='assets/Series_Posters/miami_vice.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_miami" style="display:none;">Miami Vice</p>
+                            <p id="title_miami_vice" style="display:none;">Miami Vice</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_5">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('baywatch')" onmouseout="hidetitle('baywatch')">
+                        <a class="btn-btn-link"  onmouseover="showtitle('baywatch')" onmouseout="hidetitle('baywatch')">
                         <img id="baywatch" src="{{ url_for('static', filename='assets/Series_Posters/baywatch.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
@@ -214,7 +214,7 @@
 
                 <div class="col-md-2">
                     <div class="card_6">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('dallas')" onmouseout="hidetitle('dallas')">
+                        <a class="btn-btn-link"  onmouseover="showtitle('dallas')" onmouseout="hidetitle('dallas')">
                         <img id="dallas" src="{{ url_for('static', filename='assets/Series_Posters/dallas.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
@@ -226,70 +226,70 @@
         </div>
 
         <h3>Teen Dream</h3>
-        <div class="container_horror">
+        <div class="container_teen_dream">
             <div class="row">
                 <div class="col-md-2">
                     <div class="card_1">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('bell')" onmouseout="hidetitle('bell')">
-                        <img id="bell" src="{{ url_for('static', filename='assets/Series_Posters/bell.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('saved_by_the_bell')" onmouseout="hidetitle('saved_by_the_bell')">
+                        <img id="saved_by_the_bell" src="{{ url_for('static', filename='assets/Series_Posters/saved_by_the_bell.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_bell" style="display:none;">Saved by the Bell</p>
+                            <p id="title_saved_by_the_bell" style="display:none;">Saved by the Bell</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_2">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('buffy')" onmouseout="hidetitle('buffy')">
-                        <img id="buffy" src="{{ url_for('static', filename='assets/Series_Posters/buffy.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('buffy_the_vampire_slayer')" onmouseout="hidetitle('buffy_the_vampire_slayer')">
+                        <img id="buffy_the_vampire_slayer" src="{{ url_for('static', filename='assets/Series_Posters/buffy_the_vampire_slayer.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_buffy" style="display:none;">Buffy the Vampire Slayer</p>
+                            <p id="title_buffy_the_vampire_slayer" style="display:none;">Buffy the Vampire Slayer</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_3">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('creek')" onmouseout="hidetitle('creek')">
-                        <img id="creek" src="{{ url_for('static', filename='assets/Series_Posters/creek.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('dawsons_creek')" onmouseout="hidetitle('dawsons_creek')">
+                        <img id="dawsons_creek" src="{{ url_for('static', filename='assets/Series_Posters/dawsons_creek.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_creek" style="display:none;">Dawson's Creek</p>
+                            <p id="title_dawsons_creek" style="display:none;">Dawson's Creek</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_4">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('hills')" onmouseout="hidetitle('hills')">
-                        <img id="hills" src="{{ url_for('static', filename='assets/Series_Posters/hills.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('beverly_hills_90210')" onmouseout="hidetitle('beverly_hills_90210')">
+                        <img id="beverly_hills_90210" src="{{ url_for('static', filename='assets/Series_Posters/beverly_hills_90210.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_hills" style="display:none;">Beverly Hills 90210</p>
+                            <p id="title_beverly_hills_90210" style="display:none;">Beverly Hills 90210</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_5">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('kenan')" onmouseout="hidetitle('kenan')">
-                        <img id="kenan" src="{{ url_for('static', filename='assets/Series_Posters/kenan.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('kenan_and_kell')" onmouseout="hidetitle('kenan_and_kell')">
+                        <img id="kenan_and_kell" src="{{ url_for('static', filename='assets/Series_Posters/kenan_and_kell.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_kenan" style="display:none;">Kenan and Kell</p>
+                            <p id="title_kenan_and_kell" style="display:none;">Kenan and Kell</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="card_6">
-                        <a href="#" class="btn-btn-link"  onmouseover="showtitle('prince')" onmouseout="hidetitle('prince')">
-                        <img id="prince" src="{{ url_for('static', filename='assets/Series_Posters/prince.jpg') }}" alt="" class="img-fluid">
+                        <a class="btn-btn-link"  onmouseover="showtitle('the_fresh_prince_of_bel-air')" onmouseout="hidetitle('the_fresh_prince_of_bel-air')">
+                        <img id="the_fresh_prince_of_bel-air" src="{{ url_for('static', filename='assets/Series_Posters/the_fresh_prince_of_bel-air.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
-                            <p id="title_prince" style="display:none;">The Fresh Prince of Bel Air</p>
+                            <p id="title_the_fresh_prince_of_bel-air" style="display:none;">The Fresh Prince of Bel Air</p>
                         </div>
                     </div>
                 </div>

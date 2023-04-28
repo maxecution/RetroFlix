@@ -20,6 +20,10 @@ body {
   color: #fff;
 }
 
+#sign_up_btn {
+  display: none;
+}
+
 .card_1 {
   border: 1px solid #39ff14; 
   box-shadow: 0 0 30px #39ff14; 
@@ -56,11 +60,22 @@ body {
   width: 75%;
 }
 
+.content-example {
+  padding-top: 60vh;
+}
+
 .device-example{
   margin-top: 200px;
   border-top: 30px;
   padding-top: 30px;
 }
+
+.FAQs {
+  margin-top: 200px;
+  border-top: 30px;
+  padding-top: 30px;
+}
+
 
 .subs{
   margin-top: 200px;
