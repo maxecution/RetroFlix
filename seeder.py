@@ -310,7 +310,13 @@ with app.app_context():
 
     # Create episode_actor associations
 
-
+    friends_s_1_ep_1, friends_s_1_ep_2, frasier_s_1_ep_3, friends_s_2_ep_1, friends_s_2_ep_2, friends_s_2_ep_3, friends_s_3_ep_1, friends_s_3_ep_2, friends_s_3_ep_3.actors.append(jennifer_aniston, lisa_kudrow, matt_le_blanc)
+    frasier_s_1_ep_1, frasier_s_1_ep_2, frasier_s_1_ep_3, frasier_s_2_ep_1, frasier_s_2_ep_2, frasier_s_2_ep_3, frasier_s_3_ep_1, frasier_s_3_ep_2, frasier_s_3_ep_3.actors.append(kelsey_grammer, jane_leeves, john_mahoney)
+    cheers_s_1_ep_1, cheers_s_1_ep_2, cheers_s_1_ep_3, cheers_s_2_ep_1, cheers_s_2_ep_2, cheers_s_2_ep_3, cheers_s_3_ep_1, cheers_s_3_ep_2, cheers_s_3_ep_3.actors.append(kirstie_alley, ted_danson, rhea_perlman)
+    married_with_children_s_1_ep_1, married_with_children_s_1_ep_2, married_with_children_s_1_ep_3, married_with_children_s_2_ep_1, married_with_children_s_2_ep_2, married_with_children_s_2_ep_3, married_with_children_s_3_ep_1, married_with_children_s_3_ep_2, married_with_children_s_3_ep_3.actors.append(ed_oneill, katy_sagal, christina_applegate)
+    golden_girls_s_1_ep_1, golden_girls_s_1_ep_2, golden_girls_s_1_ep_3, golden_girls_s_2_ep_1, golden_girls_s_2_ep_2, golden_girls_s_2_ep_3, golden_girls_s_3_ep_1, golden_girls_s_3_ep_2, golden_girls_s_3_ep_3.actors.append(bea_arthur, betty_white, rue_mclanahan)
+    moonlighting_s_1_ep_1, moonlighting_s_1_ep_2, moonlighting_s_1_ep_3, moonlighting_s_2_ep_1, moonlighting_s_2_ep_2, moonlighting_s_2_ep_3, moonlighting_s_3_ep_1, moonlighting_s_3_ep_2, moonlighting_s_3_ep_3.actors.append(bruce_willis, cybill_shepherd, allyce_beasley)
+    
     # Create film_genre associations
 
     jurassic_park.genres.append(science_fiction)
@@ -331,6 +337,12 @@ with app.app_context():
 
     # Create episode_genre associations
 
+    friends_s_1_ep_1, friends_s_1_ep_2, frasier_s_1_ep_3, friends_s_2_ep_1, friends_s_2_ep_2, friends_s_2_ep_3, friends_s_3_ep_1, friends_s_3_ep_2, friends_s_3_ep_3.genres.append(comedy)
+    frasier_s_1_ep_1, frasier_s_1_ep_2, frasier_s_1_ep_3, frasier_s_2_ep_1, frasier_s_2_ep_2, frasier_s_2_ep_3, frasier_s_3_ep_1, frasier_s_3_ep_2, frasier_s_3_ep_3.genres.append(comedy)
+    cheers_s_1_ep_1, cheers_s_1_ep_2, cheers_s_1_ep_3, cheers_s_2_ep_1, cheers_s_2_ep_2, cheers_s_2_ep_3, cheers_s_3_ep_1, cheers_s_3_ep_2, cheers_s_3_ep_3.genres.append(comedy)
+    married_with_children_s_1_ep_1, married_with_children_s_1_ep_2, married_with_children_s_1_ep_3, married_with_children_s_2_ep_1, married_with_children_s_2_ep_2, married_with_children_s_2_ep_3, married_with_children_s_3_ep_1, married_with_children_s_3_ep_2, married_with_children_s_3_ep_3.genres.append(comedy)
+    golden_girls_s_1_ep_1, golden_girls_s_1_ep_2, golden_girls_s_1_ep_3, golden_girls_s_2_ep_1, golden_girls_s_2_ep_2, golden_girls_s_2_ep_3, golden_girls_s_3_ep_1, golden_girls_s_3_ep_2, golden_girls_s_3_ep_3.genres.append(comedy)
+    moonlighting_s_1_ep_1, moonlighting_s_1_ep_2, moonlighting_s_1_ep_3, moonlighting_s_2_ep_1, moonlighting_s_2_ep_2, moonlighting_s_2_ep_3, moonlighting_s_3_ep_1, moonlighting_s_3_ep_2, moonlighting_s_3_ep_3.genres.append(comedy)
 
     db.session.commit()
 
