@@ -40,8 +40,6 @@ cybill_shepherd = Actor(name='Cybill Shepherd')
 bruce_willis = Actor(name='Bruce Willis')
 allyce_beasley = Actor(name='Allyce Beasley')
 
-
-
 actors = [
     sam_neill,   
     laura_dern,   
@@ -81,7 +79,6 @@ actors = [
     allyce_beasley
 ]
 
-
 # Create genres
 
 action = Genre(genre='Action')
@@ -104,7 +101,6 @@ genres = [
     thriller
 ]
 
-
 # Create films
 
 jurassic_park = Film(title='Jurassic Park', release_year=1993, duration='02:07:00', age_rating='PG-13', rating=8.2)
@@ -123,207 +119,6 @@ films = [
     terminator
 ]
 
-
-# Create tv series
-
-friends = TVSeries(title='Friends', release_year=1994, age_rating='TV-PG', rating=8.9)
-cheers = TVSeries(title='Cheers', release_year=1982, age_rating='TV-PG', rating=8.0)
-frasier = TVSeries(title='Frasier', release_year=1993, age_rating='TV-PG', rating=8.2)
-married_with_children = TVSeries(title='Married With Children', release_year=1987, age_rating='TV-PG', rating=8.1)
-golden_girls = TVSeries(title='The Golden Girls', release_year=1985, age_rating='TV-PG', rating=8.2)
-moonlighting = TVSeries(title='Moonlighting', release_year=1985, age_rating='TV-PG', rating=7.6)
-
-tv_series = [
-    friends,
-    cheers,
-    frasier,
-    married_with_children,
-    golden_girls,
-    moonlighting
-]
-
-
-
-
-# Create tv series seasons
-
-friends_s_1 = TVSeriesSeason(tv_series_id=friends.id, release_year=1994, season_number=1)
-friends_s_2 = TVSeriesSeason(tv_series_id=friends.id, release_year=1995, season_number=2)
-friends_s_3 = TVSeriesSeason(tv_series_id=friends.id, release_year=1996, season_number=3)
-
-cheers_s_1 = TVSeriesSeason(tv_series_id=cheers.id, release_year=1982, season_number=1)
-cheers_s_2 = TVSeriesSeason(tv_series_id=cheers.id, release_year=1983, season_number=2)
-cheers_s_3 = TVSeriesSeason(tv_series_id=cheers.id, release_year=1984, season_number=3)
-
-frasier_s_1 = TVSeriesSeason(tv_series_id=frasier.id, release_year=1993, season_number=1)
-frasier_s_2 = TVSeriesSeason(tv_series_id=frasier.id, release_year=1994, season_number=2)
-frasier_s_3 = TVSeriesSeason(tv_series_id=frasier.id, release_year=1995, season_number=3) 
-
-married_with_children_s_1 = TVSeriesSeason(tv_series_id=married_with_children.id, release_year=1987, season_number=1)
-married_with_children_s_2 = TVSeriesSeason(tv_series_id=married_with_children.id, release_year=1988, season_number=2)
-married_with_children_s_3 = TVSeriesSeason(tv_series_id=married_with_children.id, release_year=1989, season_number=3)
-
-golden_girls_s_1 = TVSeriesSeason(tv_series_id=golden_girls.id, release_year=1985, season_number=1)
-golden_girls_s_2 = TVSeriesSeason(tv_series_id=golden_girls.id, release_year=1986, season_number=3)
-golden_girls_s_3 = TVSeriesSeason(tv_series_id=golden_girls.id, release_year=1987, season_number=3)
-
-moonlighting_s_1 = TVSeriesSeason(tv_series_id=moonlighting.id, release_year=1985, season_number=1)
-moonlighting_s_2 = TVSeriesSeason(tv_series_id=moonlighting.id, release_year=1986, season_number=2)
-moonlighting_s_3 = TVSeriesSeason(tv_series_id=moonlighting.id, release_year=1987, season_number=3)
-
-
-tv_series_seasons = [
-    friends_s_1,
-    friends_s_2,
-    friends_s_3,
-    cheers_s_1,
-    cheers_s_2,
-    cheers_s_3,
-    frasier_s_1,
-    frasier_s_2,
-    frasier_s_3,
-    married_with_children_s_1,
-    married_with_children_s_2,
-    married_with_children_s_3,
-    golden_girls_s_1,
-    golden_girls_s_2,
-    golden_girls_s_3,
-    moonlighting_s_1,
-    moonlighting_s_2,
-    moonlighting_s_3
-]
-
-# Create tv series episodes
-
-friends_s_1_ep_1 = TVSeriesEpisode(tv_series_season_id=friends_s_1.id, episode_number=1, title='The One Where Monica Gets a Roommate', release_year=1994, duration='00:22:00')
-friends_s_1_ep_2 = TVSeriesEpisode(tv_series_season_id=friends_s_1.id, episode_number=2, title='The One with the Sonogram at the End', release_year=1994, duration='00:22:00')
-friends_s_1_ep_3 = TVSeriesEpisode(tv_series_season_id=friends_s_1.id, episode_number=3, title='The One with the Thumb', release_year=1994, duration='00:22:00')
-
-friends_s_2_ep_1 = TVSeriesEpisode(tv_series_season_id=friends_s_2.id, episode_number=1, title='The One with Ross\'s New Girlfriend', release_year=1995, duration='00:22:00')
-friends_s_2_ep_2 = TVSeriesEpisode(tv_series_season_id=friends_s_2.id, episode_number=2, title='The One with the Breast Milk', release_year=1995, duration='00:22:00')
-friends_s_2_ep_3 = TVSeriesEpisode(tv_series_season_id=friends_s_2.id, episode_number=3, title='The One Where Heckles Dies', release_year=1995, duration='00:22:00')
-
-friends_s_3_ep_1 = TVSeriesEpisode(tv_series_season_id=friends_s_3.id, episode_number=1, title='The One with the Princess Leia Fantasy', release_year=1996, duration='00:22:00')
-friends_s_3_ep_2 = TVSeriesEpisode(tv_series_season_id=friends_s_3.id, episode_number=2, title='The One Where No One\'s Ready', release_year=1996, duration='00:22:00')
-friends_s_3_ep_3 = TVSeriesEpisode(tv_series_season_id=friends_s_3.id, episode_number=3, title='The One with the Jam', release_year=1996, duration='00:22:00')
-
-cheers_s_1_ep_1 = TVSeriesEpisode(tv_series_season_id=cheers_s_1.id, episode_number=1, title='Give Me a Ring Sometime', release_year=1982, duration='00:24:03')
-cheers_s_1_ep_2 = TVSeriesEpisode(tv_series_season_id=cheers_s_1.id, episode_number=2, title='Sam\'s Women', release_year=1982, duration='00:24:14')
-cheers_s_1_ep_3 = TVSeriesEpisode(tv_series_season_id=cheers_s_1.id, episode_number=3, title='The Tortelli Tort', release_year=1982, duration='00:24:08')
-
-cheers_s_2_ep_1 = TVSeriesEpisode(tv_series_season_id=cheers_s_2.id, episode_number=1, title='Power Play', release_year=1983, duration='00:24:00')
-cheers_s_2_ep_2 = TVSeriesEpisode(tv_series_season_id=cheers_s_2.id, episode_number=2, title='Little Sister Don\'t Cha', release_year=1983, duration='00:24:13')
-cheers_s_2_ep_3 = TVSeriesEpisode(tv_series_season_id=cheers_s_2.id, episode_number=3, title='Personal Business', release_year=1983, duration='00:24:08')
-
-cheers_s_3_ep_1 = TVSeriesEpisode(tv_series_season_id=cheers_s_3.id, episode_number=1, title='Rebound: Part 1', release_year=1984, duration='00:24:02')
-cheers_s_3_ep_2 = TVSeriesEpisode(tv_series_season_id=cheers_s_3.id, episode_number=2, title='Rebound: Part 2', release_year=1984, duration='00:24:09')
-cheers_s_3_ep_3 = TVSeriesEpisode(tv_series_season_id=cheers_s_3.id, episode_number=3, title='I Call Your Name', release_year=1984, duration='00:24:09')
-
-frasier_s_1_ep_1 = TVSeriesEpisode(tv_series_season_id=frasier_s_1.id, episode_number=1, title='The Good Son', release_year=1993, duration='00:23:49')
-frasier_s_1_ep_2 = TVSeriesEpisode(tv_series_season_id=frasier_s_1.id, episode_number=2, title='Space Quest', release_year=1993, duration='00:22:51')
-frasier_s_1_ep_3 = TVSeriesEpisode(tv_series_season_id=frasier_s_1.id, episode_number=3, title='Dinner at Eight', release_year=1993, duration='00:22:49')
-
-frasier_s_2_ep_1 = TVSeriesEpisode(tv_series_season_id=frasier_s_2.id, episode_number=1, title='Slow Tango in South Seattle', release_year=1994, duration='00:23:36')
-frasier_s_2_ep_2 = TVSeriesEpisode(tv_series_season_id=frasier_s_2.id, episode_number=2, title='The Unkindest Cut of All', release_year=1994, duration='00:23:06')
-frasier_s_2_ep_3 = TVSeriesEpisode(tv_series_season_id=frasier_s_2.id, episode_number=3, title='The Matchmaker', release_year=1994, duration='00:22:45')
-
-frasier_s_3_ep_1 = TVSeriesEpisode(tv_series_season_id=frasier_s_3.id, episode_number=1, title='She\'s the Boss', release_year=1995, duration='00:23:04')
-frasier_s_3_ep_2 = TVSeriesEpisode(tv_series_season_id=frasier_s_3.id, episode_number=2, title='The Unnatural', release_year=1995, duration='00:22:58')
-frasier_s_3_ep_3 = TVSeriesEpisode(tv_series_season_id=frasier_s_3.id, episode_number=3, title='Frasier Grinch', release_year=1995, duration='00:22:54')
-
-married_with_children_s_1_ep_1 = TVSeriesEpisode(tv_series_season_id=married_with_children_s_1.id, episode_number=1, title='Pilot', release_year=1987, duration='00:23:00')
-married_with_children_s_1_ep_2 = TVSeriesEpisode(tv_series_season_id=married_with_children_s_1.id, episode_number=2, title='Thinnergy', release_year=1987, duration='00:23:00')
-married_with_children_s_1_ep_3 = TVSeriesEpisode(tv_series_season_id=married_with_children_s_1.id, episode_number=3, title='But I Didn\'t Shoot the Deputy', release_year=1987, duration='00:23:00')
-
-married_with_children_s_2_ep_1 = TVSeriesEpisode(tv_series_season_id=married_with_children_s_2.id, episode_number=1, title='Poppy\'s by the Tree (Part 1)', release_year=1987, duration='00:23:00')
-married_with_children_s_2_ep_2 = TVSeriesEpisode(tv_series_season_id=married_with_children_s_2.id, episode_number=2, title='Poppy\'s by the Tree (Part 2)', release_year=1987, duration='00:23:00')
-married_with_children_s_2_ep_3 = TVSeriesEpisode(tv_series_season_id=married_with_children_s_2.id, episode_number=3, title='If I Were a Rich Man', release_year=1987, duration='00:23:00')
-
-married_with_children_s_3_ep_1 = TVSeriesEpisode(tv_series_season_id=married_with_children_s_3.id, episode_number=1, title='He Thought He Could', release_year=1988, duration='00:23:00')
-married_with_children_s_3_ep_2 = TVSeriesEpisode(tv_series_season_id=married_with_children_s_3.id, episode_number=2, title='I\'m Going to Sweatland', release_year=1988, duration='00:23:00')
-married_with_children_s_3_ep_3 = TVSeriesEpisode(tv_series_season_id=married_with_children_s_3.id, episode_number=3, title='Poke High (aka Kelly Moves Out)', release_year=1988, duration='00:23:00')
-
-golden_girls_s_1_ep_1 = TVSeriesEpisode(tv_series_season_id=golden_girls_s_1.id, episode_number=1, title='The Engagement', release_year=1985, duration='00:24:09')
-golden_girls_s_1_ep_2 = TVSeriesEpisode(tv_series_season_id=golden_girls_s_1.id, episode_number=2, title='Guess Who\'s Coming to the Wedding?', release_year=1985, duration='00:24:09')
-golden_girls_s_1_ep_3 = TVSeriesEpisode(tv_series_season_id=golden_girls_s_1.id, episode_number=3, title='Rose the Prude', release_year=1985, duration='00:24:09')
-
-golden_girls_s_2_ep_1 = TVSeriesEpisode(tv_series_season_id=golden_girls_s_2.id, episode_number=1, title='End of the Curse', release_year=1986, duration='00:24:06')
-golden_girls_s_2_ep_2 = TVSeriesEpisode(tv_series_season_id=golden_girls_s_2.id, episode_number=2, title='Ladies of the Evening', release_year=1986, duration='00:24:06')
-golden_girls_s_2_ep_3 = TVSeriesEpisode(tv_series_season_id=golden_girls_s_2.id, episode_number=3, title='Take Him, He\'s Mine', release_year=1986, duration='00:24:06')
-
-golden_girls_s_3_ep_1 = TVSeriesEpisode(tv_series_season_id=golden_girls_s_3.id, episode_number=1, title='Old Friends', release_year=1987, duration='00:24:03')
-golden_girls_s_3_ep_2 = TVSeriesEpisode(tv_series_season_id=golden_girls_s_3.id, episode_number=2, title='One for the Money', release_year=1987, duration='00:24:03')
-golden_girls_s_3_ep_3 = TVSeriesEpisode(tv_series_season_id=golden_girls_s_3.id, episode_number=3, title='Bringing Up Baby', release_year=1987, duration='00:24:03')
-
-moonlighting_s_1_ep_1 = TVSeriesEpisode(tv_series_season_id=moonlighting_s_1.id, episode_number=1, title='Moonlighting (Pilot)', release_year=1985, duration='01:33:00')
-moonlighting_s_1_ep_2 = TVSeriesEpisode(tv_series_season_id=moonlighting_s_1.id, episode_number=2, title='Gunfight at the So-So Corral', release_year=1985, duration='00:48:00')
-moonlighting_s_1_ep_3 = TVSeriesEpisode(tv_series_season_id=moonlighting_s_1.id, episode_number=3, title='Read the Mind... See the Movie', release_year=1985, duration='00:48:00')
-
-moonlighting_s_2_ep_1 = TVSeriesEpisode(tv_series_season_id=moonlighting_s_2.id, episode_number=1, title='Brother, Can You Spare a Blonde?', release_year=1986, duration='00:48:00')
-moonlighting_s_2_ep_2 = TVSeriesEpisode(tv_series_season_id=moonlighting_s_2.id, episode_number=2, title='The Lady in the Iron Mask', release_year=1986, duration='00:48:00')
-moonlighting_s_2_ep_3 = TVSeriesEpisode(tv_series_season_id=moonlighting_s_2.id, episode_number=3, title='Money Talks... Maddie Walks', release_year=1986, duration='00:48:00')
-
-moonlighting_s_3_ep_1 = TVSeriesEpisode(tv_series_season_id=moonlighting_s_3.id, episode_number=1, title='The Son Also Rises', release_year=1987, duration='00:48:00')
-moonlighting_s_3_ep_2 = TVSeriesEpisode(tv_series_season_id=moonlighting_s_3.id, episode_number=2, title='The Man Who Cried Wife', release_year=1987, duration='00:48:00')
-moonlighting_s_3_ep_3 = TVSeriesEpisode(tv_series_season_id=moonlighting_s_3.id, episode_number=3, title='Symphony in Knocked Flat', release_year=1987, duration='00:48:00')
-
-tv_series_episodes = [
-    friends_s_1_ep_1,
-    friends_s_1_ep_2,
-    friends_s_1_ep_3,
-    friends_s_2_ep_1,
-    friends_s_2_ep_2,
-    friends_s_2_ep_3,
-    friends_s_3_ep_1,
-    friends_s_3_ep_2,
-    friends_s_3_ep_3,
-    cheers_s_1_ep_1,
-    cheers_s_1_ep_2,
-    cheers_s_1_ep_3,
-    cheers_s_2_ep_1,
-    cheers_s_2_ep_2,
-    cheers_s_2_ep_3,
-    cheers_s_3_ep_1,
-    cheers_s_3_ep_2,
-    cheers_s_3_ep_3,
-    frasier_s_1_ep_1,
-    frasier_s_1_ep_2,
-    frasier_s_1_ep_3,
-    frasier_s_2_ep_1,
-    frasier_s_2_ep_2,
-    frasier_s_2_ep_3,
-    frasier_s_3_ep_1,
-    frasier_s_3_ep_2,
-    frasier_s_3_ep_3,
-    married_with_children_s_1_ep_1,
-    married_with_children_s_1_ep_2,
-    married_with_children_s_1_ep_3,
-    married_with_children_s_2_ep_1,
-    married_with_children_s_2_ep_2,
-    married_with_children_s_2_ep_3,
-    married_with_children_s_3_ep_1,
-    married_with_children_s_3_ep_2,
-    married_with_children_s_3_ep_3,
-    golden_girls_s_1_ep_1,
-    golden_girls_s_1_ep_2,
-    golden_girls_s_1_ep_3,
-    golden_girls_s_2_ep_1,
-    golden_girls_s_2_ep_2,
-    golden_girls_s_2_ep_3,
-    golden_girls_s_3_ep_1,
-    golden_girls_s_3_ep_2,
-    golden_girls_s_3_ep_3,
-    moonlighting_s_1_ep_1,
-    moonlighting_s_1_ep_2,
-    moonlighting_s_1_ep_3,
-    moonlighting_s_2_ep_1,
-    moonlighting_s_2_ep_2, 
-    moonlighting_s_2_ep_3,
-    moonlighting_s_3_ep_1,
-    moonlighting_s_3_ep_2,
-    moonlighting_s_3_ep_3
-]
-
 # Create users
 
 harry_kane = User(email_address='harry@retro.com', _password='password', first_name='Harry', last_name='Kane', dob='1993-07-28', mailing=True, creation_date='2023-04-27', last_login='2023-04-27', pin=1234)
@@ -338,29 +133,159 @@ users = [
 
 # Create card details
 
+
 # Create subscriptions
 
-subscription_1 = Subscription(duration='rolling', price=4.99, sub_type='Monthly')
-subscription_2 = Subscription(duration='12 months', price=49.99, sub_type='Yearly')
+subscription_1 = Subscription(duration='1', price=4.99, sub_type='Monthly')
+subscription_2 = Subscription(duration='12', price=49.99, sub_type='Yearly')
 
 subscriptions = [
     subscription_1,
     subscription_2
-] 
+]
 
-# Add genre, actor, film, tv series, tv series seasons user, subscriptions data to the database
+# Create Tv Series
 
+series = [
+    {'title': 'Friends', 'release_year': 1994, 'age_rating': 'TV-PG', 'rating': 8.9},
+    {'title': 'Cheers', 'release_year': 1982, 'age_rating': 'TV-PG', 'rating': 8.0},
+    {'title': 'Frasier', 'release_year': 1993, 'age_rating': 'TV-PG', 'rating': 8.2},
+    {'title': 'Married With Children', 'release_year': 1987, 'age_rating': 'TV-PG', 'rating': 8.1},
+    {'title': 'Golden Girls', 'release_year': 1985, 'age_rating': 'TV-PG', 'rating': 8.2},
+    {'title': 'Moonlighting', 'release_year': 1985, 'age_rating': 'TV-PG', 'rating': 7.6}
+]
+
+# Create Tv Series Seasons
+
+seasons = [
+    {"tv_series": "Friends", "release_year": 1994, "season_number": 1},
+    {"tv_series": "Friends", "release_year": 1995, "season_number": 2},
+    {"tv_series": "Friends", "release_year": 1996, "season_number": 3},
+    {"tv_series": "Cheers", "release_year": 1982, "season_number": 1},
+    {"tv_series": "Cheers", "release_year": 1983, "season_number": 2},
+    {"tv_series": "Cheers", "release_year": 1984, "season_number": 3},
+    {"tv_series": "Frasier", "release_year": 1993, "season_number": 1},
+    {"tv_series": "Frasier", "release_year": 1994, "season_number": 2},
+    {"tv_series": "Frasier", "release_year": 1995, "season_number": 3},
+    {"tv_series": "Married With Children", "release_year": 1987, "season_number": 1},
+    {"tv_series": "Married With Children", "release_year": 1988, "season_number": 2},
+    {"tv_series": "Married With Children", "release_year": 1989, "season_number": 3},
+    {"tv_series": "Golden Girls", "release_year": 1985, "season_number": 1},
+    {"tv_series": "Golden Girls", "release_year": 1986, "season_number": 2},
+    {"tv_series": "Golden Girls", "release_year": 1987, "season_number": 3},
+    {"tv_series": "Moonlighting", "release_year": 1985, "season_number": 1},
+    {"tv_series": "Moonlighting", "release_year": 1986, "season_number": 2},
+    {"tv_series": "Moonlighting", "release_year": 1987, "season_number": 3},
+]
+
+# Create Tv Series Episodes
+
+episodes = [
+    {"tv_series": "Friends", "season": 1, "episode_number": 1, "title": "The One Where Monica Gets a Roommate", "release_year": 1994, "duration": "00:22:00"},
+    {"tv_series": "Friends", "season": 1, "episode_number": 2, "title": "The One with the Sonogram at the End", "release_year": 1994, "duration": "00:22:00"},
+    {"tv_series": "Friends", "season": 1, "episode_number": 3, "title": "The One with the Thumb", "release_year": 1994, "duration": "00:22:00"},
+
+    {"tv_series": "Friends", "season": 2, "episode_number": 1, "title": "The One with Ross's New Girlfriend", "release_year": 1995, "duration": "00:22:00"},
+    {"tv_series": "Friends", "season": 2, "episode_number": 2, "title": "The One with the Breast Milk", "release_year": 1995, "duration": "00:22:00"},
+    {"tv_series": "Friends", "season": 2, "episode_number": 3, "title": "The One Where Heckles Dies", "release_year": 1995, "duration": "00:22:00"},
+
+    {"tv_series": "Friends", "season": 3, "episode_number": 1, "title": "The One with the Princess Leia Fantasy", "release_year": 1996, "duration": "00:22:00"},
+    {"tv_series": "Friends", "season": 3, "episode_number": 2, "title": "The One Where No One's Ready", "release_year": 1996, "duration": "00:22:00"},
+    {"tv_series": "Friends", "season": 3, "episode_number": 3, "title": "The One with the Jam", "release_year": 1996, "duration": "00:22:00"},
+
+    {"tv_series": "Cheers", "season": 1, "episode_number": 1, "title": "Give Me a Ring Sometime", "release_year": 1982, "duration": "00:24:03"},
+    {"tv_series": "Cheers", "season": 1, "episode_number": 2, "title": "Sam's Women", "release_year": 1982, "duration": "00:24:14"},
+    {"tv_series": "Cheers", "season": 1, "episode_number": 3, "title": "The Tortelli Tort", "release_year": 1982, "duration": "00:24:08"},
+
+    {"tv_series": "Cheers", "season": 2, "episode_number": 1, "title": "Power Play", "release_year": 1983, "duration": "00:24:00"},
+    {"tv_series": "Cheers", "season": 2, "episode_number": 2, "title": "Little Sister Don't Cha", "release_year": 1983, "duration": "00:24:13"},
+    {"tv_series": "Cheers", "season": 2, "episode_number": 3, "title": "Personal Business", "release_year": 1983, "duration": "00:24:08"},
+
+    {"tv_series": "Cheers", "season": 3, "episode_number": 1, "title": "Rebound: Part 1", "release_year": 1984, "duration": "00:24:02"},
+    {"tv_series": "Cheers", "season": 3, "episode_number": 2, "title": "Rebound: Part 2", "release_year": 1984, "duration": "00:24:09"},
+    {"tv_series": "Cheers", "season": 3, "episode_number": 3, "title": "I Call Your Name", "release_year": 1984, "duration": "00:24:09"},
+
+    {"tv_series": "Frasier", "season": 1, "episode_number": 1, "title": "The Good Son", "release_year": 1993, "duration": "00:23:49"},
+    {"tv_series": "Frasier", "season": 1, "episode_number": 2, "title": "Space Quest", "release_year": 1993, "duration": "00:22:51"},
+    {"tv_series": "Frasier", "season": 1, "episode_number": 3, "title": "Dinner at Eight", "release_year": 1993, "duration": "00:22:49"},
+
+    {"tv_series": "Frasier", "season": 2, "episode_number": 1, "title": "Slow Tango in South Seattle", "release_year": 1994, "duration": "00:23:36"},
+    {"tv_series": "Frasier", "season": 2, "episode_number": 2, "title": "The Unkindest Cut of All", "release_year": 1994, "duration": "00:23:06"},
+    {"tv_series": "Frasier", "season": 2, "episode_number": 3, "title": "The Matchmaker", "release_year": 1994, "duration": "00:22:45"},
+
+    {"tv_series": "Frasier", "season": 3, "episode_number": 1, "title": "She's the Boss", "release_year": 1995, "duration": "00:23:04"},
+    {"tv_series": "Frasier", "season": 3, "episode_number": 2, "title": "The Unnatural", "release_year": 1995, "duration": "00:22:58"},
+    {"tv_series": "Frasier", "season": 3, "episode_number": 3, "title": "Frasier Grinch", "release_year": 1995, "duration": "00:22:54"},
+
+    {"tv_series": "Married With Children", "season": 1, "episode_number": 1, "title": "Pilot", "release_year": 1987, "duration": "00:23:00"},
+    {"tv_series": "Married With Children", "season": 1, "episode_number": 2, "title": "Thinnergy", "release_year": 1987, "duration": "00:23:00"},
+    {"tv_series": "Married With Children", "season": 1, "episode_number": 3, "title": "But I Didn't Shoot the Deputy", "release_year": 1987, "duration": "00:23:00"},
+    
+    {"tv_series": "Married With Children", "season": 2, "episode_number": 1, "title": "Poppy's by the Tree (Part 1)", "release_year": 1987, "duration": "00:23:00"},
+    {"tv_series": "Married With Children", "season": 2, "episode_number": 2, "title": "Poppy's by the Tree (Part 2)", "release_year": 1987, "duration": "00:23:00"},
+    {"tv_series": "Married With Children", "season": 2, "episode_number": 3, "title": "If I Were a Rich Man", "release_year": 1987, "duration": "00:23:00"},
+    
+    {"tv_series": "Married With Children", "season": 3, "episode_number": 1, "title": "He Thought He Could", "release_year": 1988, "duration": "00:23:00"},
+    {"tv_series": "Married With Children", "season": 3, "episode_number": 2, "title": "I'm Going to Sweatland", "release_year": 1988, "duration": "00:23:00"},
+    {"tv_series": "Married With Children", "season": 3, "episode_number": 3, "title": "Poke High (aka Kelly Moves Out)", "release_year": 1988, "duration": "00:23:00"},
+
+    {"tv_series": "Golden Girls", "season": 1, "episode_number": 1, "title": "The Engagement", "release_year": 1985, "duration": "00:24:09"},
+    {"tv_series": "Golden Girls", "season": 1, "episode_number": 2, "title": "Guess Who's Coming to the Wedding?", "release_year": 1985, "duration": "00:24:09"},
+    {"tv_series": "Golden Girls", "season": 1, "episode_number": 3, "title": "Rose the Prude", "release_year": 1985, "duration": "00:24:09"},
+
+    {"tv_series": "Golden Girls", "season": 2, "episode_number": 1, "title": "End of the Curse", "release_year": 1986, "duration": "00:24:06"},
+    {"tv_series": "Golden Girls", "season": 2, "episode_number": 2, "title": "Ladies of the Evening", "release_year": 1986, "duration": "00:24:06"},
+    {"tv_series": "Golden Girls", "season": 2, "episode_number": 3, "title": "Take Him, He's Mine", "release_year": 1986, "duration": "00:24:06"},
+
+    {"tv_series": "Golden Girls", "season": 3, "episode_number": 1, "title": "Old Friends", "release_year": 1987, "duration": "00:24:03"},
+    {"tv_series": "Golden Girls", "season": 3, "episode_number": 2, "title": "One for the Money", "release_year": 1987, "duration": "00:24:03"},
+    {"tv_series": "Golden Girls", "season": 3, "episode_number": 3, "title": "Bringing Up Baby", "release_year": 1987, "duration": "00:24:03"},
+
+    {"tv_series": "Moonlighting", "season": 1, "episode_number": 1, "title": "Moonlighting (Pilot)", "release_year": 1985, "duration": "01:33:00"},
+    {"tv_series": "Moonlighting", "season": 1, "episode_number": 2, "title": "Gunfight at the So-So Corral", "release_year": 1985, "duration": "00:48:00"},
+    {"tv_series": "Moonlighting", "season": 1, "episode_number": 3, "title": "Read the Mind... See the Movie", "release_year": 1985, "duration": "00:48:00"},
+
+    {"tv_series": "Moonlighting", "season": 2, "episode_number": 1, "title": "Brother, Can You Spare a Blonde?", "release_year": 1986, "duration": "00:48:00"},
+    {"tv_series": "Moonlighting", "season": 2, "episode_number": 2, "title": "The Lady in the Iron Mask", "release_year": 1986, "duration": "00:48:00"},
+    {"tv_series": "Moonlighting", "season": 2, "episode_number": 3, "title": "Money Talks... Maddie Walks", "release_year": 1986, "duration": "00:48:00"},
+
+    {"tv_series": "Moonlighting", "season": 3, "episode_number": 1, "title": "The Son Also Rises", "release_year": 1987, "duration": "00:48:00"},
+    {"tv_series": "Moonlighting", "season": 3, "episode_number": 2, "title": "The Man Who Cried Wife", "release_year": 1987, "duration": "00:48:00"},
+    {"tv_series": "Moonlighting", "season": 3, "episode_number": 3, "title": "Symphony in Knocked Flat", "release_year": 1987, "duration": "00:48:00"}
+]
+
+# Add data to DB
 
 with app.app_context():
     db.session.add_all(actors)
     db.session.add_all(genres)
     db.session.add_all(films)
-    db.session.add_all(tv_series)
-    db.session.add_all(tv_series_seasons)
-    db.session.add_all(tv_series_episodes)
     db.session.add_all(users)
     db.session.add_all(subscriptions)
+
+    db.session.bulk_insert_mappings(TVSeries, series)
     db.session.commit()
+
+    tv_series_models = dict(db.session.execute(db.select(TVSeries.title, TVSeries.id)).all())
+    
+    for season in seasons:
+        if season['tv_series'] in tv_series_models.keys():
+            season['tv_series_id'] = tv_series_models[season['tv_series']]
+    
+    db.session.bulk_insert_mappings(TVSeriesSeason, seasons)
+    db.session.commit()
+
+# Getting Season FK for Episode table
+
+    # tv_seasons_models = dict(db.session.execute(db.select(TVSeriesSeason.season_number, TVSeriesSeason.id)).all())
+
+    # for episode in episodes:
+    #     if episode['tv_series'] in tv_series_models.keys() and (episode['season']) in tv_seasons_models.keys():
+    #         episode['tv_series_season_id'] = tv_seasons_models[episode['season_number']]
+        
+    # db.session.bulk_insert_mappings(TVSeriesEpisode, episodes)
+    # db.session.commit()
+
 
     # Create film_actor associations
 
@@ -407,8 +332,8 @@ with app.app_context():
     # Create episode_genre associations
 
 
-
     db.session.commit()
+
 
 
 print('Database seeded successfully!')
