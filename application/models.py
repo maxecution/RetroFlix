@@ -117,7 +117,7 @@ class TVSeriesEpisode(db.Model):
     genres = db.relationship('Genre', secondary='episode_genre', back_populates='episodes')
 
 
-# First draft of user related tables below
+# User related tables
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -128,8 +128,8 @@ class User(db.Model):
     last_name = db.Column(db.String(255))
     dob = db.Column(db.Date)
     mailing = db.Column(db.Boolean)
-    creation_date = db.Column(db.Date)
-    last_login = db.Column(db.DateTime)
+    creation_date = db.Column(db.DateTime, server_default=db.func.now())
+    last_login = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
     pin = db.Column(db.String(255))
 
     subscription_id = db.Column(db.Integer, db.ForeignKey('subscriptions.id'))
@@ -144,7 +144,7 @@ class CardDetail(db.Model):
     name_on_card = db.Column(db.String(255))
     card_number = db.Column(db.String(255))
     expiry_date = db.Column(db.Date)
-    cvv = db.Column(db.Integer)
+    cvv = db.Column(db.String(255))
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
