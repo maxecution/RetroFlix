@@ -11,20 +11,50 @@
 
 <h1>Search results</h1>
 <br>
-<div class="row">
-  {% for result in results %}
-  <div class="col-md-2">
-      <div class="card_4">
-          <a href="#" class="btn-btn-link" onmouseover="showtitle('{{ result.title }}')" onmouseout="hidetitle('{{ result.title }}')">
-              <img id="{{ result.title }}" src="{{ url_for('static', filename='assets/Film_Posters/') }}" alt="" class="img-fluid">
-          </a>
-          <div class="card-body p-2">
-              <p id="title_{{ result.title }}" style="display:none;">{{ result.title }}</p>
-          </div>
-      </div>
-  </div>
+{% if films %}
+<h2>Films</h2>
+<ul>
+  {% for film in films %}
+  <li>{{ film.title }} ({{ film.release_year}})</li>
   {% endfor %}
-</div>      
+</ul>
+  {% endif %}
+
+{% if actors %}
+<h2>Actors</h2>
+<ul>
+  {% for actor in actors %}
+  <li>{{ actor.name }}</li>
+  {% endfor %}
+</ul>
+  {% endif %} 
+
+{% if actors %}
+<h2>Actors</h2>
+<ul>
+  {% for actor in actors %}
+  <li>{{ actor.name }}</li>
+  {% endfor %}
+</ul>
+  {% endif %}
+
+{% if genres %}
+<h2>Genre</h2>
+<ul>
+  {% for genre in genres %}
+  <li>{{ genre.genre }}</li>
+  {% endfor %}
+</ul>
+  {% endif %} 
+
+{% if tv_series %}
+<h2>Tv Series</h2>
+<ul>
+  {% for tv_series in tv_series %}
+  <li>{{ tv_series.title }} ({{ tv_series.release_year}})</li>
+  {% endfor %}
+</ul>
+  {% endif %} 
 
 <!-- Can include additional scripts as well-->
 {% endblock %}

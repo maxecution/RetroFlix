@@ -103,34 +103,15 @@ def index():
     return render_template('index.html', title='Index')
 
 #search bar render
-@app.route('/search')
+@app.route('/search', methods=['GET'])
 def search():
     query = request.args.get('query')
+    films = Film.query.filter(Film.title.ilike(f'%{query}%')).all()
+    actors = Actor.query.filter(Actor.name.ilike(f'%{query}%')).all()  # if you search for full name, you get two results where it matches the first and last name
+    genres = Genre.query.filter(Genre.genre.ilike(f'%{query}%')).all()
+    tv_series = TVSeries.query.filter(TVSeries.title.ilike(f'%{query}%')).all()
     
-    film_results = Film.query.filter(Film.title.contains(query)).all()
-    
-    tv_series = TVSeries.query.filter(TVSeries.title.contains(query)).all()
-    
-    actor_results = Actor.query.filter(Actor.name.contains(query)).all()
-    actor_films = []
-    for actor in actor_results:
-        actor_films += actor.films
-    
-    genre_results = Genre.query.filter(Genre.genre.contains(query)).all()
-    
-    results = film_results + actor_films + genre_results + tv_series
-    
-    if len(results) == 0:
-        broader_query = '%{}%'.format(query)
-        results = db.session.query(Film).filter(or_(Film.title.like(broader_query), Film.description.like(broader_query))).all()
-        results += db.session.query(TVSeries).filter(or_(TVSeries.title.like(broader_query), TVSeries.description.like(broader_query))).all()
-        results += db.session.query(Actor).filter(or_(Actor.title.like(broader_query), Actor.description.like(broader_query))).all()       
-        results += db.session.query(Genre).filter(or_(Genre.title.like(broader_query), Genre.description.like(broader_query))).all()
-    
-    if len(results) == 0:
-        return "No results found for '{}'".format(query)
-    else:
-        return render_template('search_results.html', results=results)
+    return render_template('search_results.html', films=films, actors=actors, genres=genres, tv_series=tv_series)
 
 #log out process - cannoty fully test until we have active 'users'
 @app.route('/logout')
