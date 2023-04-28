@@ -277,6 +277,29 @@ with app.app_context():
 
     # Getting Season FK for Episode table
 
+    tv_seasons = db.session.query(TVSeriesSeason.tv_series_id, TVSeriesSeason.season_number, TVSeriesSeason.id).all()
+
+    # Creates tuple 'keys' to link the tv show to the corresponding season (1-3 for all was confusingthe last dictionary) 
+    tv_seasons_models = {}
+    for season in tv_seasons:
+        key = (season.tv_series_id, season.season_number)
+        tv_seasons_models[key] = season.id
+
+
+    # Iterates over episodes and adds the TVSeriesSeason ID
+    for episode in episodes:
+        tv_series_key = episode['tv_series']
+        season_number = episode['season']
+        tv_series_id = tv_series_models.get(tv_series_key)
+        season_key = (tv_series_id, season_number)
+        season_id = tv_seasons_models.get(season_key)
+        if season_id:
+            episode['tv_series_season_id'] = season_id
+            
+    db.session.bulk_insert_mappings(TVSeriesEpisode, episodes)
+    db.session.commit()
+
+
     # tv_seasons_models = dict(db.session.execute(db.select(TVSeriesSeason.season_number, TVSeriesSeason.id)).all())
 
     # for episode in episodes:
