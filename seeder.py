@@ -255,6 +255,7 @@ episodes = [
 ]
 
 # Add data to DB
+# Add genre, actor, film, tv series, tv series seasons, user, subscriptions data to the database
 
 with app.app_context():
     db.session.add_all(actors)
