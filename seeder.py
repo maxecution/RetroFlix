@@ -121,18 +121,23 @@ films = [
 
 # Create users
 
-harry_kane = User(email_address='harry@retro.com', _password='password', first_name='Harry', last_name='Kane', dob='1993-07-28', mailing=True, creation_date='2023-04-27', last_login='2023-04-27', pin=1234)
-judy_dench = User(email_address='judy@retro.com', _password='password', first_name='Judy', last_name='Dench', dob='1934-12-09', mailing=True, creation_date='2023-04-27', last_login='2023-04-27', pin=4567)
-jimmy_carr = User(email_address='jimmy@retro.com', _password='password', first_name='Jimmy', last_name='Carr', dob='1972-11-15', mailing=True, creation_date='2023-04-27', last_login='2023-04-27', pin=8912)
+harry_kane = User(email_address='harry@retro.com', _password='password', first_name='Harry', last_name='Kane', dob='1993-07-28', mailing=True, pin=1234)
+judy_dench = User(email_address='judy@retro.com', _password='password1', first_name='Judy', last_name='Dench', dob='1934-12-09', mailing=True, pin=4567)
+jimmy_carr = User(email_address='jimmy@retro.com', _password='p@ssw0rd', first_name='Jimmy', last_name='Carr', dob='1972-11-15', mailing=True, pin=8912)
 
 users = [
-    harry_kane,
+    jimmy_carr,
     judy_dench,
-    jimmy_carr
+    harry_kane,
 ]
 
 # Create card details
 
+cards = [
+    {'name_on_card': 'Harry Kane', 'card_number': '1234456712345678', 'expiry_date': '2020-01-01', 'cvv': '123'},
+    {'name_on_card': 'Judy Dench', 'card_number': '9874561298745612', 'expiry_date': '2020-02-02', 'cvv': '456'},
+    {'name_on_card': 'Jimmy Carr', 'card_number': '1478523614785236', 'expiry_date': '2020-03-03', 'cvv': '789'},
+]
 
 # Create subscriptions
 
@@ -267,6 +272,8 @@ with app.app_context():
     db.session.bulk_insert_mappings(TVSeries, series)
     db.session.commit()
 
+
+
     tv_series_models = dict(db.session.execute(db.select(TVSeries.title, TVSeries.id)).all())
     
     for season in seasons:
@@ -274,6 +281,17 @@ with app.app_context():
             season['tv_series_id'] = tv_series_models[season['tv_series']]
     
     db.session.bulk_insert_mappings(TVSeriesSeason, seasons)
+    db.session.commit()
+
+    users = User.query.all()
+
+    for user in users:
+        full_name = f"{user.first_name} {user.last_name}"
+        for card in cards:
+            if card['name_on_card'] == full_name:
+                card['user_id'] = user.id
+    
+    db.session.bulk_insert_mappings(CardDetail, cards)
     db.session.commit()
 
     # Getting Season FK for Episode table
