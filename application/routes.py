@@ -118,3 +118,9 @@ def search():
 def logout():
     session.pop('email', None)
     return redirect(url_for('index'))
+
+@app.route('/film/film_player/<string:name>')
+def film_player(name):
+    film = Film.query.filter_by(title=name).first_or_404()
+    video_file = "/videos/" + name.lower().replace(" ", "_") + ".mp4"
+    return render_template('film_player.html', film=film, video=video_file)

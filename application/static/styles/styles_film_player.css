@@ -1,0 +1,24 @@
+body {
+    background-color: #0e0f1b;
+    color: white;
+}
+
+.card_account {
+    border: 1px solid #00ffff;
+    box-shadow: 0 0 10px #00ffff;
+    border-radius: 1rem;
+}
+
+h1{
+    text-align: center;
+}
+
+p{
+
+    text-align: center;
+}
+
+.account_maintenance{
+    flex: 1 1;
+    max-height: fit-content;
+}
