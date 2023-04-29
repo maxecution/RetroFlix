@@ -1,0 +1,53 @@
+<!-- Copy and edit this page for new HTML page -->
+
+{% extends "main_layout.html" %}
+
+{% block head_content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='/styles/styles_film_player.css') }}">
+
+
+{% endblock %}
+
+{% block body_content%}
+<!--  Main page content-->        
+
+<section class="bg-image" style="padding-top: 80px; padding-bottom: 80px;">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card_account bg-dark text-white">
+                        <div class="card-body p-5">
+
+                            <h1>{{ film.title }}</h1>
+
+                            <video class="w-100 justify-content-center"  controls >
+                                <source src="{{ url_for('static', filename=video) }}" type="video/mp4">
+                            </video>
+
+                            <div class="form-outline mb-4">
+                                <p>Actors:
+                                    {% for actor in film.actors %}
+                                        {{ actor.name }}{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                                    
+                                <p>Genres:
+                                    {% for genre in film.genres %}
+                                        {{ genre.genre }}{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                                <p>Duration: {{ film.duration }} | Release year: {{ film.release_year }} | Age rating: {{ film.age_rating }}  |  Rating: {{ "%.1f" % film.rating }}</p>
+                            </div>   
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Can include additional scripts as well-->
+{% endblock %}

@@ -17,8 +17,8 @@
 
                 <div class="col-md-2">
                     <div class="card_1">
-                        <a class="btn-btn-link"  onmouseover="showtitle('Jurassic_Park')" onmouseout="hidetitle('Jurassic_Park')">
-                        <img id="Jurassic_Park" src="{{ url_for('static', filename='assets/Film_Posters/Jurassic_Park.jpg') }}" alt="" class="img-fluid">
+                        <a href="{{ url_for('film_player', name='Jurassic Park') }}" class="btn-btn-link"  onmouseover="showtitle('Jurassic_Park')" onmouseout="hidetitle('Jurassic_Park')">
+                        <img id="jurassic_park" src="{{ url_for('static', filename='assets/Film_Posters/Jurassic_Park.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
                             <p id="title_Jurassic_Park" style="display:none;">Jurassic Park</p>
@@ -28,7 +28,7 @@
 
                 <div class="col-md-2">
                     <div class="card_2">
-                        <a class="btn-btn-link"  onmouseover="showtitle('gremlins')" onmouseout="hidetitle('gremlins')">
+                        <a href="{{ url_for('film_player', name='Gremlins') }}" class="btn-btn-link"  onmouseover="showtitle('gremlins')" onmouseout="hidetitle('gremlins')">
                         <img id="gremlins" src="{{ url_for('static', filename='assets/Film_Posters/Gremlins.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
@@ -39,7 +39,7 @@
 
                 <div class="col-md-2">
                     <div class="card_3">
-                        <a class="btn-btn-link"  onmouseover="showtitle('ghostbusters')" onmouseout="hidetitle('ghostbusters')">
+                        <a href="{{ url_for('film_player', name='Ghostbusters') }}" class="btn-btn-link"  onmouseover="showtitle('ghostbusters')" onmouseout="hidetitle('ghostbusters')">
                         <img id="ghostbusters" src="{{ url_for('static', filename='assets/Film_Posters/ghostbusters.png') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
@@ -50,7 +50,7 @@
 
                 <div class="col-md-2">
                     <div class="card_4">
-                        <a class="btn-btn-link"  onmouseover="showtitle('e_t')" onmouseout="hidetitle('e_t')">
+                        <a href="{{ url_for('film_player', name='E T the Extra Terrestrial') }}" class="btn-btn-link"  onmouseover="showtitle('e_t')" onmouseout="hidetitle('e_t')">
                         <img id="e_t" src="{{ url_for('static', filename='assets/Film_Posters/e_t.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
@@ -61,7 +61,7 @@
 
                 <div class="col-md-2">
                     <div class="card_5">
-                        <a class="btn-btn-link"  onmouseover="showtitle('blade_runner')" onmouseout="hidetitle('blade_runner')">
+                        <a href="{{ url_for('film_player', name='Blade Runner') }}" class="btn-btn-link"  onmouseover="showtitle('blade_runner')" onmouseout="hidetitle('blade_runner')">
                         <img id="blade_runner" src="{{ url_for('static', filename='assets/Film_Posters/blade_runner.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
@@ -72,7 +72,7 @@
 
                 <div class="col-md-2">
                     <div class="card_6">
-                        <a class="btn-btn-link"  onmouseover="showtitle('the_terminator')" onmouseout="hidetitle('the_terminator')">
+                        <a href="{{ url_for('film_player', name='The Terminator') }}" class="btn-btn-link"  onmouseover="showtitle('the_terminator')" onmouseout="hidetitle('the_terminator')">
                         <img id="the_terminator" src="{{ url_for('static', filename='assets/Film_Posters/the_terminator.jpg') }}" alt="" class="img-fluid">
                         </a>
                         <div class="card-body p-2">
