@@ -124,3 +124,23 @@ def film_player(name):
     film = Film.query.filter_by(title=name).first_or_404()
     video_file = "/videos/" + name.lower().replace(" ", "_") + ".mp4"
     return render_template('film_player.html', film=film, video=video_file)
+
+@app.route('/series/series_player/<string:name>/<string:episode>')
+def series_player(name, episode):
+    series = TVSeries.query.filter_by(title=name).first_or_404()
+
+    if name == "Friends":
+        video_file = "/videos/" + name.lower().replace(" ", "_") + "_" + episode + ".mp4"
+    else:
+        video_file = "/videos/" + name.lower().replace(" ", "_") + ".mp4"
+        
+    if series:
+        season_number, episode_number = episode[1:].split('E')
+        season_number = int(season_number)
+        episode_number = int(episode_number)
+        season = TVSeriesSeason.query.filter_by(tv_series_id=series.id, season_number=season_number).first_or_404()
+
+        if season:
+            episode = TVSeriesEpisode.query.filter_by(tv_series_season_id=season.id, episode_number=episode_number).first_or_404()
+
+    return render_template('series_player.html', series=series, season=season, episode=episode, video=video_file)

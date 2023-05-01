@@ -1,0 +1,72 @@
+{% extends "main_layout.html" %}
+
+{% block head_content %}
+<!-- Styles and CSS sheets in here -->
+
+<link rel="stylesheet" href="{{ url_for('static', filename='/styles/styles_film_player.css') }}">
+
+{% endblock %}
+
+{% block body_content%}
+<!--  Main page content-->        
+
+<section class="bg-image" style="padding-top: 80px; padding-bottom: 80px;">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card_account bg-dark text-white">
+                        <div class="card-body p-5">
+
+                            <h1>{{  series.title }}</h1>
+                            <h1 style="font-size: 1.5rem;" class="display-6 justify-content-center"> Season: {{ season.season_number }} | Episode: {{ episode.episode_number }}</h1>
+
+                            <video class="w-100 justify-content-center"  controls >
+                                <source src="{{ url_for('static', filename=video) }}" type="video/mp4">
+                            </video>
+
+                            <div class="form-outline mb-4">
+                                <p>Actors:
+                                    {% for actor in episode.actors %}
+                                        {{ actor.name }}{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                                    
+                                <p>Genres:
+                                    {% for genre in episode.genres %}
+                                        {{ genre.genre }}{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                                <p>Duration: {{ episode.duration }} | Release year: {{ episode.release_year }} | Age rating: {{ series.age_rating }}  |  Rating: {{ "%.1f" % series.rating }}</p>
+                            </div>  
+
+                            <div class="form-outline mb-4">
+                                <!-- Create a dropend button for each season -->
+                                {% for season in series.seasons %}
+                                <div class="btn-group dropend pb-2">
+                                    <button type="button" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Season {{ season.season_number }}
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <!-- Creates list of episodes for the season -->
+                                        {% for episode in season.episodes %}
+                                        <li><a class="dropdown-item" href="{{ url_for('series_player', name=series.title, episode='S{}E{}'.format(season.season_number, episode.episode_number)) }}">Ep {{ episode.episode_number }}: {{ episode.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <br>
+                                {% endfor %}
+                            </div>   
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Can include additional scripts as well-->
+{% endblock %}
