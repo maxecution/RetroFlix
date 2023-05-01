@@ -1,5 +1,6 @@
 from application import db, Actor, Genre, Film, TVSeries, TVSeriesSeason, TVSeriesEpisode, User, CardDetail, Subscription
 from application import app
+import random
 
 # Create actors
 
@@ -294,6 +295,7 @@ with app.app_context():
     db.session.bulk_insert_mappings(CardDetail, cards)
     db.session.commit()
 
+    #Adding TV Series Episodes data to DB
     # Getting Season FK for Episode table
 
     tv_seasons = db.session.query(TVSeriesSeason.tv_series_id, TVSeriesSeason.season_number, TVSeriesSeason.id).all()
@@ -319,16 +321,6 @@ with app.app_context():
     db.session.commit()
 
 
-    # tv_seasons_models = dict(db.session.execute(db.select(TVSeriesSeason.season_number, TVSeriesSeason.id)).all())
-
-    # for episode in episodes:
-    #     if episode['tv_series'] in tv_series_models.keys() and (episode['season']) in tv_seasons_models.keys():
-    #         episode['tv_series_season_id'] = tv_seasons_models[episode['season_number']]
-        
-    # db.session.bulk_insert_mappings(TVSeriesEpisode, episodes)
-    # db.session.commit()
-
-
     # Create film_actor associations
 
     jurassic_park.actors.append(sam_neill)
@@ -350,15 +342,6 @@ with app.app_context():
     terminator.actors.append(michael_biehn)
     terminator.actors.append(linda_hamilton)
 
-    # Create episode_actor associations
-
-    # friends_s_1_ep_1, friends_s_1_ep_2, frasier_s_1_ep_3, friends_s_2_ep_1, friends_s_2_ep_2, friends_s_2_ep_3, friends_s_3_ep_1, friends_s_3_ep_2, friends_s_3_ep_3.actors.append(jennifer_aniston, lisa_kudrow, matt_le_blanc)
-    # frasier_s_1_ep_1, frasier_s_1_ep_2, frasier_s_1_ep_3, frasier_s_2_ep_1, frasier_s_2_ep_2, frasier_s_2_ep_3, frasier_s_3_ep_1, frasier_s_3_ep_2, frasier_s_3_ep_3.actors.append(kelsey_grammer, jane_leeves, john_mahoney)
-    # cheers_s_1_ep_1, cheers_s_1_ep_2, cheers_s_1_ep_3, cheers_s_2_ep_1, cheers_s_2_ep_2, cheers_s_2_ep_3, cheers_s_3_ep_1, cheers_s_3_ep_2, cheers_s_3_ep_3.actors.append(kirstie_alley, ted_danson, rhea_perlman)
-    # married_with_children_s_1_ep_1, married_with_children_s_1_ep_2, married_with_children_s_1_ep_3, married_with_children_s_2_ep_1, married_with_children_s_2_ep_2, married_with_children_s_2_ep_3, married_with_children_s_3_ep_1, married_with_children_s_3_ep_2, married_with_children_s_3_ep_3.actors.append(ed_oneill, katy_sagal, christina_applegate)
-    # golden_girls_s_1_ep_1, golden_girls_s_1_ep_2, golden_girls_s_1_ep_3, golden_girls_s_2_ep_1, golden_girls_s_2_ep_2, golden_girls_s_2_ep_3, golden_girls_s_3_ep_1, golden_girls_s_3_ep_2, golden_girls_s_3_ep_3.actors.append(bea_arthur, betty_white, rue_mclanahan)
-    # moonlighting_s_1_ep_1, moonlighting_s_1_ep_2, moonlighting_s_1_ep_3, moonlighting_s_2_ep_1, moonlighting_s_2_ep_2, moonlighting_s_2_ep_3, moonlighting_s_3_ep_1, moonlighting_s_3_ep_2, moonlighting_s_3_ep_3.actors.append(bruce_willis, cybill_shepherd, allyce_beasley)
-    
     # Create film_genre associations
 
     jurassic_park.genres.append(science_fiction)
@@ -377,14 +360,25 @@ with app.app_context():
     terminator.genres.append(science_fiction)
     terminator.genres.append(action)
 
+    # Create random episode_actor associations
+
+    tv_episodes = TVSeriesEpisode.query.all()
+
+    for episode in tv_episodes:
+        # randomly select 3 actors from the actors list
+        random_actors = random.sample(actors, k=3)
+        for actor in random_actors:
+            episode.actors.append(actor)
+        random_genres = random.sample(genres, k=3)
+        for genre in random_genres:
+            episode.genres.append(genre)
+        db.session.commit()
+
+
+
     # Create episode_genre associations
 
-    # friends_s_1_ep_1, friends_s_1_ep_2, frasier_s_1_ep_3, friends_s_2_ep_1, friends_s_2_ep_2, friends_s_2_ep_3, friends_s_3_ep_1, friends_s_3_ep_2, friends_s_3_ep_3.genres.append(comedy)
-    # frasier_s_1_ep_1, frasier_s_1_ep_2, frasier_s_1_ep_3, frasier_s_2_ep_1, frasier_s_2_ep_2, frasier_s_2_ep_3, frasier_s_3_ep_1, frasier_s_3_ep_2, frasier_s_3_ep_3.genres.append(comedy)
-    # cheers_s_1_ep_1, cheers_s_1_ep_2, cheers_s_1_ep_3, cheers_s_2_ep_1, cheers_s_2_ep_2, cheers_s_2_ep_3, cheers_s_3_ep_1, cheers_s_3_ep_2, cheers_s_3_ep_3.genres.append(comedy)
-    # married_with_children_s_1_ep_1, married_with_children_s_1_ep_2, married_with_children_s_1_ep_3, married_with_children_s_2_ep_1, married_with_children_s_2_ep_2, married_with_children_s_2_ep_3, married_with_children_s_3_ep_1, married_with_children_s_3_ep_2, married_with_children_s_3_ep_3.genres.append(comedy)
-    # golden_girls_s_1_ep_1, golden_girls_s_1_ep_2, golden_girls_s_1_ep_3, golden_girls_s_2_ep_1, golden_girls_s_2_ep_2, golden_girls_s_2_ep_3, golden_girls_s_3_ep_1, golden_girls_s_3_ep_2, golden_girls_s_3_ep_3.genres.append(comedy)
-    # moonlighting_s_1_ep_1, moonlighting_s_1_ep_2, moonlighting_s_1_ep_3, moonlighting_s_2_ep_1, moonlighting_s_2_ep_2, moonlighting_s_2_ep_3, moonlighting_s_3_ep_1, moonlighting_s_3_ep_2, moonlighting_s_3_ep_3.genres.append(comedy)
+
 
     db.session.commit()
 
