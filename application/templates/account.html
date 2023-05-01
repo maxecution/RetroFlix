@@ -8,7 +8,8 @@
 
 {% block body_content%}
 
-<h1>Welcome to your Account {{ first_name }}!</h1>
+
+<h1>Welcome to your account {{ user.first_name }}!</h1>
 
 <section class="bg-image" style="padding-top: 80px; padding-bottom: 80px;">
    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
@@ -20,29 +21,64 @@
    
                <form style="display: flex; flex-direction: column; align-items: flex-start;">
    
-                 <div class="form-outline mb-4">
-                  <p>Email: {{ email }}</p>
-                 </div>
+                <div class="form-outline mb-4">
+                  <p>Email: <span id="email">{{ user.email_address }}</span></p>
+                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                </div>
  
-                 <div class="form-outline mb-4">
-                  <p>Password: {{ password }}</p>
-                 </div>
+                <div class="form-outline mb-4">
+                  <p>Password: <span id="email">{{ user.password }}</span></p>
+                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                </div>
                
-                 <div class="form-outline mb-4">
-                  <p>First Name: {{ first_name }}</p>
-                 </div>                       
+                <div class="form-outline mb-4">
+                  <p>Fist Name: <span id="email">{{ user.first_name }}</span></p>
+                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                </div>
  
-                 <div class="form-outline mb-4">
-                  <p>Last Name: {{ last_name }}</p>
-                 </div>
- 
-                 <div class="form-outline mb-4">
-                  <p>Date of Birth: {{ dob }}</p>
-                 </div>      
+                <div class="form-outline mb-4">
+                  <p>Last Name: <span id="email">{{ user.last_name }}</span></p>
+                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <p>Date of Birth: <span id="email">{{ user.dob }}</span></p>
+                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                </div>
                  
+                <div class="form-outline mb-4">
+                  <p>Mail Recipoent: <span id="email">{{ user.mailing }}</span></p>
+                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                </div>
+                 
+                <div class="form-outline mb-4">
+                  <p>Start Date: <span id="email">{{ user.creation_date }}</span></p>
+                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                </div>
+ 
+                <div class="form-outline mb-4">
+                  <p>Last Logged In: <span id="email">{{ user.last_login }}</span></p>
+                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                </div>
+               
+                <div class="form-outline mb-4">
+                  <p>PIN: <span id="email">{{ user.pin }}</span></p>
+                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                </div>                       
+ 
+                <div class="form-outline mb-4">
+                  <p>Subcription: <span id="email">{{ user.subscription }}</span></p>
+                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <p>Card Details: <span id="email">{{ user.cards }}</span></p>
+                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                </div>
+  
                  <div class="account_maintenance"  style="align-self: center;">
-                  <a class="btn btn-outline-info btn-md px-5 mt-3" href="{{ url_for('logout') }}" role="button" type="submit" >Log Out</a>
-                  <a class="btn btn-outline-info btn-md px-5 mt-3" href="{{ url_for('logout') }}" role="button" type="submit" >Delete Account</a>
+                  <a class="btn btn-outline-info btn-md px-5 mt-3" href="{{ url_for('auth.logout') }}" role="button" type="submit" >Log Out</a>
+                  <a class="btn btn-outline-info btn-md px-5 mt-3" href="{{ url_for('auth.logout') }}" role="button" type="submit" >Delete Account</a>
                 </div>
                </form>
              </div>

@@ -1,9 +1,8 @@
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, flash
 
 from application import app
 from application.models import *
-from sqlalchemy import or_
-
+from flask_login import current_user, login_required
 
 #terms render
 @app.route('/terms_of_use')
@@ -52,58 +51,60 @@ def privacy_notice():
 
 #film render
 @app.route('/film')
+@login_required
 def film():
     return render_template('film.html', title='Films')
 
 #series render
 @app.route('/series')
+@login_required
 def series():
     return render_template('series.html', title='Series')
 
 #home render
 @app.route('/home')
+@login_required
 def home():
-    return render_template('home.html', title='Home')
+    user = User.query.get(current_user.id)
+    return render_template('home.html', title='Home', user=user)
 
 #account render
-@app.route('/account', methods=['GET', 'POST'])
+@app.route('/account')
+@login_required
 def account():
-    return render_template('account.html', title='Account') #user=user
+    user = User.query.get(current_user.id)
+    return render_template('account.html', title='Account', user=user) 
 
-#sign up render
-@app.route('/sign_up', methods=['GET', 'POST'])
-def sign_up():
-    if request.method == 'POST':
-
-        email = request.form['email']
-        password = request.form['password']
-        first_name = request.form['first_name']
-        last_name = request.form['last_name']
-        dob = request.form['dob']
-        
-
-        #db.session.add(user)
-        #db.session.commit()
-
-# user defines the name of the chosen DB
-        #user = User(email=email, password=password, first_name=first_name, last_name=last_name, dob=dob)
-
-        return redirect(url_for('home')) #should this redirect to home so theyre logged in or is it to account as its defining where the information is sent to??
-    else:
-        return render_template('sign_up.html', title='Sign Up')
-
-#sign in render
-@app.route('/sign_in')
-def sign_in():
-    return render_template('sign_in.html', title='Sign In')
+#edit account render
+@app.route('/account/edit', methods=['GET', 'POST'])
+@login_required
+def edit_account():
+    form = EditAccountForm()
+    if form.validate_on_submit():
+        current_user.email_address = form.email.data
+        current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
+        current_user.dob = form.dob.data
+        current_user.mailing = form.mailing.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.email.data = current_user.email_address
+        form.first_name.data = current_user.first_name
+        form.last_name.data = current_user.last_name
+        form.dob.data = current_user.dob
+        form.mailing.data = current_user.mailing
+    return render_template('edit_account.html', title='Edit Account', form=form)
 
 #index render
 @app.route('/index')
 def index():
     return render_template('index.html', title='Index')
 
-#search bar render
+#search bar render'
 @app.route('/search', methods=['GET'])
+@login_required
 def search():
     query = request.args.get('query')
     films = Film.query.filter(Film.title.ilike(f'%{query}%')).all()
@@ -113,13 +114,9 @@ def search():
     
     return render_template('search_results.html', films=films, actors=actors, genres=genres, tv_series=tv_series)
 
-#log out process - cannoty fully test until we have active 'users'
-@app.route('/logout')
-def logout():
-    session.pop('email', None)
-    return redirect(url_for('index'))
 
 @app.route('/film/film_player/<string:name>')
+@login_required
 def film_player(name):
     film = Film.query.filter_by(title=name).first_or_404()
     video_file = "/videos/" + name.lower().replace(" ", "_") + ".mp4"

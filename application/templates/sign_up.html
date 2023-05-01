@@ -11,20 +11,6 @@
           <a class="navbar-brand order-0" href="{{ url_for('index') }}">
               <img src="{{ url_for('static', filename='/Assets/logo_clear.png') }}" alt="RetroFlix" height="30">
           </a>
-          <button 
-              class="navbar-toggler" 
-              type="button" 
-              data-bs-toggle="collapse" 
-              data-bs-target="#navbarSupportedContent" 
-              aria-controls="navbarSupportedContent" 
-              aria-expanded="false" 
-              aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              </ul>
-          </div>
       </div>
     </nav>
 {% endblock %}
@@ -85,7 +71,7 @@
                   <button class="btn btn-outline-info btn-lg px-5" type="submit" id="sign_up_btn" name="sign_up_btn">Sign Up</button>
                 </div>
   
-                <p class="text-center mt-5 mb-0">Already have an account? <a href="{{ url_for('sign_in') }}"class="text-info fw-bold" id="sign_in_redirect" name="sign_in_redirect" ><u>Sign in here.</u></a></p>
+                <p class="text-center mt-5 mb-0">Already have an account? <a href="{{ url_for('auth.sign_in') }}"class="text-info fw-bold" id="sign_in_redirect" name="sign_in_redirect" ><u>Sign in here.</u></a></p>
                       
   
               </form>

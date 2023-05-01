@@ -1,4 +1,9 @@
+from flask_login import UserMixin
 from .database import db
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, BooleanField
+from wtforms.validators import DataRequired, Email, Length
+
 
 # Association tables need defined before classes
 
@@ -119,11 +124,11 @@ class TVSeriesEpisode(db.Model):
 
 # User related tables
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     email_address = db.Column(db.String(255), unique=True)
-    _password = db.Column(db.String(255))
+    password = db.Column(db.String(255))
     first_name = db.Column(db.String(255))
     last_name = db.Column(db.String(255))
     dob = db.Column(db.Date)
@@ -136,6 +141,22 @@ class User(db.Model):
     
     subscription = db.relationship('Subscription', back_populates='users')
     cards = db.relationship('CardDetail', back_populates='users')
+
+    
+    def get_id(self):
+        return str(self.id)
+
+    @property
+    def is_authenticated(self):
+        return True
+
+    @property
+    def is_active(self):
+        return True
+
+    @property
+    def is_anonymous(self):
+        return False
 
 
 class CardDetail(db.Model):
@@ -161,3 +182,10 @@ class Subscription(db.Model):
     users = db.relationship('User', back_populates='subscription')
 
 
+class EditAccountForm(FlaskForm):
+    email = StringField('Email Address', validators=[DataRequired(), Email()])
+    first_name = StringField('First Name', validators=[DataRequired(), Length(min=2, max=20)])
+    last_name = StringField('Last Name', validators=[DataRequired(), Length(min=2, max=20)])
+    dob = StringField('Date of Birth', validators=[DataRequired()])
+    mailing = BooleanField('Join mailing list?')
+    submit = SubmitField('Save Changes')

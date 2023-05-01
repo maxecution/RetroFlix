@@ -13,60 +13,59 @@
         <a class="navbar-brand order-0" href="{{ url_for('index') }}">
             <img src="{{ url_for('static', filename='/Assets/logo_clear.png') }}" alt="RetroFlix" height="30">
         </a>
-        <button 
-            class="navbar-toggler" 
-            type="button" 
-            data-bs-toggle="collapse" 
-            data-bs-target="#navbarSupportedContent" 
-            aria-controls="navbarSupportedContent" 
-            aria-expanded="false" 
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            </ul>
-        </div>
-    </div>
+    </div> 
   </nav>
 
 {% endblock %}
 
 {% block body_content %}
     <!-- Sign In -->
+    <div class="invalid_error">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-info">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
     
-<section class="gradient-custom" style="padding-top: 80px; padding-bottom: 80px;">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card_sign_in bg-dark text-white">
-          <div class="card-body p-5 text-center">
-            <div class="mb-md-5 mt-md-4 pb-5">
-      
-              <h2 class="fw-bold mb-2 text-uppercase">Sign In</h2>
-              <p class="text-white-50 mb-5">Please enter your email and password</p>
-      
-              <div class="form-outline form-white mb-4">
-                <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                <label class="form-label" for="typeEmailX">Email</label>
+    <section class="gradient-custom" style="padding-top: 80px; padding-bottom: 80px;">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card_sign_in bg-dark text-white">
+              <div class="card-body p-5 text-center">
+                <div class="mb-md-5 mt-md-4 pb-5">
+          
+                  <h2 class="fw-bold mb-2 text-uppercase">Sign In</h2>
+                  <p class="text-white-50 mb-5">Please enter your email and password</p>
+          
+                  <form method="POST" action="{{ url_for('auth.sign_in') }}">
+                    <div class="form-outline form-white mb-4">
+                      <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                      <label class="form-label" for="email">Email</label>
+                    </div>
+              
+                    <div class="form-outline form-white mb-4">
+                      <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                      <label class="form-label" for="password">Password</label>
+                    </div>
+              
+                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="">Forgotten password?</a></p>
+                    <button class="btn btn-outline-info btn-lg px-5" type="submit">Sign In</button>
+                  </form>
+    
+                  <br>
+                  <p class="mb-0">Don't have an account? <a href="{{ url_for('auth.sign_up') }}" class="text-info fw-bold">Sign up now.</a></p>
+                                 
+                </div>
               </div>
-      
-              <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                <label class="form-label" for="typePasswordX">Password</label>
-              </div>
-      <!--needs working forgot password page or needs taking out before presentation day-->
-              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="">Forgotten password?</a></p>
-              <button class="btn btn-outline-info btn-lg px-5" type="submit">Sign In</button>
-              <br>
-              <p class="mb-0">Don't have an account? <a href="{{ url_for('sign_up') }}" class="text-info fw-bold">Sign up now.</a></p>
-                             
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+
 
 {% endblock %}

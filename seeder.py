@@ -1,5 +1,6 @@
 from application import db, Actor, Genre, Film, TVSeries, TVSeriesSeason, TVSeriesEpisode, User, CardDetail, Subscription
 from application import app
+from werkzeug.security import generate_password_hash
 import random
 
 # Create actors
@@ -122,9 +123,9 @@ films = [
 
 # Create users
 
-harry_kane = User(email_address='harry@retro.com', _password='password', first_name='Harry', last_name='Kane', dob='1993-07-28', mailing=True, pin=1234)
-judy_dench = User(email_address='judy@retro.com', _password='password1', first_name='Judy', last_name='Dench', dob='1934-12-09', mailing=True, pin=4567)
-jimmy_carr = User(email_address='jimmy@retro.com', _password='p@ssw0rd', first_name='Jimmy', last_name='Carr', dob='1972-11-15', mailing=True, pin=8912)
+harry_kane = User(email_address='harry@retro.com', password='password', first_name='Harry', last_name='Kane', dob='1993-07-28', mailing=True, pin=1234)
+judy_dench = User(email_address='judy@retro.com', password='password1', first_name='Judy', last_name='Dench', dob='1934-12-09', mailing=True, pin=4567)
+jimmy_carr = User(email_address='jimmy@retro.com', password='p@ssw0rd', first_name='Jimmy', last_name='Carr', dob='1972-11-15', mailing=True, pin=8912)
 
 users = [
     jimmy_carr,
@@ -283,6 +284,15 @@ with app.app_context():
     
     db.session.bulk_insert_mappings(TVSeriesSeason, seasons)
     db.session.commit()
+
+    # Get all users from the database
+    users = User.query.all()
+
+    # Loops through each user and updates their password with a hashed version
+    for user in users:
+        hashed_password = generate_password_hash(user.password)
+        user.password = hashed_password
+        db.session.commit()
 
     users = User.query.all()
 

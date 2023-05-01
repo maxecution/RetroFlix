@@ -105,3 +105,8 @@ body {
   max-width:25%;
 
 }
+
+.logged_out{
+  margin-top: 30px;
+  padding-top: 30px;
+}
