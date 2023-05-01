@@ -33,31 +33,44 @@
                 <div class="form-outline mb-4">
                   <input type="text" id="first_name" name="first_name" class="form-control form-control-lg" />
                   <label class="form-label">First Name</label>
+                  <div id="first-name-invalid" class="invalid-feedback">Please enter a valid first name.</div>
                 </div>
 
                 <div class="form-outline mb-4">
                   <input type="text" id="last_name" name="last_name" class="form-control form-control-lg" />
                   <label class="form-label">Last Name</label>
+                  <div id="last-name-invalid" class="invalid-feedback">Please enter a valid last name.</div>
                 </div>
               
                 <div class="form-outline mb-4">
                   <input type="date" id="dob" name="id" class="form-control form-control-lg" />
                   <label class="form-label">Date of Birth</label>
+                  <div id="dob-invalid" class="invalid-feedback"> Please enter a valid date in the past.</div>
                 </div>                       
 
                 <div class="form-outline mb-4">
                   <input type="email" id="email" name="email" class="form-control form-control-lg" />
                   <label class="form-label">Email</label>
+                  <div id="email-invalid" class="invalid-feedback">Please enter a valid email address.</div>
                 </div>
 
                 <div class="form-outline mb-4">
                   <input type="password" id="password" name="password" class="form-control form-control-lg" />
                   <label class="form-label">Password</label>
+                  <div class="invalid-feedback">Please enter a password that is at least 8 characters long, contains at least one uppercase letter, one lowercase letter, one number, and one of the following special characters: !#$%&*+,-.:;=?@^_~</div>
                 </div>
 
                 <div class="form-outline mb-4">
                   <input type="password" id="password_check" name="password_check" class="form-control form-control-lg" />
                   <label class="form-label">Repeat your password</label>
+                  <div class="invalid-feedback">Your passwords don't match.</div>
+
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="pin" name="pin" class="form-control form-control-lg" />
+                  <label class="form-label" for="pin">4 digit parental pin</label>
+                  <div class="invalid-feedback">Please only enter 4 numeric digits.</div>
                 </div>
 
                 <div class="form-check d-flex justify-content-center mb-5">
@@ -82,5 +95,7 @@
     </div>
   </div>
 </section>
+
+<script src="{{ url_for('static', filename='/scripts/sign_up.js') }}"></script>
 
 {%  endblock %}
