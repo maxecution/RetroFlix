@@ -143,8 +143,8 @@ cards = [
 
 # Create subscriptions
 
-subscription_1 = Subscription(duration='1', price=4.99, sub_type='Monthly')
-subscription_2 = Subscription(duration='12', price=49.99, sub_type='Yearly')
+subscription_1 = Subscription(duration='1', price=4.99, sub_type='monthly')
+subscription_2 = Subscription(duration='12', price=49.99, sub_type='yearly')
 
 subscriptions = [
     subscription_1,
@@ -284,6 +284,7 @@ with app.app_context():
     
     db.session.bulk_insert_mappings(TVSeriesSeason, seasons)
     db.session.commit()
+    
 
     # Get all users from the database
     users = User.query.all()
@@ -294,6 +295,8 @@ with app.app_context():
         user.password = hashed_password
         db.session.commit()
 
+
+    # Add user FK to card details
     users = User.query.all()
 
     for user in users:
