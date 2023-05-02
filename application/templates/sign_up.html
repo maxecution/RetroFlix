@@ -116,10 +116,17 @@
                 </div>
                 
 
-                <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="mail_list" name="mail_list" />
+                <div class="form-check d-flex mb-2" style="text-align: start; font-size: smaller;">
+                  <input class="form-check-input me-2" type="checkbox" id="mail_list" name="mail_list" />
                   <label class="form-check-label">
-                  Tick here if you do not wish to join the mailing list <a href="{{ url_for('terms_of_use') }}" class="text-white-50"><u>Terms of Use</u></a>
+                  Please tick if you <u>do not</u> wish to join the mailing list <a href="{{ url_for('terms_of_use') }}" class="text-white-50"><u>Terms of Use</u></a>
+                  </label>
+                </div>
+
+                <div class="form-check d-flex mb-5" style="text-align: start; font-size: smaller;">
+                  <input class="form-check-input me-2" type="checkbox" id="tc-confirm" />
+                  <label class="form-check-label">
+                  Please tick  to confirm you have read and understood our <a href="{{ url_for('terms_of_use') }}" class="text-white-50"><u>Terms of Use</u></a>
                   </label>
                 </div>
   
