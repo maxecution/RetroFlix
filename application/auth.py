@@ -35,8 +35,15 @@ def logout():
     return redirect(url_for('index'))
 
 # sign up auth
-@auth.route('/sign_up')
+@auth.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
-    return render_template('sign_up.html', title='Sign Up')
+    email = request.args.get('email', '')
+    sub = request.args.get('sub', '')
+    if request.method == 'POST':
+        flash('Sign up successful!', 'success')
+        return redirect(url_for('index'))
+
+
+    return render_template('sign_up.html', title='Sign Up', email=email, sub=sub)
 
 

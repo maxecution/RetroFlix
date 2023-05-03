@@ -48,10 +48,10 @@
                     <h1 class="retro-font text-center" style="font-size: calc(2em + 6vw)">RetroFlix</h1>
                     <p class="lead text-center" style="font-size: calc(1em + 1.5vw); font-weight: bold;">Welcome to the home of retro entertainment!</p>
                     <p style="font-size: calc(1em + 1vw); font-weight: bold;">Enter your email to create your free account today:</p>
-                    <form>
+                    <form method="GET">
                         <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Email address" aria-label="Email address" aria-describedby="button-addon2">
-                            <button class="btn btn-info" type="submit" id="button-addon2" style="font-size: calc(0.5em + 1vw); font-weight: bold;" formaction="{{ url_for('auth.sign_up') }}">Sign Up</button>
+                            <input type="email" name="email" class="form-control" placeholder="Email address" aria-label="Email address" aria-describedby="button-addon2">
+                            <button class="btn btn-info" type="submit" id="button-addon2" style="font-size: calc(0.5em + 1vw); font-weight: bold;" formaction="{{ url_for('auth.sign_up', email=email) }}">Sign Up</button>
                         </div>
                     </form>
                     <p style="font-size: calc(0.5em + 1vw); font-weight: bold;">Join our 31-day rolling plan, or sign up for 12 months for the best value deal, and enjoy our huge catalogue of retro films and TV series.</p>
@@ -131,7 +131,7 @@
                 <br>
                 <h1 style="font-weight: bold; border-bottom: 3px solid #ff66ff;">£4.99</h1>
                 <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{{ url_for('legal_notice')}}">Click here for T&C's</a></p>
-                <a class="btn btn-outline-info me-3" href="{{ url_for('auth.sign_up') }}" role="button" id="">Select</a>
+                <a class="btn btn-outline-info me-3" href="{{ url_for('auth.sign_up', sub='monthly') }}" role="button" name="monthly" id="monhtly">Select</a>
             </div>
             <div class="card_sub">
                 <h2 style="font-weight: bold;">Yearly</h2><h5>12 months</h5>
@@ -139,7 +139,7 @@
                 <h1 style="font-weight: bold; border-bottom: 3px solid #ff66ff;">£49.99</h1>
                 <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{{ url_for('legal_notice')}}">Click here for T&C's</a></p>
                 <div>
-                    <a class="btn btn-outline-info me-3" href="{{ url_for('auth.sign_up') }}" role="button" id="">Select</a>
+                    <a class="btn btn-outline-info me-3" href="{{ url_for('auth.sign_up', sub='yearly') }}" role="button" name="yearly" id="yearly">Select</a>
                 </div>
             </div>
         </div>   
