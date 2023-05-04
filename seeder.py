@@ -136,9 +136,9 @@ users = [
 # Create card details
 
 cards = [
-    {'name_on_card': 'Harry Kane', 'card_number': '1234456712345678', 'expiry_date': '2020-01-01', 'cvv': '123'},
-    {'name_on_card': 'Judy Dench', 'card_number': '9874561298745612', 'expiry_date': '2020-02-02', 'cvv': '456'},
-    {'name_on_card': 'Jimmy Carr', 'card_number': '1478523614785236', 'expiry_date': '2020-03-03', 'cvv': '789'},
+    {'name_on_card': 'Harry Kane', 'card_number': '1234456712345678', 'expiry_date': '01/24', 'cvv': '123'},
+    {'name_on_card': 'Judy Dench', 'card_number': '9874561298745612', 'expiry_date': '02/25', 'cvv': '456'},
+    {'name_on_card': 'Jimmy Carr', 'card_number': '1478523614785236', 'expiry_date': '03/26', 'cvv': '789'},
 ]
 
 # Create subscriptions

@@ -43,7 +43,7 @@
                 </div>
               
                 <div class="form-outline mb-4">
-                  <input type="date" id="dob" class="form-control form-control-lg" />
+                  <input type="date" id="dob" name="dob" class="form-control form-control-lg" />
                   <label class="form-label">Date of Birth</label>
                   <div id="dob-invalid" class="invalid-feedback"> Please enter a valid date in the past.</div>
                 </div>                       
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="form-outline mb-4">
-                  <select id="subs-select" class="form-select">
+                  <select id="subs-select" name="subs-select" class="form-select">
                     {% if sub == "" %}
                       <option value="default" selected>Select your subscription..</option>
                       <option value="monthly">Monthly £4.99/m</option>
@@ -99,13 +99,13 @@
                 <div class="border-top pb-3"></div>
                 
                 <div class="form-outline mb-4">
-                  <input type="text" id="cc-name" class="form-control form-control-lg" />
+                  <input type="text" id="cc-name" name="cc-name" class="form-control form-control-lg" />
                   <label class="form-label">Full name on card</label>
                   <div class="invalid-feedback">Please enter a valid name.</div>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="cc-number" class="form-control form-control-lg" placeholder="1234 5678 9012 3456" maxlength="19" />
+                  <input type="text" id="cc-number" name="cc-number" class="form-control form-control-lg" placeholder="1234 5678 9012 3456" maxlength="19" />
                   <label class="form-label">Card number</label>
                   <div class="invalid-feedback">Please enter a valid card number.</div>
                 </div>
@@ -113,14 +113,14 @@
                 <div class="row">
                   <div class="col">
                     <div class="form-outline mb-4">
-                      <input type="text" id="cc-expiry" class="form-control form-control-lg" placeholder="MM/YY" maxlength="5"/>
+                      <input type="text" id="cc-expiry" name="cc-expiry" class="form-control form-control-lg" placeholder="MM/YY" maxlength="5"/>
                       <label class="form-label">Card expiry date</label>
                       <div class="invalid-feedback">Please enter a valid expiry date.</div>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-outline mb-4">
-                      <input type="text" id="cc-cvv" class="form-control form-control-lg" maxlength="3" />
+                      <input type="text" id="cc-cvv" name="cc-cvv" class="form-control form-control-lg" maxlength="3" />
                       <label class="form-label">CVV</label>
                       <div class="invalid-feedback">Please enter a valid CVV.</div>
                     </div>

@@ -141,3 +141,4 @@ def series_player(name, episode):
             episode = TVSeriesEpisode.query.filter_by(tv_series_season_id=season.id, episode_number=episode_number).first_or_404()
 
     return render_template('series_player.html', series=series, season=season, episode=episode, video=video_file)
+

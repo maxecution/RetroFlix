@@ -164,7 +164,7 @@ class CardDetail(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name_on_card = db.Column(db.String(255))
     card_number = db.Column(db.String(255))
-    expiry_date = db.Column(db.Date)
+    expiry_date = db.Column(db.String(255))
     cvv = db.Column(db.String(255))
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
