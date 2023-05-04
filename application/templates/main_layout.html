@@ -71,17 +71,19 @@
 {% endblock %}
 
     <!-- Main Body-->
-	<div class="container pt-5">
+
+	<div class="container pt-5" style="width:fit-content;">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-info alert-dismissible" role="alert" id="div_flash">
                         {{message}}
-                        <input type="button" value="X" onclick="removeFlash()" style="float: right">
+                        <button type="button" class="btn-close" aria-label="Close" onclick="removeFlash()" style="float:right;"></button>
                     </div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
+    </div>
 
     {% block body_content %}{% endblock %}
 
