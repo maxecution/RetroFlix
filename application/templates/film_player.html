@@ -20,9 +20,46 @@
 
                             <h1>{{ film.title }}</h1>
 
-                            <video class="w-100 justify-content-center"  controls >
+                            <!-- Age resctriction pin check -->
+                            <!-- {% if film.age_rating == "R" %}
+
+                                <div class="form-outline mb-3 row" id="pinCheckDiv">
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="inputPin" name="inputPin" maxlength="4">
+                                        <div class="invalid-feedback">Incorrect pin.</div>
+                                    </div>
+                                    <label for="inputPin" class="col-sm-8 col-form-label">This film is R rated, please enter your pin.</label>
+                                </div>
+
+                                <video class="w-100 justify-content-center d-none"  controls id="r-player">
+                                    <source src="{{ url_for('static', filename=video) }}" type="video/mp4">
+                                </video>
+
+                            {% else %}
+
+                            <video class="w-100 justify-content-center"  controls id="PG-player">
                                 <source src="{{ url_for('static', filename=video) }}" type="video/mp4">
                             </video>
+
+                            {% endif %} -->
+
+                            {% if pinCheck %}
+                                <form action="{{ url_for('check_pin', film=film, video=video) }}" method="POST">
+                                    <div class="form-outline mb-3 row" id="pinCheckDiv">
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="inputPin" name="inputPin" maxlength="4">
+                                            <div class="invalid-feedback">Incorrect pin.</div>
+                                        </div>
+                                        <label for="inputPin" class="col-sm-8 col-form-label">This film is R rated, please enter your pin.</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            {% else %}
+                                <video class="w-100 justify-content-center"  controls id="player">
+                                    <source src="{{ url_for('static', filename=video) }}" type="video/mp4">
+                                </video>
+                            {% endif %}
+
 
                             <div class="form-outline mb-4">
                                 <p>Actors:
@@ -48,4 +85,53 @@
 </section>
 
 <!-- Can include additional scripts as well-->
+
+<!-- <script>
+    // Get necessary pin input elements
+    let pinInput = document.getElementById('inputPin');
+    let pinIsValid = true;
+    let rPlayer = document.getElementById('r-player')
+    let pinCheckDiv = document.getElementById('pinCheckDiv')
+    let userPin = '{{ userPin }}'
+
+    pinInput.addEventListener("input", function () {
+    // Remove all non-numeric characters from the input value, i.e. only let user input numbers
+    let trimmedValue = this.value.replace(/[^0-9]/gi, "");
+
+    // Set the value of the ccNumberInput field to the formatted value
+    this.value = trimmedValue;
+    });
+
+    // Check if input pin matches user pin
+    pinInput.addEventListener('blur', () =>{
+
+    if (pinInput.value == "" || pinInput.value.length < 4 || pinInput.value !== userPin){
+        pinInput.classList.add('is-invalid');
+        pinIsValid = false;
+        pinInput.classList.remove('is-valid');
+    } else {
+        pinInput.classList.remove('is-invalid');
+        pinInput.classList.add('is-valid');
+        pinIsValid = true;
+        // Remove pin check input and enable video player
+        pinCheckDiv.remove();
+        rPlayer.classList.remove('d-none');
+    }
+    });
+</script> -->
+<script>
+    // Get necessary pin input elements
+    let pinInput = document.getElementById('inputPin');
+    let pinIsValid = true;
+
+    pinInput.addEventListener("input", function () {
+    // Remove all non-numeric characters from the input value, i.e. only let user input numbers
+    let trimmedValue = this.value.replace(/[^0-9]/gi, "");
+
+    // Set the value of the ccNumberInput field to the formatted value
+    this.value = trimmedValue;
+    });
+</script>
+
+    
 {% endblock %}

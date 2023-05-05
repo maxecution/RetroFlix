@@ -120,7 +120,13 @@ def search():
 def film_player(name):
     film = Film.query.filter_by(title=name).first_or_404()
     video_file = "/videos/" + name.lower().replace(" ", "_") + ".mp4"
-    return render_template('film_player.html', film=film, video=video_file)
+    pinCheck = False
+    if film.age_rating == "R":
+        pinCheck = True
+    user = User.query.get(current_user.id)
+    userPin = user.pin
+
+    return render_template('film_player.html', film=film, pinCheck=pinCheck, video=video_file)
 
 @app.route('/series/series_player/<string:name>/<string:episode>')
 def series_player(name, episode):
@@ -141,4 +147,22 @@ def series_player(name, episode):
             episode = TVSeriesEpisode.query.filter_by(tv_series_season_id=season.id, episode_number=episode_number).first_or_404()
 
     return render_template('series_player.html', series=series, season=season, episode=episode, video=video_file)
+
+@app.route('/check_pin', methods=['POST'])
+def check_pin():
+    film = request.args.get('film')
+    video = request.args.get('video')
+    user = User.query.get(current_user.id)
+    user_pin = user.pin
+    input_pin = request.form['inputPin']
+
+    
+    if input_pin == user_pin:
+        pinCheck = False
+        return render_template('film_player.html', film=film, pinCheck=pinCheck, video=video) 
+    else:
+        pinCheck = True
+        return render_template('film_player.html', film=film, pinCheck=pinCheck, video=video) 
+
+
 
