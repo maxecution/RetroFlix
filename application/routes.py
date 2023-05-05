@@ -123,9 +123,6 @@ def film_player(name):
     pinCheck = False
     if film.age_rating == "R":
         pinCheck = True
-    user = User.query.get(current_user.id)
-    userPin = user.pin
-
     return render_template('film_player.html', film=film, pinCheck=pinCheck, video=video_file)
 
 @app.route('/series/series_player/<string:name>/<string:episode>')
@@ -150,12 +147,14 @@ def series_player(name, episode):
 
 @app.route('/check_pin', methods=['POST'])
 def check_pin():
-    film = request.args.get('film')
+    film_id = request.args.get('film')
     video = request.args.get('video')
+
     user = User.query.get(current_user.id)
     user_pin = user.pin
     input_pin = request.form['inputPin']
 
+    film = Film.query.filter_by(id=film_id).first_or_404()
     
     if input_pin == user_pin:
         pinCheck = False

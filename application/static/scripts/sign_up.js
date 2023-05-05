@@ -198,7 +198,7 @@ pinInput.addEventListener("input", function () {
   // Remove all non-numeric characters from the input value, i.e. only let user input numbers
   let trimmedValue = this.value.replace(/[^0-9]/gi, "");
 
-  // Set the value of the ccNumberInput field to the formatted value
+  // Set the value of the pin input field to the formatted value
   this.value = trimmedValue;
 });
 
@@ -385,9 +385,8 @@ ccCVVInput.addEventListener("blur", function () {
 
 });
 
+
 // Checks before "Sign Up" can be submitted
-
-
 let tcConfirmCheckbox = document.getElementById('tc-confirm')
 
 let signUpBtn = document.getElementById('sign_up_btn');
