@@ -9,52 +9,75 @@
 
 {% block body_content%}
 
-<h1>Search results</h1>
+<h1>Search results for: {{ query }}</h1>
 <br>
 {% if films %}
 <h2>Films</h2>
 <ul>
   {% for film in films %}
-  <li>{{ film.title }} ({{ film.release_year}})</li>
+  <li><a href="{{url_for('film_player', name=film.title)}}">{{ film.title }} ({{ film.release_year}})</a></li>
   {% endfor %}
 </ul>
   {% endif %}
 
-{% if actors %}
-<h2>Actors</h2>
-<ul>
-  {% for actor in actors %}
-  <li>{{ actor.name }}</li>
-  {% endfor %}
-</ul>
-  {% endif %} 
 
-{% if actors %}
-<h2>Actors</h2>
-<ul>
-  {% for actor in actors %}
-  <li>{{ actor.name }}</li>
-  {% endfor %}
-</ul>
-  {% endif %}
-
-{% if genres %}
-<h2>Genre</h2>
-<ul>
-  {% for genre in genres %}
-  <li>{{ genre.genre }}</li>
-  {% endfor %}
-</ul>
-  {% endif %} 
+<!-- TV Series resuts -->
 
 {% if tv_series %}
 <h2>Tv Series</h2>
 <ul>
   {% for tv_series in tv_series %}
-  <li>{{ tv_series.title }} ({{ tv_series.release_year}})</li>
+    <li><a href="{{url_for('series_player', name=tv_series.title, episode='S1E1')}}">{{ tv_series.title }} ({{ tv_series.release_year}})</a></li>
   {% endfor %}
 </ul>
   {% endif %} 
+
+
+<!-- Actor Results   -->
+
+{% if actors %}
+<h2>Actors</h2>
+<ul>
+  {% for actor in actors %}
+    {% if actor.films %}
+    <h5><u>Films with {{ actor.name }}</u></h5>
+      <ul>
+        {% for film in actor.films %}
+          <li><a href="{{url_for('film_player', name=film.title)}}"> {{ film.title }} </a></li>
+        {% endfor %}
+      </ul>
+      <br>
+    {% endif %}
+
+    {% if actor_shows.get(actor.name) %}
+    <h5><u>Tv Series with {{ actor.name }}</u></h5>
+      <ul>
+      {% for title in actor_shows.get(actor.name) %}
+        <li><a href="{{url_for('series_player', name=title, episode='S1E1')}}">{{ title }}</a></li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %} 
+
+
+<!-- Genre results -->
+
+{% if genres %}
+<h2>Genres:</h2>
+<ul>
+  {% for genre in genres %}
+    <h5><u>{{ genre.genre }} Tv Series: </u></h5>
+    <ul>
+      {% for title in genre_tv_shows.get(genre.genre) %}
+        <li><a href="{{url_for('series_player', name=title, episode='S1E1')}}">{{ title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</ul>
+{% endif %} 
+
 
 <!-- Can include additional scripts as well-->
 {% endblock %}

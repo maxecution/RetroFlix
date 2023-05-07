@@ -103,11 +103,32 @@ def index():
 def search():
     query = request.args.get('query')
     films = Film.query.filter(Film.title.ilike(f'%{query}%')).all()
-    actors = Actor.query.filter(Actor.name.ilike(f'%{query}%')).all()  # if you search for full name, you get two results where it matches the first and last name
+    actors = Actor.query.filter(Actor.name.ilike(f'%{query}%')).all() 
     genres = Genre.query.filter(Genre.genre.ilike(f'%{query}%')).all()
     tv_series = TVSeries.query.filter(TVSeries.title.ilike(f'%{query}%')).all()
+
+    if actors:
+        actor_shows = dict()
+        for actor in actors:
+            if actor.episodes:
+                tv_show = set()
+                for episode in actor.episodes:
+                    tv_show.add(episode.seasons.tv_series.title)
+                actor_shows[actor.name]=list(tv_show)
+        return render_template('search_results.html', query=query, films=films, actors=actors, actor_shows=actor_shows, genres=genres, tv_series=tv_series)
+
+    if genres:
+        genre_tv_shows = dict()
+        for genre in genres:
+            tv_shows = TVSeries.query.join(TVSeriesSeason).join(TVSeriesEpisode).join(episode_genre).join(Genre).filter(Genre.genre == genre.genre).all()
+            show_names = set()
+            for show in tv_shows:
+                show_names.add(show.title)
+            genre_tv_shows[genre.genre] = show_names
+        return render_template('search_results.html', query=query, films=films, actors=actors, genre_tv_shows=genre_tv_shows, genres=genres, tv_series=tv_series)
+
     
-    return render_template('search_results.html', films=films, actors=actors, genres=genres, tv_series=tv_series)
+    return render_template('search_results.html', query=query, films=films, actors=actors, genres=genres, tv_series=tv_series)
 
 
 @app.route('/film/film_player/<string:name>')
