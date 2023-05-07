@@ -136,15 +136,15 @@ users = [
 # Create card details
 
 cards = [
-    {'name_on_card': 'Harry Kane', 'card_number': '1234456712345678', 'expiry_date': '2020-01-01', 'cvv': '123'},
-    {'name_on_card': 'Judy Dench', 'card_number': '9874561298745612', 'expiry_date': '2020-02-02', 'cvv': '456'},
-    {'name_on_card': 'Jimmy Carr', 'card_number': '1478523614785236', 'expiry_date': '2020-03-03', 'cvv': '789'},
+    {'name_on_card': 'Harry Kane', 'card_number': '1234456712345678', 'expiry_date': '01/24', 'cvv': '123'},
+    {'name_on_card': 'Judy Dench', 'card_number': '9874561298745612', 'expiry_date': '02/25', 'cvv': '456'},
+    {'name_on_card': 'Jimmy Carr', 'card_number': '1478523614785236', 'expiry_date': '03/26', 'cvv': '789'},
 ]
 
 # Create subscriptions
 
-subscription_1 = Subscription(duration='1', price=4.99, sub_type='Monthly')
-subscription_2 = Subscription(duration='12', price=49.99, sub_type='Yearly')
+subscription_1 = Subscription(duration='1', price=4.99, sub_type='monthly')
+subscription_2 = Subscription(duration='12', price=49.99, sub_type='yearly')
 
 subscriptions = [
     subscription_1,
@@ -284,6 +284,7 @@ with app.app_context():
     
     db.session.bulk_insert_mappings(TVSeriesSeason, seasons)
     db.session.commit()
+    
 
     # Get all users from the database
     users = User.query.all()
@@ -294,6 +295,8 @@ with app.app_context():
         user.password = hashed_password
         db.session.commit()
 
+
+    # Add user FK to card details
     users = User.query.all()
 
     for user in users:

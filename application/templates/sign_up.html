@@ -43,13 +43,13 @@
                 </div>
               
                 <div class="form-outline mb-4">
-                  <input type="date" id="dob" name="id" class="form-control form-control-lg" />
+                  <input type="date" id="dob" name="dob" class="form-control form-control-lg" />
                   <label class="form-label">Date of Birth</label>
                   <div id="dob-invalid" class="invalid-feedback"> Please enter a valid date in the past.</div>
                 </div>                       
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                  <input type="email" id="email" name="email" class="form-control form-control-lg" value="{{ email }}"/>
                   <label class="form-label">Email</label>
                   <div id="email-invalid" class="invalid-feedback">Please enter a valid email address.</div>
                 </div>
@@ -64,28 +64,93 @@
                   <input type="password" id="password_check" name="password_check" class="form-control form-control-lg" />
                   <label class="form-label">Repeat your password</label>
                   <div class="invalid-feedback">Your passwords don't match.</div>
-
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="pin" name="pin" class="form-control form-control-lg" />
+                  <input type="text" id="pin" name="pin" class="form-control form-control-lg" maxlength="4" />
                   <label class="form-label" for="pin">4 digit parental pin</label>
-                  <div class="invalid-feedback">Please only enter 4 numeric digits.</div>
+                  <div class="invalid-feedback">Please enter a pin.</div>
                 </div>
 
-                <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="mail_list" name="mail_list" />
+                <div class="form-outline mb-4">
+                  <select id="subs-select" name="subs-select" class="form-select">
+                    {% if sub == "" %}
+                      <option value="default" selected>Select your subscription..</option>
+                      <option value="monthly">Monthly £4.99/m</option>
+                      <option value="yearly">Yearly £49.99/y</option>
+                    {% elif sub == "monthly" %}
+                      <option value="default">Select your subscription..</option>
+                      <option value="monthly" selected>Monthly £4.99/m</option>
+                      <option value="yearly">Yearly £49.99/y</option>
+                    {% elif sub == "yearly" %}
+                      <option value="default">Select your subscription..</option>
+                      <option value="monthly">Monthly £4.99/m</option>
+                      <option value="yearly" selected>Yearly £49.99/y</option>
+                    {% endif %}
+                  </select>
+                  <label class="form-label">Subscription Option</label>
+                  <div class="invalid-feedback">Please selected one of the available subscriptions.</div>
+                </div>
+
+                <!-- Card Details -->
+
+                <div class="pb-1 " style="text-align: start; font-size: 1.5rem ;">Card details:</div>
+                <div class="border-top pb-3"></div>
+                
+                <div class="form-outline mb-4">
+                  <input type="text" id="cc-name" name="cc-name" class="form-control form-control-lg" />
+                  <label class="form-label">Full name on card</label>
+                  <div class="invalid-feedback">Please enter a valid name.</div>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="cc-number" name="cc-number" class="form-control form-control-lg" placeholder="1234 5678 9012 3456" maxlength="19" />
+                  <label class="form-label">Card number</label>
+                  <div class="invalid-feedback">Please enter a valid card number.</div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="form-outline mb-4">
+                      <input type="text" id="cc-expiry" name="cc-expiry" class="form-control form-control-lg" placeholder="MM/YY" maxlength="5"/>
+                      <label class="form-label">Card expiry date</label>
+                      <div class="invalid-feedback">Please enter a valid expiry date.</div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-outline mb-4">
+                      <input type="text" id="cc-cvv" name="cc-cvv" class="form-control form-control-lg" maxlength="3" />
+                      <label class="form-label">CVV</label>
+                      <div class="invalid-feedback">Please enter a valid CVV.</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Tick boxes -->
+
+                <div class="form-check d-flex mb-2" style="text-align: start; font-size: smaller;">
+                  <input class="form-check-input me-2" type="checkbox" id="mail_list" name="mail_list" />
                   <label class="form-check-label">
-                  Tick here if you do not wish to join the mailing list <a href="{{ url_for('terms_of_use') }}" class="text-white-50"><u>Terms of Use</u></a>
+                  Please tick if you <u>do not</u> wish to join the mailing list <a href="{{ url_for('terms_of_use') }}" class="text-white-50"><u>Terms of Use</u></a>
+                  </label>
+                </div>
+
+                <div class="form-check d-flex mb-5" style="text-align: start; font-size: smaller;">
+                  <input class="form-check-input me-2" type="checkbox" id="tc-confirm" />
+                  <label class="form-check-label">
+                  Please tick  to confirm you have read and understood our <a href="{{ url_for('terms_of_use') }}" class="text-white-50"><u>Terms of Use</u></a>
                   </label>
                 </div>
   
+                <!-- Sign up button -->
+
                 <div class="d-flex justify-content-center">
                   <button class="btn btn-outline-info btn-lg px-5" type="submit" id="sign_up_btn" name="sign_up_btn">Sign Up</button>
                 </div>
   
-                <p class="text-center mt-5 mb-0">Already have an account? <a href="{{ url_for('auth.sign_in') }}"class="text-info fw-bold" id="sign_in_redirect" name="sign_in_redirect" ><u>Sign in here.</u></a></p>
-                      
+                <!-- Sign in redirect -->
+
+                <p class="text-center mt-5 mb-0">Already have an account? <a href="{{ url_for('auth.sign_in') }}"class="text-info fw-bold" id="sign_in_redirect" name="sign_in_redirect" ><u>Sign in here.</u></a></p>  
   
               </form>
             </div>

@@ -20,9 +20,24 @@
 
                             <h1>{{ film.title }}</h1>
 
-                            <video class="w-100 justify-content-center"  controls >
-                                <source src="{{ url_for('static', filename=video) }}" type="video/mp4">
-                            </video>
+                            <!-- Age resctriction pin check -->
+
+                            {% if pinCheck %}
+                                <form action="{{ url_for('check_pin', film=film.id, video=video) }}" method="POST">
+                                    <div class="form-outline mb-3" id="pinCheckDiv">
+                                        <div class="input-group mb-3">
+                                            <input type="password" class="form-control  " id="inputPin" name="inputPin" placeholder="Please enter your 4 digit pin" aria-describedby="checkButton" minlength="4" maxlength="4">
+                                            <button type="submit" class="btn btn-outline-info rounded-end" id="checkButton">Check</button>
+                                            <div class="invalid-feedback">Please enter 4 digits</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            {% else %}
+                                <video class="w-100 justify-content-center"  controls id="player">
+                                    <source src="{{ url_for('static', filename=video) }}" type="video/mp4">
+                                </video>
+                            {% endif %}
+
 
                             <div class="form-outline mb-4">
                                 <p>Actors:
@@ -36,7 +51,7 @@
                                         {{ genre.genre }}{% if not loop.last %}, {% endif %}
                                     {% endfor %}
                                 </p>
-                                <p>Duration: {{ film.duration }} | Release year: {{ film.release_year }} | Age rating: {{ film.age_rating }}  |  Rating: {{ "%.1f" % film.rating }}</p>
+                                <p>Duration: {{ film.duration }} | Release year: {{ film.release_year }} |{% if pinCheck %}<span style="font-weight:bold; color:red;"> Age rating: {{ film.age_rating }}</span>{% else %} Age rating: {{ film.age_rating }}{% endif %} | Rating: {{ "%.1f" % film.rating }}</p>
                             </div>   
 
                         </div>
@@ -48,4 +63,42 @@
 </section>
 
 <!-- Can include additional scripts as well-->
+
+<script>
+    // Get necessary pin input elements
+    let pinInput = document.getElementById('inputPin');
+    let pinIsValid = true;
+
+    pinInput.addEventListener("input", function () {
+        // Remove all non-numeric characters from the input value, i.e. only let user input numbers
+        let trimmedValue = this.value.replace(/[^0-9]/gi, "");
+
+        // Set the value of the pin input field to the formatted value
+        this.value = trimmedValue;
+    });
+
+    pinInput.addEventListener('blur', () =>{
+
+        if (pinInput.value == "" || pinInput.value.length < 4){
+        pinInput.classList.add('is-invalid');
+        pinIsValid = false;
+        pinInput.classList.remove('is-valid');
+        } else {
+        pinInput.classList.remove('is-invalid');
+        pinInput.classList.add('is-valid');
+        pinIsValid = true;
+        }
+    });
+
+    // Checking if user entered 4 digit pin before letting check run
+    checkButton = document.getElementById('checkButton')
+
+    checkButton.addEventListener('click', function(event) {
+        if (pinInput.value.length < 4){
+            event.preventDefault(); // Prevent check button from being pressed if pin is not 4 digits long
+        }
+    });
+</script>
+
+    
 {% endblock %}
