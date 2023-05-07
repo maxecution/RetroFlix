@@ -161,6 +161,7 @@ def check_pin():
         return render_template('film_player.html', film=film, pinCheck=pinCheck, video=video) 
     else:
         pinCheck = True
+        flash('Wrong Pin')
         return render_template('film_player.html', film=film, pinCheck=pinCheck, video=video) 
 
 
