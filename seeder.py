@@ -8,36 +8,47 @@ import random
 sam_neill = Actor(name='Sam Neill')
 laura_dern = Actor(name='Laura Dern')
 jeff_goldblum = Actor(name='Jeff Goldblum')
+
 zach_galligan = Actor(name='Zach Galligan')
 phoebe_cates = Actor(name='Phoebe Cates')
 hoyt_axton = Actor(name='Hoyt Axton')
+
 bill_murray = Actor(name='Bill Murray')
 dan_aykroyd = Actor(name='Dan Aykroyd')
 sigourney_weaver = Actor(name='Sigourney Weaver')
+
 henry_thomas = Actor(name='Henry Thomas')
 drew_barrymore = Actor(name='Drew Barrymore')
 dee_wallace = Actor(name='Dee Wallace')
+
 harrison_ford = Actor(name='Harrison Ford')
 rutger_hauer = Actor(name='Rutger Hauer')
 sean_young = Actor(name='Sean Young')
+
 arnold_schwarzenegger = Actor(name='Arnold Schwarzenegger')
 michael_biehn = Actor(name='Michael Biehn')
 linda_hamilton = Actor(name='Linda Hamilton')
+
 jennifer_aniston = Actor(name='Jennifer Aniston')
 lisa_kudrow = Actor(name='Lisa Kudrow')
 matt_le_blanc = Actor(name='Matt Le Blanc')
+
 kirstie_alley = Actor(name='Kirstie Alley')
 ted_danson = Actor(name='Ted Danson')
 rhea_perlman = Actor(name='Rhea Perlman')
+
 kelsey_grammer = Actor(name='Kelsey Grammer')
 jane_leeves = Actor(name='Jane Leeves')
 john_mahoney = Actor(name='John Mahoney')
+
 ed_oneill = Actor(name="Ed O'Neill")
 katy_sagal = Actor(name='Katy Sagal')
 christina_applegate = Actor(name='Christina Applegate')
+
 bea_arthur = Actor(name='Bea Arthur')
 betty_white = Actor(name='Betty White')
 rue_mclanahan = Actor(name='Rue McClanahan')
+
 cybill_shepherd = Actor(name='Cybill Shepherd')
 bruce_willis = Actor(name='Bruce Willis')
 allyce_beasley = Actor(name='Allyce Beasley')
@@ -91,6 +102,10 @@ fantasy = Genre(genre='Fantasy')
 horror = Genre(genre='Horror')
 science_fiction = Genre(genre='Science Fiction')
 thriller = Genre(genre='Thriller')
+sitcom = Genre(genre='Sitcom')
+romance = Genre(genre='Romance')
+drama = Genre(genre='Drama')
+mystery = Genre(genre='Mystery')
 
 genres = [
     action,    
@@ -100,7 +115,11 @@ genres = [
     fantasy,    
     horror,    
     science_fiction,    
-    thriller
+    thriller,
+    sitcom,
+    romance,
+    drama,
+    mystery
 ]
 
 # Create films
@@ -373,26 +392,78 @@ with app.app_context():
     terminator.genres.append(science_fiction)
     terminator.genres.append(action)
 
-    # Create random episode_actor associations
+    # Create episode_actor and episode_genre associations
 
-    tv_episodes = TVSeriesEpisode.query.all()
+    # tv_episodes = TVSeriesEpisode.query.all()
 
-    for episode in tv_episodes:
-        # randomly select 3 actors from the actors list
-        random_actors = random.sample(actors, k=3)
-        for actor in random_actors:
-            episode.actors.append(actor)
-        random_genres = random.sample(genres, k=3)
-        for genre in random_genres:
-            episode.genres.append(genre)
-        db.session.commit()
+    # for episode in tv_episodes:
+    #     # randomly select 3 actors from the actors list
+    #     random_actors = random.sample(actors, k=3)
+    #     for actor in random_actors:
+    #         episode.actors.append(actor)
+    #     random_genres = random.sample(genres, k=3)
+    #     for genre in random_genres:
+    #         episode.genres.append(genre)
+    #     db.session.commit()
 
+    episodes = TVSeriesEpisode.query.filter(TVSeriesEpisode.seasons.has(TVSeriesSeason.tv_series.has(title='Friends')))
+    for episode in episodes:
+        episode.actors.append(jennifer_aniston)
+        episode.actors.append(lisa_kudrow)
+        episode.actors.append(matt_le_blanc)
+        episode.genres.append(comedy)
+        episode.genres.append(sitcom)
+        episode.genres.append(romance)
+    db.session.commit()
 
+    episodes = TVSeriesEpisode.query.filter(TVSeriesEpisode.seasons.has(TVSeriesSeason.tv_series.has(title='Cheers')))
+    for episode in episodes:
+        episode.actors.append(kirstie_alley)
+        episode.actors.append(ted_danson)
+        episode.actors.append(rhea_perlman)
+        episode.genres.append(drama)
+        episode.genres.append(sitcom)
+        episode.genres.append(comedy)
+    db.session.commit()
 
-    # Create episode_genre associations
+    episodes = TVSeriesEpisode.query.filter(TVSeriesEpisode.seasons.has(TVSeriesSeason.tv_series.has(title='Frasier')))
+    for episode in episodes:
+        episode.actors.append(kelsey_grammer)
+        episode.actors.append(jane_leeves)
+        episode.actors.append(john_mahoney)
+        episode.genres.append(family)
+        episode.genres.append(sitcom)
+        episode.genres.append(comedy)
+    db.session.commit()
 
+    episodes = TVSeriesEpisode.query.filter(TVSeriesEpisode.seasons.has(TVSeriesSeason.tv_series.has(title='Married With Children')))
+    for episode in episodes:
+        episode.actors.append(ed_oneill)
+        episode.actors.append(katy_sagal)
+        episode.actors.append(christina_applegate)
+        episode.genres.append(family)
+        episode.genres.append(sitcom)
+        episode.genres.append(comedy)
+    db.session.commit()
 
+    episodes = TVSeriesEpisode.query.filter(TVSeriesEpisode.seasons.has(TVSeriesSeason.tv_series.has(title='Golden Girls')))
+    for episode in episodes:
+        episode.actors.append(bea_arthur)
+        episode.actors.append(betty_white)
+        episode.actors.append(rue_mclanahan)
+        episode.genres.append(drama)
+        episode.genres.append(sitcom)
+        episode.genres.append(comedy)
+    db.session.commit()
 
+    episodes = TVSeriesEpisode.query.filter(TVSeriesEpisode.seasons.has(TVSeriesSeason.tv_series.has(title='Moonlighting')))
+    for episode in episodes:
+        episode.actors.append(cybill_shepherd)
+        episode.actors.append(bruce_willis)
+        episode.actors.append(allyce_beasley)
+        episode.genres.append(drama)
+        episode.genres.append(romance)
+        episode.genres.append(mystery)
     db.session.commit()
 
 
