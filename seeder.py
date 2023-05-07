@@ -394,18 +394,6 @@ with app.app_context():
 
     # Create episode_actor and episode_genre associations
 
-    # tv_episodes = TVSeriesEpisode.query.all()
-
-    # for episode in tv_episodes:
-    #     # randomly select 3 actors from the actors list
-    #     random_actors = random.sample(actors, k=3)
-    #     for actor in random_actors:
-    #         episode.actors.append(actor)
-    #     random_genres = random.sample(genres, k=3)
-    #     for genre in random_genres:
-    #         episode.genres.append(genre)
-    #     db.session.commit()
-
     episodes = TVSeriesEpisode.query.filter(TVSeriesEpisode.seasons.has(TVSeriesSeason.tv_series.has(title='Friends')))
     for episode in episodes:
         episode.actors.append(jennifer_aniston)
