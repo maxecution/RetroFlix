@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, session, flash
+from flask import render_template, request, redirect, url_for, session, flash, jsonify
 
 from application import app
 from application.models import *
@@ -69,38 +69,33 @@ def home():
     return render_template('home.html', title='Home', user=user)
 
 #account render
-@app.route('/account')
+@app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
-    user = User.query.get(current_user.id)
-    return render_template('account.html', title='Account', user=user) 
-
-#edit account render
-@app.route('/account/edit', methods=['GET', 'POST'])
-@login_required
-def edit_account():
-    form = EditAccountForm()
-    if form.validate_on_submit():
-        current_user.email_address = form.email.data
-        current_user.first_name = form.first_name.data
-        current_user.last_name = form.last_name.data
-        current_user.dob = form.dob.data
-        current_user.mailing = form.mailing.data
-        db.session.commit()
-        flash('Your account has been updated!', 'success')
-        return redirect(url_for('account'))
-    elif request.method == 'GET':
-        form.email.data = current_user.email_address
-        form.first_name.data = current_user.first_name
-        form.last_name.data = current_user.last_name
-        form.dob.data = current_user.dob
-        form.mailing.data = current_user.mailing
-    return render_template('edit_account.html', title='Edit Account', form=form)
+    user_id = session.get('user_id')
+    if user_id:
+        user = User.query.get(user_id)
+        if request.method == 'POST':
+            user.email_address = request.form['email_address']
+            user.password = request.form['password']
+            user.first_name = request.form['first_name']
+            user.last_name = request.form['last_name']
+            user.dob = request.form['dob']
+            user.mailing = request.form['mailing']
+            user.creation_date = request.form['creation_date']
+            user.last_login = request.form['last_login']
+            user.pin = request.form['pin']
+            
+            db.session.commit()
+        return render_template('account.html', user=user)
+    else:
+        return redirect(url_for('login'))
 
 #index render
 @app.route('/index')
 def index():
-    return render_template('index.html', title='Index')
+    return render_template("index.html")
+
 
 #search bar render'
 @app.route('/search', methods=['GET'])
@@ -126,6 +121,7 @@ def film_player(name):
     return render_template('film_player.html', film=film, pinCheck=pinCheck, video=video_file)
 
 @app.route('/series/series_player/<string:name>/<string:episode>')
+@login_required
 def series_player(name, episode):
     series = TVSeries.query.filter_by(title=name).first_or_404()
         

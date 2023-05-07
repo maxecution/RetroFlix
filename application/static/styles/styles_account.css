@@ -19,3 +19,8 @@ h1{
     flex: 1 1;
     max-height: fit-content;
 }
+
+
+.edit-button{
+    color: aqua;
+}

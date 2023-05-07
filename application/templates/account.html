@@ -9,7 +9,7 @@
 {% block body_content%}
 
 
-<h1>Welcome to your account {{ user.first_name }}!</h1>
+<h1>{{ user.first_name }}'s account </h1>
 
 <section class="bg-image" style="padding-top: 80px; padding-bottom: 80px;">
    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
@@ -19,61 +19,59 @@
            <div class="card_account bg-dark text-white">
              <div class="card-body p-5">
    
-               <form style="display: flex; flex-direction: column; align-items: flex-start;">
-   
+              <form method="post" action="">
+
                 <div class="form-outline mb-4">
-                  <p>Email: <span id="email">{{ user.email_address }}</span></p>
-                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                    <p>Email: <span id="email">{{ user.email_address }}</span></p>
+                    <label class="edit-button" data-field="email"><u>Edit</u></label>
                 </div>
  
                 <div class="form-outline mb-4">
-                  <p>Password: <span id="email">{{ user.password }}</span></p>
-                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                  <p>Password: <span id="password">{{ user.password }}</span></p>
+                  <label class="edit-button" data-field="password"><u>Edit</u></label>
                 </div>
                
                 <div class="form-outline mb-4">
-                  <p>Fist Name: <span id="email">{{ user.first_name }}</span></p>
-                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                  <p>Fist Name: <span id="first_name">{{ user.first_name }}</span></p>
+                  <label class="edit-button" data-field="name"><u>Edit</u></label>
                 </div>
  
                 <div class="form-outline mb-4">
-                  <p>Last Name: <span id="email">{{ user.last_name }}</span></p>
-                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                  <p>Last Name: <span id="last_name">{{ user.last_name }}</span></p>
+                  <label class="edit-button" data-field="name"><u>Edit</u></label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <p>Date of Birth: <span id="email">{{ user.dob }}</span></p>
-                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                  <p>Date of Birth: <span id="dob">{{ user.dob }}</span></p>
+                  <label class="edit-button" data-field="date_of_birth"><u>Edit</u></label>
                 </div>
                  
                 <div class="form-outline mb-4">
-                  <p>Mail Recipoent: <span id="email">{{ user.mailing }}</span></p>
-                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
-                </div>
-                 
-                <div class="form-outline mb-4">
-                  <p>Start Date: <span id="email">{{ user.creation_date }}</span></p>
-                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
-                </div>
- 
-                <div class="form-outline mb-4">
-                  <p>Last Logged In: <span id="email">{{ user.last_login }}</span></p>
-                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                  <p>Mail Recipient: <span id="mailing">{{ user.mailing }}</span></p>
+                  <label class="edit-button" data-field="mailing"><u>Edit</u></label>
                 </div>
                
                 <div class="form-outline mb-4">
-                  <p>PIN: <span id="email">{{ user.pin }}</span></p>
-                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
-                </div>                       
+                  <p>PIN: <span id="pin">{{ user.pin }}</span></p>
+                  <label class="edit-button" data-field="pin"><u>Edit</u></label>
+                </div>                  
  
                 <div class="form-outline mb-4">
-                  <p>Subcription: <span id="email">{{ user.subscription }}</span></p>
-                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                  <p>Subcription: <span id="subscription">{{ user.subscription }}</span></p>
+                  <label class="edit-button" data-field="subscription"><u>Edit</u></label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <p>Card Details: <span id="email">{{ user.cards }}</span></p>
-                  <button class="btn btn-outline-info" class="edit-button" data-field="email">Edit</button>
+                  <p>Card Details: <span id="cards">{{ user.cards }}</span></p>
+                  <label class="edit-button" data-field="card_details"><u>Edit</u></label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <p>Start Date: <span id="creation_date">{{ user.creation_date }}</span></p>
+                </div>
+ 
+                <div class="form-outline mb-4">
+                  <p>Last Logged In: <span id="last_login">{{ user.last_login }}</span></p>
                 </div>
   
                  <div class="account_maintenance"  style="align-self: center;">
@@ -90,5 +88,6 @@
  </section>
 
 <script src="{{ url_for('static', filename='/scripts/account.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    
 {% endblock %}

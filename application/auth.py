@@ -28,6 +28,7 @@ def sign_in():
 
     return render_template('sign_in.html', user=current_user)
 
+
 # log out auth
 @auth.route('/logout')
 def logout():
