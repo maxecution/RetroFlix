@@ -9,8 +9,14 @@
 
 {% block body_content%}
 
+<!-- Film results -->
+
 <h1>Search results for: {{ query }}</h1>
 <br>
+{% if not (films and tv_series and actors and genres) %}
+  <h5>Sorry, no results found for "{{ query }}"</h5>
+{% endif %}
+
 {% if films %}
 <h2>Films</h2>
 <ul>
@@ -68,12 +74,25 @@
 <h2>Genres:</h2>
 <ul>
   {% for genre in genres %}
-    <h5><u>{{ genre.genre }} Tv Series: </u></h5>
-    <ul>
-      {% for title in genre_tv_shows.get(genre.genre) %}
-        <li><a href="{{url_for('series_player', name=title, episode='S1E1')}}">{{ title }}</a></li>
-      {% endfor %}
-    </ul>
+    <!-- Only shows genres with films in the db -->
+    {% if genre_films.get(genre.genre) %}
+      <h5><u>{{ genre.genre }} Films: </u></h5>
+      <ul>
+        {% for title in genre_films.get(genre.genre) %}
+          <li><a href="{{url_for('film_player', name=title)}}">{{ title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <!-- Only shows genres with shows in the db -->
+    {% if genre_tv_shows.get(genre.genre) %}
+      <h5><u>{{ genre.genre }} Tv Series: </u></h5>
+      <ul>
+        {% for title in genre_tv_shows.get(genre.genre) %}
+          <li><a href="{{url_for('series_player', name=title, episode='S1E1')}}">{{ title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   {% endfor %}
 </ul>
 {% endif %} 
