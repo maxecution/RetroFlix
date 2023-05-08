@@ -100,61 +100,6 @@ def edit_account():
             ccExpiry = request.form.get('cc-expiry')
             ccCVV = request.form.get('cc-cvv')
 
-            if email_address != user.email_address:
-                email_exists = User.query.filter(User.email_address == email_address).first()
-                if email_exists:
-                    flash('Email address is already registered.', 'error')
-                    return redirect(url_for('edit_account'))
-                else:
-                    user.email_address = email_address
-
-            user.first_name = first_name
-            user.last_name = last_name
-            user.dob = dob
-            user.mailing = mailing
-            user.pin = pin
-            sub = Subscription.query.filter_by(sub_type=user_sub).first()
-            user.subscription_id = sub.id
-
-            card = user.cards[0] if user.cards else None
-            if card:
-                card.name_on_card = ccName
-                card.card_number = ccNumber
-                card.expiry_date = ccExpiry
-                card.cvv = ccCVV
-            else:
-                card = CardDetail(name_on_card=ccName, card_number=ccNumber, expiry_date=ccExpiry, cvv=ccCVV)
-                user.cards.append(card)
-
-            if password:
-                user.password = generate_password_hash(password, method='sha256')
-
-            db.session.commit()
-
-            flash('Details changed successfully', 'success')
-            return redirect(url_for('edit_account'))
-
-        return render_template('edit_account.html', title='Edit Account', user=user)
-@app.route('/account/edit_account', methods=['GET', 'POST'])
-@login_required
-def edit_account():
-    user_id = session.get('user_id')
-    if user_id:
-        user = User.query.get(user_id)
-        if request.method == 'POST':
-            first_name = request.form.get('first_name')
-            last_name = request.form.get('last_name')
-            email_address = request.form.get('email_address')
-            password = request.form.get('password_check')
-            dob = request.form.get('dob')
-            mailing = request.form.get('mail_list')
-            pin = request.form.get('pin')
-            user_sub = request.form.get('subs-select')
-            ccName = request.form.get('cc-name')
-            ccNumber = request.form.get('cc-number')
-            ccExpiry = request.form.get('cc-expiry')
-            ccCVV = request.form.get('cc-cvv')
-
         # define form fields and types dynamically
         fields = {
             'email_address': 'Email Address',

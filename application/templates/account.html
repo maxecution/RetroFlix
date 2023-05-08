@@ -19,16 +19,16 @@
            <div class="card_account bg-dark text-white">
              <div class="card-body p-5">
    
-              <form method="post" action="">
+              <form method="post" action="{{ url_for('edit_account') }}">
 
                 <div class="form-outline mb-4">
-                    <p>Email: <span id="email">{{ user.email_address }}</span></p>
-                    <label class="edit-button" data-field="email"><u>Edit</u></label>
+                  <p>Email: <span id="email">{{ user.email_address }}</span></p>
+                  <a class="edit-button" href="{{ url_for('edit_account', field='email', current=user.email_address) }}"><u>Edit</u></a>
                 </div>
  
                 <div class="form-outline mb-4">
                   <p>Password: <span id="password">{{ user.password }}</span></p>
-                  <label class="edit-button" data-field="password"><u>Edit</u></label>
+                  <a class="edit-button" href="{{ url_for('edit_account', field='password', current=user.password) }}"><u>Edit</u></a>
                 </div>
                
                 <div class="form-outline mb-4">
@@ -43,7 +43,6 @@
 
                 <div class="form-outline mb-4">
                   <p>Date of Birth: <span id="dob">{{ user.dob }}</span></p>
-                  <label class="edit-button" data-field="date_of_birth"><u>Edit</u></label>
                 </div>
                  
                 <div class="form-outline mb-4">
@@ -57,12 +56,12 @@
                 </div>                  
  
                 <div class="form-outline mb-4">
-                  <p>Subcription: <span id="subscription">{{ user.subscription }}</span></p>
+                  <p>Subcription: <span id="subscription">{{ user.user_sub }}</span></p>
                   <label class="edit-button" data-field="subscription"><u>Edit</u></label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <p>Card Details: <span id="cards">{{ user.cards }}</span></p>
+                  <p>Card Details: <span id="cards">{{ user.user_cards }}</span></p>
                   <label class="edit-button" data-field="card_details"><u>Edit</u></label>
                 </div>
 
