@@ -399,6 +399,7 @@ with app.app_context():
         episode.actors.append(jennifer_aniston)
         episode.actors.append(lisa_kudrow)
         episode.actors.append(matt_le_blanc)
+        episode.actors.append(jeff_goldblum)
         episode.genres.append(comedy)
         episode.genres.append(sitcom)
         episode.genres.append(romance)
