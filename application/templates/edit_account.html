@@ -157,15 +157,23 @@
                                     </div>
                                     <button type="submit" class="btn btn-info">Save Changes</button>
                                 </form>
-                            {% elif field == 'card_details' %}
+                            {% elif field == 'cards' %}
                                 <form method="post" action="{{ url_for('edit_account', field=field) }}" onsubmit="return validateForm()">
                                     <div class="form-outline mb-4">
-                                        <label for="new_{{ field }}" class="form-label">New {{ field.replace('_', ' ') }}:</label>
-                                        <input type="text" id="new_{{ field }}" name="new_{{ field }}" class="form-control" required>
+                                        <label for="name_on_card" class="form-label">Name on Card:</label>
+                                        <input type="text" id="name_on_card" name="name_on_card" class="form-control" placeholder="e.g Bob Smith"  minlength="3" maxlength="50" required>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <label for="confirm_{{ field }}" class="form-label">Confirm {{ field.replace('_', ' ') }}:</label>
-                                        <input type="text" id="confirm_{{ field }}" name="confirm_{{ field }}" class="form-control" required>
+                                        <label for="new_card_number" class="form-label">New Card Number:</label>
+                                        <input type="text" id="new_card_number" name="new_card_number" class="form-control" placeholder="123456789012"  minlength="12" maxlength="12" required>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="new_expiry_date" class="form-label">New Expiry Date:</label>
+                                        <input type="text" id="new_expiry_date" name="new_expiry_date" class="form-control" placeholder="MM/YY"  minlength="5" maxlength="5" required>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="new_cvv" class="form-label">New CVV:</label>
+                                        <input type="text" id="new_cvv" name="new_cvv" class="form-control" placeholder="CVV"  minlength="3" maxlength="3" required>
                                     </div>
                                     <button type="submit" class="btn btn-info">Save Changes</button>
                                 </form>

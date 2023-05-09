@@ -1,4 +1,4 @@
-const passwordEls = document.querySelectorAll('#password, #pin, #card_details');
+const passwordEls = document.querySelectorAll('#password, #pin, #cards');
 passwordEls.forEach(passwordEl => {
   passwordEl.innerText = '*'.repeat(7);
 

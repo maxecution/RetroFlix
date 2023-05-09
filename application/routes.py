@@ -75,6 +75,11 @@ def home():
     user = User.query.get(current_user.id)
     return render_template('home.html', title='Home', user=user)
 
+#index render
+@app.route('/index')
+def index():
+    return render_template('index.html', title='Index')
+
 #account render
 @app.route('/account', methods=['GET'])
 @login_required
@@ -115,12 +120,12 @@ def edit_account(field):
         elif field == 'subscription':
             current_value = user.subscription.sub_type
         else:
-            field == 'card_details'
-            card = user.cards[0]
+            field == 'cards'
+            cards = user.cards[0]
             current_value = {
-                'card_number': card.card_number,
-                'expiry_date': card.expiry_date,
-                'cvv': card.cvv
+                'card_number': cards.card_number,
+                'expiry_date': cards.expiry_date,
+                'cvv': cards.cvv
             }
 
     if request.method == 'POST':
@@ -140,11 +145,12 @@ def edit_account(field):
         elif field == 'subscription':
             user.subscription.sub_type = request.form['new_subscription']
         else:
-            field == 'card_details'
-            card = user.cards[0] 
-            card.card_number = request.form['card_number']
-            card.expiry_date = request.form['expiry_date']
-            card.cvv = request.form['cvv']
+            if field == 'cards':
+                card = user.cards[0] 
+                card.name_on_card = request.form['name_on_card']
+                card.card_number = request.form['new_card_number']
+                card.expiry_date = request.form['new_expiry_date']
+                card.cvv = request.form['new_cvv']
 
         db.session.commit() 
         flash('Your account information has been updated successfully.')
