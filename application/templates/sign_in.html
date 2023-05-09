@@ -20,15 +20,6 @@
 
 {% block body_content %}
     <!-- Sign In -->
-    <div class="invalid_error">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-info">{{ message }}</div>
-          {% endfor %}
-        {% endif %}
-        {% endwith %}
-    </div>
     
     <section class="gradient-custom" style="padding-top: 80px; padding-bottom: 80px;">
       <div class="container h-100">

@@ -1,9 +1,15 @@
 from flask import render_template, request, redirect, url_for, session, flash, jsonify
-
+from builtins import getattr
 from application import app
 from application.models import *
-from flask_login import current_user, login_required
+from flask_login import current_user, login_required, logout_user
 from werkzeug.security import generate_password_hash
+
+
+context = {
+    'getattr': getattr
+}
+
 
 #terms render
 @app.route('/terms_of_use')
@@ -80,93 +86,89 @@ def account():
     else:
         return redirect(url_for('login'))
 
-@app.route('/account/edit_account', methods=['GET', 'POST'])
-@login_required
-def edit_account():
+@app.route('/edit_account/<string:field>', methods=['GET', 'POST'])
+def edit_account(field):
     user_id = session.get('user_id')
     if user_id:
-        user = User.query.get(user_id)
-        if request.method == 'POST':
-            first_name = request.form.get('first_name')
-            last_name = request.form.get('last_name')
-            email_address = request.form.get('email_address')
-            password = request.form.get('password_check')
-            dob = request.form.get('dob')
-            mailing = request.form.get('mail_list')
-            pin = request.form.get('pin')
-            user_sub = request.form.get('subs-select')
-            ccName = request.form.get('cc-name')
-            ccNumber = request.form.get('cc-number')
-            ccExpiry = request.form.get('cc-expiry')
-            ccCVV = request.form.get('cc-cvv')
+        user = User.query.get(user_id) # retrieve user info from database
+    else:
+        flash('Please log in to access your account.')
+        return redirect(url_for('login'))
+    
+    current_value = getattr(user, field)
 
-        # define form fields and types dynamically
-        fields = {
-            'email_address': 'Email Address',
-            'password': 'Password',
-            'first_name': 'First Name',
-            'last_name': 'Last Name',
-            'mailing': 'Subscribe to Mailing List',
-            'pin': 'PIN',
-            'subscription': 'Subscription Type',
-            'cc-name': 'Name on Card',
-            'cc-number': 'Card Number',
-            'cc-expiry': 'Card Expiry Date',
-            'cc-cvv': 'Card CVV'
-        }
+    if request.method == 'GET':
 
-        field_types = {
-            'email_address': 'email',
-            'password': 'password',
-            'first_name': 'text',
-            'last_name': 'text',
-            'mailing': 'checkbox',
-            'pin': 'text',
-            'subscription': 'select',
-            'cc-name': 'text',
-            'cc-number': 'text',
-            'cc-expiry': 'text',
-            'cc-cvv': 'text'
-        }
-
-        if email_address != user.email_address:
-                email_exists = User.query.filter(User.email_address == email_address).first()
-                if email_exists:
-                    flash('Email address is already registered.', 'error')
-                    return redirect(url_for('edit_account'))
-                else:
-                    user.email_address = email_address
-
-        user.first_name = first_name
-        user.last_name = last_name
-        user.dob = dob
-        user.mailing = mailing
-        user.pin = pin
-        sub = Subscription.query.filter_by(sub_type=user_sub).first()
-        user.subscription_id = sub.id
-
-        card = user.cards[0] if user.cards else None
-        if card:
-            card.name_on_card = ccName
-            card.card_number = ccNumber
-            card.expiry_date = ccExpiry
-            card.cvv = ccCVV
+        if field == 'email_address':
+            current_value = user.email_address
+        elif field == 'password':
+            current_value = ''
+        elif field == 'first_name':
+            current_value = user.first_name
+        elif field == 'last_name':
+            current_value = user.last_name
+        elif field == 'mailing':
+            current_value = user.mailing
+        elif field == 'pin':
+            current_value = user.pin
+        elif field == 'subscription':
+            current_value = user.subscription.sub_type
         else:
-            card = CardDetail(name_on_card=ccName, card_number=ccNumber, expiry_date=ccExpiry, cvv=ccCVV)
-            user.cards.append(card)
+            field == 'card_details'
+            card = user.cards[0]
+            current_value = {
+                'card_number': card.card_number,
+                'expiry_date': card.expiry_date,
+                'cvv': card.cvv
+            }
 
-        if password:
-            user.password = generate_password_hash(password, method='sha256')
+    if request.method == 'POST':
+        # update user information in database
+        if field == 'email_address':
+            user.email_address = request.form['new_{}'.format(field)]
+        elif field == 'password':
+            user.password = generate_password_hash(request.form['new_{}'.format(field)])
+        elif field == 'first_name':
+            user.first_name = request.form['new_{}'.format(field)]
+        elif field == 'last_name':
+            user.last_name = request.form['new_{}'.format(field)]
+        elif field == 'mailing':
+            user.mailing = request.form['new_{}'.format(field)]
+        elif field == 'pin':
+            user.pin = request.form['new_{}'.format(field)]
+        elif field == 'subscription':
+            # update user subscription information
+            user.subscription.sub_type = request.form['sub_type']
+        else:
+            field == 'card_details'
+            # update card information
+            card = user.cards[0] # assuming there's only one card per user
+            card.card_number = request.form['card_number']
+            card.expiry_date = request.form['expiry_date']
+            card.cvv = request.form['cvv']
 
-        db.session.commit()
+        db.session.commit() # commit changes to database
+        flash('Your account information has been updated successfully.')
+        return redirect(url_for('account'))
+    else:
+        return render_template('edit_account.html', field=field, user=user, current_value=current_value)
+    
 
-        flash('Details changed successfully', 'success')
-        return redirect(url_for('edit_account'))
-
-    subscriptions = Subscription.query.all()
-
-    return render_template('edit_account.html', title='Edit Account', user=user, fields=fields, field_types=field_types, subscriptions=subscriptions)
-
+@app.route('/delete-account', methods=['GET', 'POST'])
+@login_required
+def delete_account():
+    if request.method == 'POST':
+        # Check if user really wants to delete account
+        if request.form.get('confirm_delete') == 'yes':
+            # Delete all user details from the database
+            user = User.query.filter_by(email=session['user_email']).first()
+            db.session.delete(user)
+            db.session.commit()
+            logout_user()
+            flash('Your account has been successfully deleted')
+            return redirect(url_for('index'))
+    # Render the confirmation page if user hasn't confirmed yet
+    return render_template('delete_account.html')
 #index render
 @app.route('/index')
 def index():

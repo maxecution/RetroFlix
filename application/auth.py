@@ -6,6 +6,7 @@ from flask_login import login_user, current_user, logout_user
 from sqlalchemy.orm.exc import NoResultFound
 
 
+
 auth=Blueprint('auth', __name__)
 
 # sign in auth
@@ -36,6 +37,7 @@ def logout():
     logout_user()
     flash('Successfully logged out')
     return redirect(url_for('index'))
+
 
 # sign up auth
 @auth.route('/sign_up', methods=['GET', 'POST'])

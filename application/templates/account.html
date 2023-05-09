@@ -19,11 +19,11 @@
            <div class="card_account bg-dark text-white">
              <div class="card-body p-5">
    
-              <form method="post" action="{{ url_for('edit_account') }}">
+              <form method="post" action="{{ url_for('account') }}">
 
                 <div class="form-outline mb-4">
                   <p>Email: <span id="email">{{ user.email_address }}</span></p>
-                  <a class="edit-button" href="{{ url_for('edit_account', field='email', current=user.email_address) }}"><u>Edit</u></a>
+                  <a class="edit-button" href="{{ url_for('edit_account', field='email_address', current=user.email_address) }}"><u>Edit</u></a>
                 </div>
  
                 <div class="form-outline mb-4">
@@ -33,12 +33,12 @@
                
                 <div class="form-outline mb-4">
                   <p>Fist Name: <span id="first_name">{{ user.first_name }}</span></p>
-                  <label class="edit-button" data-field="name"><u>Edit</u></label>
+                  <a class="edit-button" href="{{ url_for('edit_account', field='first_name', current=user.first_name) }}"><u>Edit</u></a>
                 </div>
  
                 <div class="form-outline mb-4">
                   <p>Last Name: <span id="last_name">{{ user.last_name }}</span></p>
-                  <label class="edit-button" data-field="name"><u>Edit</u></label>
+                  <a class="edit-button" href="{{ url_for('edit_account', field='last_name', current=user.last_name) }}"><u>Edit</u></a>
                 </div>
 
                 <div class="form-outline mb-4">
@@ -47,22 +47,31 @@
                  
                 <div class="form-outline mb-4">
                   <p>Mail Recipient: <span id="mailing">{{ user.mailing }}</span></p>
-                  <label class="edit-button" data-field="mailing"><u>Edit</u></label>
+                  <a class="edit-button" href="{{ url_for('edit_account', field='mailing', current=user.mailing) }}"><u>Edit</u></a>
                 </div>
                
                 <div class="form-outline mb-4">
                   <p>PIN: <span id="pin">{{ user.pin }}</span></p>
-                  <label class="edit-button" data-field="pin"><u>Edit</u></label>
+                  <a class="edit-button" href="{{ url_for('edit_account', field='pin', current=user.pin) }}"><u>Edit</u></a>
                 </div>                  
  
                 <div class="form-outline mb-4">
-                  <p>Subcription: <span id="subscription">{{ user.user_sub }}</span></p>
-                  <label class="edit-button" data-field="subscription"><u>Edit</u></label>
+                  <p>Subcription: <span id="subscription">{{ user.subscription.sub_type }}</span></p>
+                  <a class="edit-button" href="{{ url_for('edit_account', field='subscription', current=user.subscription) }}"><u>Edit</u></a>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <p>Card Details: <span id="cards">{{ user.user_cards }}</span></p>
-                  <label class="edit-button" data-field="card_details"><u>Edit</u></label>
+                  <p>Card Details </p>
+                  {% if user.cards %}
+                      {% with card = user.cards[0] %}
+                          <p>Card Number: <span id="card_details">{{ card.card_number }}</span></p>
+                          <p>Expiry Date: <span id="card_details">{{ card.expiry_date }}</span></p>
+                          <p>CCV: <span id="card_details">{{ card.cvv }}</span></p>
+                      {% endwith %}
+                      <a class="edit-button" href="{{ url_for('edit_account', field='card_details', current=user.card_details) }}"><u>Edit</u></a>
+                  {% else %}
+                      <p>No card details found</p>
+                  {% endif %}
                 </div>
 
                 <div class="form-outline mb-4">

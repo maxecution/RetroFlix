@@ -3,6 +3,8 @@ from .database import db
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Email, Length
+from datetime import datetime
+
 
 
 # Association tables need defined before classes
@@ -134,7 +136,7 @@ class User(db.Model, UserMixin):
     dob = db.Column(db.Date)
     mailing = db.Column(db.Boolean)
     creation_date = db.Column(db.DateTime, server_default=db.func.now())
-    last_login = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    last_login = db.Column(db.DateTime, default=None, onupdate=datetime.utcnow)
     pin = db.Column(db.String(255))
 
     subscription_id = db.Column(db.Integer, db.ForeignKey('subscriptions.id'))
@@ -180,12 +182,3 @@ class Subscription(db.Model):
     sub_type = db.Column(db.String(255))
 
     users = db.relationship('User', back_populates='subscription')
-
-
-class EditAccountForm(FlaskForm):
-    email = StringField('Email Address', validators=[DataRequired(), Email()])
-    first_name = StringField('First Name', validators=[DataRequired(), Length(min=2, max=20)])
-    last_name = StringField('Last Name', validators=[DataRequired(), Length(min=2, max=20)])
-    dob = StringField('Date of Birth', validators=[DataRequired()])
-    mailing = BooleanField('Join mailing list?')
-    submit = SubmitField('Save Changes')

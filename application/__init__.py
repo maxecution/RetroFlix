@@ -31,4 +31,6 @@ def load_user(user_id):
 
 app.register_blueprint(auth)
 
+
+
 from . import routes

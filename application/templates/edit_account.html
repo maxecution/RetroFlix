@@ -7,56 +7,277 @@
 {% endblock %}
 
 {% block body_content%}
-
-<h1>Edit details here, {{ user.first_name }}</h1>
-
+      
 <section class="bg-image" style="padding-top: 80px; padding-bottom: 80px;">
-   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-     <div class="container h-100">
-       <div class="row d-flex justify-content-center align-items-center h-100">
-         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-           <div class="card_account bg-dark text-white">
-             <div class="card-body p-5">
-   
-                <form method="POST">
-                    {% for field, label in fields.items() %}
-                      <label for="{{ field }}">{{ label }}</label>
-                      {% if field == 'mailing' %}
-                        <input type="checkbox" name="{{ field }}" value="1" {% if user[field] %}checked{% endif %}>
-                      {% elif field == 'subscription' %}
-                        <select name="subs-select">
-                          {% for sub in subscriptions %}
-                            <option value="{{ sub.sub_type }}" {% if user.subscription.sub_type == sub.sub_type %}selected{% endif %}>{{ sub.sub_type }}</option>
-                          {% endfor %}
-                        </select>
-                      {% else %}
-                        <input type="{{ field_types[field] }}" name="{{ field }}" value="{{ user[field] }}">
-                      {% endif %}
-                    {% endfor %}
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card_account bg-dark text-white">
+                        <div class="card-body p-5">
+                            <div class="header">
+                            <h2>Edit Account Information</h2>
+                            <p>Use the form below to update your account information.</p>
+                            </div>
+                            <hr>
+                            <h2>{{ field.capitalize()|replace('_', ' ') }}</h2>
+                            {% if field == 'email_address' %}
+                                <form method="post" action="{{ url_for('edit_account', field=field) }}" onsubmit="return validateForm()">
+                                    <div class="form-outline mb-4">
+                                        <label for="current_value" class="form-label">Current {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="current_value" name="current_value" class="form-control" value="{{ user.email_address }}" readonly>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="new_{{ field }}" class="form-label">New {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="new_{{ field }}" name="new_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="confirm_{{ field }}" class="form-label">Confirm {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="confirm_{{ field }}" name="confirm_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Save Changes</button>
+                                </form>
+                            {% elif field == 'password' %}
+                                <form method="post" action="{{ url_for('edit_account', field=field) }}" onsubmit="return validateForm()">
+                                    <div class="form-outline mb-4">
+                                        <label for="new_{{ field }}" class="form-label">New {{ field.replace('_', ' ') }}:</label>
+                                        <input type="password" id="new_{{ field }}" name="new_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="confirm_{{ field }}" class="form-label">Confirm {{ field.replace('_', ' ') }}:</label>
+                                        <input type="password" id="confirm_{{ field }}" name="confirm_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Save Changes</button>
+                                </form>
+                            {% elif field == 'first_name' %}
+                                <form method="post" action="{{ url_for('edit_account', field=field) }}" onsubmit="return validateForm()">
+                                    <div class="form-outline mb-4">
+                                        <label for="current_value" class="form-label">Current {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="current_value" name="current_value" class="form-control" value="{{ user.first_name }}" readonly>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="new_{{ field }}" class="form-label">New {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="new_{{ field }}" name="new_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="confirm_{{ field }}" class="form-label">Confirm {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="confirm_{{ field }}" name="confirm_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Save Changes</button>
+                                </form>
+                            {% elif field == 'last_name' %}
+                                <form method="post" action="{{ url_for('edit_account', field=field) }}" onsubmit="return validateForm()">
+                                    <div class="form-outline mb-4">
+                                        <label for="current_value" class="form-label">Current {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="current_value" name="current_value" class="form-control" value="{{ user.last_name }}" readonly>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="new_{{ field }}" class="form-label">New {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="new_{{ field }}" name="new_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="confirm_{{ field }}" class="form-label">Confirm {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="confirm_{{ field }}" name="confirm_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Save Changes</button>
+                                </form>
+                            {% elif field == 'mailing' %}
+                                <form method="post" action="{{ url_for('edit_account', field=field) }}" onsubmit="return validateForm()">
+                                    <div class="form-outline mb-4">
+                                        <label for="current_value" class="form-label">Current {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="current_value" name="current_value" class="form-control" value="{{ user.mailing }}" readonly>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="new_{{ field }}" class="form-label">New {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="new_{{ field }}" name="new_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="confirm_{{ field }}" class="form-label">Confirm {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="confirm_{{ field }}" name="confirm_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Save Changes</button>
+                                </form>
+                            {% elif field == 'pin' %}
+                                <form method="post" action="{{ url_for('edit_account', field=field) }}" onsubmit="return validateForm()">
+                                    <div class="form-outline mb-4">
+                                        <label for="current_value" class="form-label">Current {{ field.replace('_', ' ') }}:</label>
+                                        <input type="password" id="current_value" name="current_value" class="form-control" value="{{ user.pin }}" readonly>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="new_{{ field }}" class="form-label">New {{ field.replace('_', ' ') }}:</label>
+                                        <input type="password" id="new_{{ field }}" name="new_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="confirm_{{ field }}" class="form-label">Confirm {{ field.replace('_', ' ') }}:</label>
+                                        <input type="password" id="confirm_{{ field }}" name="confirm_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Save Changes</button>
+                                </form>
+                            {% elif field == 'subscription' %}
+                                <form method="post" action="{{ url_for('edit_account', field=field) }}" onsubmit="return validateForm()">
+                                    <div class="form-outline mb-4">
+                                        <label for="current_value" class="form-label">Current {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="current_value" name="current_value" class="form-control" value="{{ user.subscription }}" readonly>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="new_{{ field }}" class="form-label">New {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="new_{{ field }}" name="new_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="confirm_{{ field }}" class="form-label">Confirm {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="confirm_{{ field }}" name="confirm_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Save Changes</button>
+                                </form>
+                            {% elif field == 'card_details' %}
+                                <form method="post" action="{{ url_for('edit_account', field=field) }}" onsubmit="return validateForm()">
+                                    <div class="form-outline mb-4">
+                                        <label for="new_{{ field }}" class="form-label">New {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="new_{{ field }}" name="new_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="confirm_{{ field }}" class="form-label">Confirm {{ field.replace('_', ' ') }}:</label>
+                                        <input type="text" id="confirm_{{ field }}" name="confirm_{{ field }}" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Save Changes</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
                   
-                    <button class="btn btn-outline-info" type="submit">Save Changes</button>
-                </form>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
- </section>
+<script>
 
 
 
+function validateField(value, fieldName) {
+  if (!value || value.trim() === '') {
+    alert(fieldName + ' cannot be empty');
+    return false;
+  }
+  return true;
+}
 
+function validateForm() {
+  var email = document.getElementById('email_input').value;
+  var password = document.getElementById('password_input').value;
+  var firstName = document.getElementById('first_name_input').value;
+  var lastName = document.getElementById('last_name_input').value;
+  var mailing = document.getElementById('mailing_input').value;
+  var pin = document.getElementById('pin_input').value;
 
+  if (!validateField(email, 'Email') ||
+      !validateField(password, 'Password') ||
+      !validateField(firstName, 'First Name') ||
+      !validateField(lastName, 'Last Name') ||
+      !validateField(mailing, 'Mail Recipient') ||
+      !validateField(pin, 'PIN')) {
+    return false;
+  }
 
+  return true;
+}
 
+function editField(field) {
+  var current = document.getElementById(field).textContent.trim();
+  var input = document.createElement('input');
+  input.setAttribute('type', 'text');
+  input.setAttribute('name', field);
+  input.setAttribute('id', field + '_input');
+  input.setAttribute('value', current);
 
+  var editButton = document.getElementById(field + '_edit');
+  editButton.parentNode.insertBefore(input, editButton.nextSibling);
+  editButton.textContent = 'Save';
+  editButton.setAttribute('onclick', 'saveField("' + field + '")');
+}
 
+function saveField(field) {
+  var currentValue = document.getElementById(field + '_input').value;
+  if (validateField(currentValue, field)) {
+    var form = document.getElementById('edit_form');
+    form.elements[field].value = currentValue;
+    form.submit();
+  }
+}
+    function validateForm() {
+      var newValue = document.getElementById("new_value").value;
+      var confirmValue = document.getElementById("confirm_value").value;
+      if (newValue !== confirmValue) {
+        alert("The new value and confirm value do not match.");
+        return false;
+      }
+      return true;
+    }
 
+// Get all the edit buttons
+const editButtons = document.querySelectorAll('.edit-button');
 
+// Loop through each edit button
+editButtons.forEach(button => {
+  button.addEventListener('click', e => {
+    e.preventDefault();
 
+    // Get the field and current value from the button's href attribute
+    const href = button.getAttribute('href');
+    const [_, field, current] = href.split('/');
 
- <script src="{{ url_for('static', filename='/scripts/sign_up.js') }}"></script>
+    // Get the corresponding span and input elements for the field
+    const span = document.querySelector(`#${field}`);
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = `edit-${field}`;
+    input.value = current;
+
+    // Replace the span with the input
+    span.parentNode.replaceChild(input, span);
+
+    // Add a save button next to the input
+    const saveButton = document.createElement('button');
+    saveButton.type = 'submit';
+    saveButton.innerText = 'Save';
+    saveButton.classList.add('btn', 'btn-primary', 'mx-2');
+    saveButton.addEventListener('click', () => {
+      const newValue = input.value;
+      // Perform any necessary validation here
+      // ...
+
+      // Replace the input with the new span containing the updated value
+      const newSpan = document.createElement('span');
+      newSpan.id = field;
+      newSpan.innerText = newValue;
+      input.parentNode.replaceChild(newSpan, input);
+
+      // Remove the save button
+      saveButton.remove();
+    });
+
+    // Add a cancel button next to the input
+    const cancelButton = document.createElement('button');
+    cancelButton.type = 'button';
+    cancelButton.innerText = 'Cancel';
+    cancelButton.classList.add('btn', 'btn-secondary');
+    cancelButton.addEventListener('click', () => {
+      // Replace the input with the original span
+      input.parentNode.replaceChild(span, input);
+
+      // Remove the save and cancel buttons
+      saveButton.remove();
+      cancelButton.remove();
+    });
+
+    // Add the save and cancel buttons to the form
+    const form = button.closest('form');
+    form.appendChild(saveButton);
+    form.appendChild(cancelButton);
+  });
+});
+
+</script>
 
 <!-- Can include additional scripts as well-->
 {% endblock %}
