@@ -125,6 +125,11 @@ def home():
     user = User.query.get(current_user.id)
     return render_template('home.html', title='Home', user=user)
 
+#index render
+@app.route('/index')
+def index():
+    return render_template('index.html', title='Index')
+
 #account render
 @app.route('/account', methods=['GET'])
 @login_required
@@ -136,11 +141,12 @@ def account():
     else:
         return redirect(url_for('login'))
 
+#edit account render
 @app.route('/edit_account/<string:field>', methods=['GET', 'POST'])
 def edit_account(field):
     user_id = session.get('user_id')
     if user_id:
-        user = User.query.get(user_id) # retrieve user info from database
+        user = User.query.get(user_id) 
     else:
         flash('Please log in to access your account.')
         return redirect(url_for('login'))
@@ -164,16 +170,16 @@ def edit_account(field):
         elif field == 'subscription':
             current_value = user.subscription.sub_type
         else:
-            field == 'card_details'
-            card = user.cards[0]
+            field == 'cards'
+            cards = user.cards[0]
             current_value = {
-                'card_number': card.card_number,
-                'expiry_date': card.expiry_date,
-                'cvv': card.cvv
+                'card_number': cards.card_number,
+                'expiry_date': cards.expiry_date,
+                'cvv': cards.cvv
             }
 
     if request.method == 'POST':
-        # update user information in database
+        
         if field == 'email_address':
             user.email_address = request.form['new_{}'.format(field)]
         elif field == 'password':
@@ -183,46 +189,27 @@ def edit_account(field):
         elif field == 'last_name':
             user.last_name = request.form['new_{}'.format(field)]
         elif field == 'mailing':
-            user.mailing = request.form['new_{}'.format(field)]
+            user.mailing = True if request.form['new_{}'.format(field)] == 'Yes' else False
         elif field == 'pin':
             user.pin = request.form['new_{}'.format(field)]
         elif field == 'subscription':
-            # update user subscription information
-            user.subscription.sub_type = request.form['sub_type']
+            user.subscription.sub_type = request.form['new_subscription']
         else:
-            field == 'card_details'
-            # update card information
-            card = user.cards[0] # assuming there's only one card per user
-            card.card_number = request.form['card_number']
-            card.expiry_date = request.form['expiry_date']
-            card.cvv = request.form['cvv']
+            if field == 'cards':
+                card = user.cards[0] 
+                card.name_on_card = request.form['name_on_card']
+                card.card_number = request.form['new_card_number']
+                card.expiry_date = request.form['new_expiry_date']
+                card.cvv = request.form['new_cvv']
 
-        db.session.commit() # commit changes to database
+        db.session.commit() 
         flash('Your account information has been updated successfully.')
         return redirect(url_for('account'))
     else:
         return render_template('edit_account.html', field=field, user=user, current_value=current_value)
     
 
-@app.route('/delete-account', methods=['GET', 'POST'])
-@login_required
-def delete_account():
-    if request.method == 'POST':
-        # Check if user really wants to delete account
-        if request.form.get('confirm_delete') == 'yes':
-            # Delete all user details from the database
-            user = User.query.filter_by(email=session['user_email']).first()
-            db.session.delete(user)
-            db.session.commit()
-            logout_user()
-            flash('Your account has been successfully deleted')
-            return redirect(url_for('index'))
-    # Render the confirmation page if user hasn't confirmed yet
-    return render_template('delete_account.html')
-#index render
-@app.route('/index')
-def index():
-    return render_template("index.html")
+#delete account render
 
 
 #search bar render'

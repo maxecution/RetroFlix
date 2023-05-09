@@ -64,11 +64,11 @@
                   <p>Card Details </p>
                   {% if user.cards %}
                       {% with card = user.cards[0] %}
-                          <p>Card Number: <span id="card_details">{{ card.card_number }}</span></p>
-                          <p>Expiry Date: <span id="card_details">{{ card.expiry_date }}</span></p>
-                          <p>CCV: <span id="card_details">{{ card.cvv }}</span></p>
+                          <p>Card Number: <span id="cards">{{ card.card_number }}</span></p>
+                          <p>Expiry Date: <span id="cards">{{ card.expiry_date }}</span></p>
+                          <p>CCV: <span id="cards">{{ card.cvv }}</span></p>
                       {% endwith %}
-                      <a class="edit-button" href="{{ url_for('edit_account', field='card_details', current=user.card_details) }}"><u>Edit</u></a>
+                      <a class="edit-button" href="{{ url_for('edit_account', field='cards', current=user.cards) }}"><u>Edit</u></a>
                   {% else %}
                       <p>No card details found</p>
                   {% endif %}

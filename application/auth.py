@@ -39,6 +39,7 @@ def logout():
     return redirect(url_for('index'))
 
 
+
 # sign up auth
 @auth.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
