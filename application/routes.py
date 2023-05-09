@@ -2,10 +2,12 @@ from flask import render_template, request, redirect, url_for, session, flash, j
 from builtins import getattr
 from application import app
 from application.models import *
+from application.forms import ContactForm
 from flask_login import current_user, login_required, logout_user
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
+import bleach
 
 import os
 
@@ -52,20 +54,40 @@ def careers():
 #contact us render
 @app.route('/contact_us', methods=['GET', 'POST'])
 def contact_us():
-    if request.method == 'POST':
-        name = request.form.get('name')
-        email = request.form.get('email')
-        contact_message = request.form.get('contactMessage')
+    # if request.method == 'POST':
+    #     name = request.form.get('name')
+    #     email = request.form.get('email')
+    #     contact_message = request.form.get('contactMessage')
 
-        message = ContactMessage(name=name, email_address=email, contact_message=contact_message)
+    #     message = ContactMessage(name=name, email_address=email, contact_message=contact_message)
 
-        db.session.add(message)
+    #     db.session.add(message)
+    #     db.session.commit()
+
+    #     flash('Your message has been sent')
+    #     return render_template('contact_us.html', title='Contact Us')
+
+    form = ContactForm()
+
+    if form.validate_on_submit():
+        # sanitize data
+        name = form.name.data.strip()
+        email = form.email.data.strip()
+        message = form.message.data.strip()
+
+        bleach.clean(name, tags=[], attributes={}, styles=[], strip=True)
+        bleach.clean(email, tags=[], attributes={}, styles=[], strip=True)
+        bleach.clean(message, tags=[], attributes={}, styles=[], strip=True)       
+
+        contact_message = ContactMessage(name=name, email_address=email, contact_message=message)
+
+        db.session.add(contact_message)
         db.session.commit()
 
-        flash('Your message has been sent')
-        return render_template('contact_us.html', title='Contact Us')
+        flash('Your message has been sent!', 'success')
+        return render_template('contact_us.html', title='Contact Us', form=form)
 
-    return render_template('contact_us.html', title='Contact Us')
+    return render_template('contact_us.html', title='Contact Us', form=form)
 
 #corporate info render
 @app.route('/corp_info')
@@ -117,6 +139,10 @@ def film():
 @login_required
 def series():
     return render_template('series.html', title='Series')
+
+@app.route('/referral')
+def referral():
+    return render_template('referral.html', title="Refer a Friend")
 
 #home render
 @app.route('/home')

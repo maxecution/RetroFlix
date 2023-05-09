@@ -1,0 +1,39 @@
+<!-- Copy and edit this page for new HTML page -->
+
+{% extends "main_layout.html" %}
+
+{% block head_content %}
+<!-- Styles and CSS sheets in here -->
+<link href="{{ url_for('static', filename='/styles/styles_referral.css') }}" rel="stylesheet" >
+
+{% endblock %}
+
+{% block body_content%}
+<!--  Main page content-->   
+
+<section style="text-align: center;">
+    <h2>COMING SOON</h2>
+    
+    <img class="img-fluid" src="{{url_for('static', filename='/Assets/friends_banner_clear.png')}}" width="1000" height="200"/>  
+</section>
+
+<section class="hero">
+    <h2>Referral Scheme</h2>
+    <h3>How It Works</h3>
+    <p> Get your friends to sign up to RetroFlix using your referral code found on your account page. <br>
+        You'll get a free months subscription & your friend will get the first month free!</p>
+</section>
+
+<section class="how-it-works">
+</section>
+
+<section class="get-started">
+    <h3> Get Started Today</h3>
+    <p>Sign Up to RetroFlix now and start inviting your freinds!</p>
+    <div>
+        <a class="btn btn-outline-info me-3" href="{{ url_for('auth.sign_up') }}" role="button" id="sign_up_btn">Select</a>
+    </div>
+</section>
+
+<!-- Can include additional scripts as well-->
+{% endblock %}
