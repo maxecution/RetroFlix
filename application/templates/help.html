@@ -36,31 +36,31 @@
     <!-- Contact Form -->
 
     <div class="container px-5 my-5">
-        <form id="contactForm">
+        <form id="contactForm" method="POST">
             <div class="form-floating mb-3">
-                <input class="form-control" id="name" type="text" placeholder="Name"/>
+                <input class="form-control" id="name" name="name" type="text" placeholder="Name" required/>
                 <label for="name">Name</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input class="form-control" id="emailAddress" type="email" placeholder="Email Address"/>
-                <label for="emailAddress">Email Address</label>
+                <input class="form-control" id="email" name="email" type="email" placeholder="Email Address" required/>
+                <label for="email">Email Address</label>
             </div>
 
             <div class="form-floating mb-3">
-                <select class="form-select" id="chooseOne" aria-label="Choose one..">
+                <select class="form-select" id="ticketType" name="ticketType" aria-label="Choose one.." required>
                     <option value="Technical">Technical</option>
                     <option value="Account">Account</option>
                     <option value="Orders">Orders</option>
                     <option value="Payment">Payment</option>
                     <option value="Returns">Returns</option>
                 </select>
-                <label for="chooseOne">Choose one..</label>
+                <label for="ticketType">Choose one..</label>
             </div>
 
             <div class="form-floating mb-3">
-                <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;"></textarea>
-                <label for="message">Message</label>
+                <textarea class="form-control" id="ticketMessage" type="text" name="ticketMessage" placeholder="Message" style="height: 10rem;" required></textarea>
+                <label for="ticketMessage">Message</label>
             </div>
 
             <div class="d-grid">

@@ -24,6 +24,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://{db_user}:{db_password}@{db_ho
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 db.init_app(app)
 
+# For file uploads, path needs to be changed to work on your local machine
+app.config['UPLOAD_FOLDER'] = 'C:/Users/maxec/Documents/Get Into Tech/RetroFlix/application/static/careers_uploads'
+
+
 
 @login_manager.user_loader
 def load_user(user_id):
