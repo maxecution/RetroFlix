@@ -1,8 +1,5 @@
 from flask_login import UserMixin
 from .database import db
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Email, Length
 from datetime import datetime
 
 
