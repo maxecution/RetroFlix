@@ -9,91 +9,118 @@
 {% block body_content%}
 
 
-<h1>{{ user.first_name }}'s account </h1>
+<h1>{{ user.first_name }}'s Account </h1>
 
 <section class="bg-image" style="padding-top: 80px; padding-bottom: 80px;">
-   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-     <div class="container h-100">
-       <div class="row d-flex justify-content-center align-items-center h-100">
-         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-           <div class="card_account bg-dark text-white">
-             <div class="card-body p-5">
-   
-              <form method="post" action="{{ url_for('account') }}">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card_account bg-dark text-white h-100">
+                <div class="card-body p-5">
+                  <form method="post" action="{{ url_for('account') }}">
+                    <div class="form-outline mb-4">
+                      <p>Email: <span id="email">{{ user.email_address }}</span></p>
+                      <a class="edit-button" href="{{ url_for('edit_account', field='email_address', current=user.email_address) }}"><u>Edit</u></a>
+                    </div>
+    
+                    <div class="form-outline mb-4">
+                      <p>Password: <span id="password">{{ user.password }}</span></p>
+                      <a class="edit-button" href="{{ url_for('edit_account', field='password', current=user.password) }}"><u>Edit</u></a>
+                    </div>
+                  
+                    <div class="form-outline mb-4">
+                      <p>First Name: <span id="first_name">{{ user.first_name }}</span></p>
+                      <a class="edit-button" href="{{ url_for('edit_account', field='first_name', current=user.first_name) }}"><u>Edit</u></a>
+                    </div>
+    
+                    <div class="form-outline mb-4">
+                      <p>Last Name: <span id="last_name">{{ user.last_name }}</span></p>
+                      <a class="edit-button" href="{{ url_for('edit_account', field='last_name', current=user.last_name) }}"><u>Edit</u></a>
+                    </div>
 
-                <div class="form-outline mb-4">
-                  <p>Email: <span id="email">{{ user.email_address }}</span></p>
-                  <a class="edit-button" href="{{ url_for('edit_account', field='email_address', current=user.email_address) }}"><u>Edit</u></a>
+                    <div class="form-outline mb-4">
+                      <p>Date of Birth: <span id="dob">{{ user.dob }}</span></p>
+                    </div>
+        
+                    <div class="form-outline mb-4">
+                      <p>Start Date: <span id="creation_date">{{ user.creation_date }}</span></p>
+                    </div>
+    
+                    <div class="form-outline mb-4">
+                      <p>Last Logged In: <span id="last_login">{{ user.last_login }}</span></p>
+                    </div>
+                  </form>
                 </div>
- 
-                <div class="form-outline mb-4">
-                  <p>Password: <span id="password">{{ user.password }}</span></p>
-                  <a class="edit-button" href="{{ url_for('edit_account', field='password', current=user.password) }}"><u>Edit</u></a>
-                </div>
-               
-                <div class="form-outline mb-4">
-                  <p>Fist Name: <span id="first_name">{{ user.first_name }}</span></p>
-                  <a class="edit-button" href="{{ url_for('edit_account', field='first_name', current=user.first_name) }}"><u>Edit</u></a>
-                </div>
- 
-                <div class="form-outline mb-4">
-                  <p>Last Name: <span id="last_name">{{ user.last_name }}</span></p>
-                  <a class="edit-button" href="{{ url_for('edit_account', field='last_name', current=user.last_name) }}"><u>Edit</u></a>
-                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card_account bg-dark text-white h-100">
+                <div class="card-body p-5">
+                  <form method="post" action="{{ url_for('account') }}">
+                    <div class="form-outline mb-4">
+                      <p>Mailing List: <span id="mailing">{{ user.mailing }}</span></p>
+                      <a class="edit-button" href="{{ url_for('edit_account', field='mailing', current=user.mailing) }}"><u>Edit</u></a>
+                    </div>
+                  
+                    <div class="form-outline mb-4">
+                      <p>PIN: <span id="pin">{{ user.pin }}</span></p>
+                      <a class="edit-button" href="{{ url_for('edit_account', field='pin', current=user.pin) }}"><u>Edit</u></a>
+                    </div>                  
+    
+                    <div class="form-outline mb-4">
+                      <p>Subcription: <span id="subscription">{{ user.subscription.sub_type }}</span></p>
+                      <a class="edit-button" href="{{ url_for('edit_account', field='subscription', current=user.subscription) }}"><u>Edit</u></a>
+                    </div>
 
-                <div class="form-outline mb-4">
-                  <p>Date of Birth: <span id="dob">{{ user.dob }}</span></p>
+                    <div class="form-outline mb-4">
+                      <p>Card Details </p>
+                      {% if user.cards %}
+                          {% with card = user.cards[0] %}
+                              <p>Card Number: <span id="cards">{{ card.card_number }}</span></p>
+                              <p>Expiry Date: <span id="cards">{{ card.expiry_date }}</span></p>
+                              <p>CCV: <span id="cards">{{ card.cvv }}</span></p>
+                          {% endwith %}
+                          <a class="edit-button" href="{{ url_for('edit_account', field='cards', current=user.cards) }}"><u>Edit</u></a>
+                      {% else %}
+                          <p>No card details found</p>
+                      {% endif %}
+                    </div>
+                  </form>
                 </div>
-                 
-                <div class="form-outline mb-4">
-                  <p>Mail Recipient: <span id="mailing">{{ user.mailing }}</span></p>
-                  <a class="edit-button" href="{{ url_for('edit_account', field='mailing', current=user.mailing) }}"><u>Edit</u></a>
-                </div>
-               
-                <div class="form-outline mb-4">
-                  <p>PIN: <span id="pin">{{ user.pin }}</span></p>
-                  <a class="edit-button" href="{{ url_for('edit_account', field='pin', current=user.pin) }}"><u>Edit</u></a>
-                </div>                  
- 
-                <div class="form-outline mb-4">
-                  <p>Subcription: <span id="subscription">{{ user.subscription.sub_type }}</span></p>
-                  <a class="edit-button" href="{{ url_for('edit_account', field='subscription', current=user.subscription) }}"><u>Edit</u></a>
-                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bg-image" style="padding-top: 80px; padding-bottom: 80px;">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                  <div class="card_logout bg-dark text-white">
+                      <div class="card-body p-5">
+                        <div class="account_maintenance"  style="align-self: center;">
+                          <a class="btn btn-outline-info btn-md px-5 mt-3" href="{{ url_for('auth.logout') }}" role="button" type="submit" >Log Out</a>
+                        </div>
 
-                <div class="form-outline mb-4">
-                  <p>Card Details </p>
-                  {% if user.cards %}
-                      {% with card = user.cards[0] %}
-                          <p>Card Number: <span id="cards">{{ card.card_number }}</span></p>
-                          <p>Expiry Date: <span id="cards">{{ card.expiry_date }}</span></p>
-                          <p>CCV: <span id="cards">{{ card.cvv }}</span></p>
-                      {% endwith %}
-                      <a class="edit-button" href="{{ url_for('edit_account', field='cards', current=user.cards) }}"><u>Edit</u></a>
-                  {% else %}
-                      <p>No card details found</p>
-                  {% endif %}
-                </div>
-
-                <div class="form-outline mb-4">
-                  <p>Start Date: <span id="creation_date">{{ user.creation_date }}</span></p>
-                </div>
- 
-                <div class="form-outline mb-4">
-                  <p>Last Logged In: <span id="last_login">{{ user.last_login }}</span></p>
-                </div>
-  
-                 <div class="account_maintenance"  style="align-self: center;">
-                  <a class="btn btn-outline-info btn-md px-5 mt-3" href="{{ url_for('auth.logout') }}" role="button" type="submit" >Log Out</a>
-                  <a class="btn btn-outline-info btn-md px-5 mt-3" href="{{ url_for('auth.logout') }}" role="button" type="submit" >Delete Account</a>
-                </div>
-               </form>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
- </section>
+                        <div class="account_maintenance"  style="align-self: center;">
+                          <form method="post" action="{{ url_for('delete_account') }}">
+                          <button class="btn btn-outline-danger btn-md px-5 mt-3" type="submit" id="delete-account-btn" onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</button>
+                          </form>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
 
 <script src="{{ url_for('static', filename='/scripts/account.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

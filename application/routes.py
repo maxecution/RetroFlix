@@ -151,6 +151,7 @@ def edit_account(field):
                 card.card_number = request.form['new_card_number']
                 card.expiry_date = request.form['new_expiry_date']
                 card.cvv = request.form['new_cvv']
+                
 
         db.session.commit() 
         flash('Your account information has been updated successfully.')
@@ -158,9 +159,16 @@ def edit_account(field):
     else:
         return render_template('edit_account.html', field=field, user=user, current_value=current_value)
     
+@app.route('/delete_account', methods=['POST'])
+def delete_account():
 
-#delete account render
+    email = user.email_address
 
+    user = User.query.filter_by(email).first()
+    db.session.delete(user)
+    db.session.commit()
+    return redirect(url_for('index'))
+    
 
 #search bar render'
 @app.route('/search', methods=['GET'])
@@ -249,6 +257,8 @@ def check_pin():
         pinCheck = True
         flash('Wrong Pin')
         return render_template('film_player.html', film=film, pinCheck=pinCheck, video=video) 
+    
+    
 
 
 

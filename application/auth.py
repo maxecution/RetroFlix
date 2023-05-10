@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from .models import User, CardDetail, Subscription
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy.orm.exc import NoResultFound
 
 
@@ -32,12 +32,12 @@ def sign_in():
 
 # log out auth
 @auth.route('/logout')
+@login_required
 def logout():
-    session.pop('user_email', None)
+    session.pop('user.email_address', None)
     logout_user()
     flash('Successfully logged out')
     return redirect(url_for('index'))
-
 
 
 # sign up auth
