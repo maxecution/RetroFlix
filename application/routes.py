@@ -2,8 +2,14 @@ from flask import render_template, request, redirect, url_for, session, flash, j
 from builtins import getattr
 from application import app
 from application.models import *
+from application.forms import ContactForm
 from flask_login import current_user, login_required, logout_user
 from werkzeug.security import generate_password_hash
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import  FileStorage
+import bleach
+
+import os
 
 
 context = {
@@ -22,14 +28,66 @@ def about_us():
     return render_template('about_us.html', title='About Us')
 
 #careers render
-@app.route('/careers')
+@app.route('/careers', methods=['GET', 'POST'])
 def careers():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        job_title = request.form.get('jobTitle')
+        location = request.form.get('location')
+        expertise = request.form.get('expertise')
+        cvFile = request.files['cvFile']
+
+        filename = secure_filename(cvFile.filename)
+        cvFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        career_submission = CareerSubmission(name=name, email_address=email, job_title=job_title, location=location, expertise=expertise, filename=filename, file_path=os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        
+        db.session.add(career_submission)
+        db.session.commit()
+
+        flash('Your application has been submitted for review')
+        return render_template('careers.html', title='Careers')
+
     return render_template('careers.html', title='Careers')
 
 #contact us render
-@app.route('/contact_us')
+@app.route('/contact_us', methods=['GET', 'POST'])
 def contact_us():
-    return render_template('contact_us.html', title='Contact Us')
+    # if request.method == 'POST':
+    #     name = request.form.get('name')
+    #     email = request.form.get('email')
+    #     contact_message = request.form.get('contactMessage')
+
+    #     message = ContactMessage(name=name, email_address=email, contact_message=contact_message)
+
+    #     db.session.add(message)
+    #     db.session.commit()
+
+    #     flash('Your message has been sent')
+    #     return render_template('contact_us.html', title='Contact Us')
+
+    form = ContactForm()
+
+    if form.validate_on_submit():
+        # sanitize data
+        name = form.name.data.strip()
+        email = form.email.data.strip()
+        message = form.message.data.strip()
+
+        bleach.clean(name, tags=[], attributes={}, styles=[], strip=True)
+        bleach.clean(email, tags=[], attributes={}, styles=[], strip=True)
+        bleach.clean(message, tags=[], attributes={}, styles=[], strip=True)       
+
+        contact_message = ContactMessage(name=name, email_address=email, contact_message=message)
+
+        db.session.add(contact_message)
+        db.session.commit()
+
+        flash('Your message has been sent!', 'success')
+        return render_template('contact_us.html', title='Contact Us', form=form)
+
+    return render_template('contact_us.html', title='Contact Us', form=form)
 
 #corporate info render
 @app.route('/corp_info')
@@ -42,8 +100,22 @@ def faq():
     return render_template('faq.html', title='Frequently Asked Questions')
 
 #help render
-@app.route('/help')
+@app.route('/help', methods=['GET', 'POST'])
 def help():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        ticket_type = request.form.get('ticketType')
+        ticket_message = request.form.get('ticketMessage')
+
+        help_ticket = HelpTicket(name=name, email_address=email, ticket_type=ticket_type, ticket_message=ticket_message)
+
+        db.session.add(help_ticket)
+        db.session.commit()
+
+        flash('Your ticket has been submitted')
+        return render_template('help.html', title='Help')
+
     return render_template('help.html', title='Help')
 
 #legal notices render
@@ -67,6 +139,10 @@ def film():
 @login_required
 def series():
     return render_template('series.html', title='Series')
+
+@app.route('/referral')
+def referral():
+    return render_template('referral.html', title="Refer a Friend")
 
 #home render
 @app.route('/home')

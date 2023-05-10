@@ -179,3 +179,46 @@ class Subscription(db.Model):
     sub_type = db.Column(db.String(255))
 
     users = db.relationship('User', back_populates='subscription')
+
+
+class EditAccountForm(FlaskForm):
+    email = StringField('Email Address', validators=[DataRequired(), Email()])
+    first_name = StringField('First Name', validators=[DataRequired(), Length(min=2, max=20)])
+    last_name = StringField('Last Name', validators=[DataRequired(), Length(min=2, max=20)])
+    dob = StringField('Date of Birth', validators=[DataRequired()])
+    mailing = BooleanField('Join mailing list?')
+    submit = SubmitField('Save Changes')
+
+
+# Help Page
+class HelpTicket(db.Model):
+    __tablename__="help_tickets"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    email_address = db.Column(db.String(255))
+    ticket_type = db.Column(db.String(255))
+    ticket_message = db.Column(db.Text)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+
+
+# Contact Us Page
+class ContactMessage(db.Model):
+    __tablename__="contact_messages"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    email_address = db.Column(db.String(255))
+    contact_message = db.Column(db.Text)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+
+
+class CareerSubmission(db.Model):
+    __tablename__="career_submissions"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    email_address = db.Column(db.String(255))
+    job_title = db.Column(db.String(255))
+    location = db.Column(db.String(255))
+    expertise = db.Column(db.String(255))
+    filename = db.Column(db.String(255))
+    file_path = db.Column(db.String(255))
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
