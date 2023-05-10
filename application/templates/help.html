@@ -35,7 +35,7 @@
 
     <!-- Contact Form -->
 
-    <div class="container px-5 my-5">
+    <!-- <div class="container px-5 my-5">
         <form id="contactForm" method="POST">
             <div class="form-floating mb-3">
                 <input class="form-control" id="name" name="name" type="text" placeholder="Name" required/>
@@ -65,6 +65,31 @@
 
             <div class="d-grid">
                 <button class="btn btn-outline-info btn-outline-info" id="submitButton" type="submit">Submit</button>
+            </div>
+        </form>
+    </div> -->
+
+    <div class="container px-5 my-5">
+        <form id="helpForm" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-floating mb-3">
+                {{ form.name(class_="form-control", placeholder_="Name") }} {{ form.name.label }}
+            </div>
+    
+            <div class="form-floating mb-3">
+                {{ form.email(class_="form-control", placeholder_="EMail") }} {{ form.email.label }}
+            </div>
+    
+            <div class="form-floating mb-3">
+                {{ form.ticket_type(class_="form-select") }} {{ form.ticket_type.label }}
+            </div>
+
+            <div class="form-floating mb-3">
+                {{ form.message(class_="form-control", placeholder_="Message", style_='height:150px') }} {{ form.message.label }}
+            </div>
+    
+            <div class="d-grid">
+                {{ form.submit(class_="btn btn-outline-info btn-outline-info") }}
             </div>
         </form>
     </div>

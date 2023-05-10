@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, session, flash, j
 from builtins import getattr
 from application import app
 from application.models import *
-from application.forms import ContactForm
+from application.forms import *
 from flask_login import current_user, login_required, logout_user
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import secure_filename
@@ -30,42 +30,49 @@ def about_us():
 #careers render
 @app.route('/careers', methods=['GET', 'POST'])
 def careers():
-    if request.method == 'POST':
-        name = request.form.get('name')
-        email = request.form.get('email')
-        job_title = request.form.get('jobTitle')
-        location = request.form.get('location')
-        expertise = request.form.get('expertise')
-        cvFile = request.files['cvFile']
+    # if request.method == 'POST':
+    #     name = request.form.get('name')
+    #     email = request.form.get('email')
+    #     job_title = request.form.get('jobTitle')
+    #     location = request.form.get('location')
+    #     expertise = request.form.get('expertise')
+    #     cvFile = request.files['cvFile']
 
-        filename = secure_filename(cvFile.filename)
-        cvFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    #     filename = secure_filename(cvFile.filename)
+    #     cvFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    form = CareersForm()
 
-        career_submission = CareerSubmission(name=name, email_address=email, job_title=job_title, location=location, expertise=expertise, filename=filename, file_path=os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    if form.validate_on_submit():
+        # sanitize data
+        name = form.name.data.strip()
+        email = form.email.data.strip()
+        job_title = form.email.data.strip()
+        location = form.email.data.strip()
+        expertise = form.email.data.strip()
+        cv = form.cv.data
+        filename = secure_filename(cv.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        cv.save(file_path)
+
+        bleach.clean(name, strip=True)
+        bleach.clean(email, strip=True)
+        bleach.clean(job_title, strip=True)
+        bleach.clean(location, strip=True)
+        bleach.clean(expertise, strip=True)
+
+        career_submission = CareerSubmission(name=name, email_address=email, job_title=job_title, location=location, expertise=expertise, filename=filename, file_path=file_path)
         
         db.session.add(career_submission)
         db.session.commit()
 
         flash('Your application has been submitted for review')
-        return render_template('careers.html', title='Careers')
+        return redirect('careers')
 
-    return render_template('careers.html', title='Careers')
+    return render_template('careers.html', title='Careers', form=form)
 
 #contact us render
 @app.route('/contact_us', methods=['GET', 'POST'])
 def contact_us():
-    # if request.method == 'POST':
-    #     name = request.form.get('name')
-    #     email = request.form.get('email')
-    #     contact_message = request.form.get('contactMessage')
-
-    #     message = ContactMessage(name=name, email_address=email, contact_message=contact_message)
-
-    #     db.session.add(message)
-    #     db.session.commit()
-
-    #     flash('Your message has been sent')
-    #     return render_template('contact_us.html', title='Contact Us')
 
     form = ContactForm()
 
@@ -75,17 +82,19 @@ def contact_us():
         email = form.email.data.strip()
         message = form.message.data.strip()
 
-        bleach.clean(name, tags=[], attributes={}, styles=[], strip=True)
-        bleach.clean(email, tags=[], attributes={}, styles=[], strip=True)
-        bleach.clean(message, tags=[], attributes={}, styles=[], strip=True)       
+        bleach.clean(name, strip=True)
+        bleach.clean(email, strip=True)
+        bleach.clean(message, strip=True)       
 
         contact_message = ContactMessage(name=name, email_address=email, contact_message=message)
 
         db.session.add(contact_message)
         db.session.commit()
 
+
         flash('Your message has been sent!', 'success')
-        return render_template('contact_us.html', title='Contact Us', form=form)
+        return redirect('contact_us')
+
 
     return render_template('contact_us.html', title='Contact Us', form=form)
 
@@ -102,21 +111,31 @@ def faq():
 #help render
 @app.route('/help', methods=['GET', 'POST'])
 def help():
-    if request.method == 'POST':
-        name = request.form.get('name')
-        email = request.form.get('email')
-        ticket_type = request.form.get('ticketType')
-        ticket_message = request.form.get('ticketMessage')
 
-        help_ticket = HelpTicket(name=name, email_address=email, ticket_type=ticket_type, ticket_message=ticket_message)
+    form = HelpForm()
+
+    if form.validate_on_submit():
+        # sanitize data
+        name = form.name.data.strip()
+        email = form.email.data.strip()
+        ticket_type = form.ticket_type.data.strip()
+        message = form.message.data.strip()
+
+        bleach.clean(name, strip=True)
+        bleach.clean(email, strip=True)
+        bleach.clean(ticket_type, strip=True)
+        bleach.clean(message, strip=True)       
+
+        help_ticket = HelpTicket(name=name, email_address=email, ticket_type=ticket_type, ticket_message=message)
 
         db.session.add(help_ticket)
         db.session.commit()
 
-        flash('Your ticket has been submitted')
-        return render_template('help.html', title='Help')
+        flash('Your ticket has been submitted!', 'success')
+        return redirect('help')
 
-    return render_template('help.html', title='Help')
+
+    return render_template('help.html', title='Help', form=form)
 
 #legal notices render
 @app.route('/legal_notice')

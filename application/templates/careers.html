@@ -23,7 +23,7 @@
 
     <!-- search for jobs-->
 
-    <div class="container px-5 my-5">
+    <!-- <div class="container px-5 my-5">
         <form id="contactForm" method="POST" enctype="multipart/form-data">
             <div class="form-floating mb-3">
                 <input class="form-control" id="name" name="name" type="text" placeholder="Name" required/>
@@ -64,6 +64,43 @@
             
             <div class="d-grid">
                 <button class="btn btn-outline-info btn-outline-info" id="submitButton" type="submit">Submit</button>
+            </div>
+        </form>
+    </div> -->
+
+    <div class="container px-5 my-5">
+        <form id="careersForm" enctype="multipart/form-data" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-floating mb-3">
+                {{ form.name(class_="form-control", placeholder_="Name") }} {{ form.name.label }}
+            </div>
+    
+            <div class="form-floating mb-3">
+                {{ form.email(class_="form-control", placeholder_="EMail") }} {{ form.email.label }}
+            </div>
+
+            <div class="form-floating mb-3">
+                {{ form.job_title(class_="form-control", placeholder_="Job Title") }} {{ form.job_title.label }}
+            </div>
+
+            <div class="form-floating mb-3">
+                {{ form.location(class_="form-control", placeholder_="Location") }} {{ form.location.label }}
+            </div>
+    
+            <div class="form-floating mb-3">
+                {{ form.expertise(class_="form-select") }} {{ form.expertise.label }}
+            </div>
+    
+            <u>Please add your CV below:</u>
+            <div class="input-group mb-3 pt-2">
+                {{ form.cv (class_="form-control")}}
+                {% for error in form.cv.errors %}
+                    <small class="text-danger">{{ error }}</small>  
+                {% endfor %}
+            </div>
+
+            <div class="d-grid">
+                {{ form.submit(class_="btn btn-outline-info btn-outline-info") }}
             </div>
         </form>
     </div>

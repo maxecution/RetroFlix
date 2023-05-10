@@ -26,7 +26,7 @@ db.init_app(app)
 
 # For file uploads, path needs to be changed to work on your local machine
 app.config['UPLOAD_FOLDER'] = 'C:/Users/maxec/Documents/Get Into Tech/RetroFlix/application/static/careers_uploads'
-
+app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024  # 1MB max-limit.
 
 
 @login_manager.user_loader
