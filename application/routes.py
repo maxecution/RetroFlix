@@ -17,10 +17,13 @@ context = {
 }
 
 
+
+
 #terms render
 @app.route('/terms_of_use')
 def terms_of_use():
     return render_template('terms_of_use.html', title='Terms of Use')
+
 
 #about us render
 @app.route('/about_us')
