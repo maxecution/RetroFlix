@@ -201,7 +201,7 @@ class ContactMessage(db.Model):
     contact_message = db.Column(db.Text)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
 
-
+# Careers Page
 class CareerSubmission(db.Model):
     __tablename__="career_submissions"
     id = db.Column(db.Integer, primary_key=True)

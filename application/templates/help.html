@@ -36,35 +36,26 @@
     <!-- Contact Form -->
 
     <div class="container px-5 my-5">
-        <form id="contactForm" method="POST">
+        <form id="helpForm" method="POST">
+            {{ form.hidden_tag() }}
             <div class="form-floating mb-3">
-                <input class="form-control" id="name" name="name" type="text" placeholder="Name" required/>
-                <label for="name">Name</label>
+                {{ form.name(class_="form-control", placeholder_="Name") }} {{ form.name.label }}
+            </div>
+    
+            <div class="form-floating mb-3">
+                {{ form.email(class_="form-control", placeholder_="EMail") }} {{ form.email.label }}
+            </div>
+    
+            <div class="form-floating mb-3">
+                {{ form.ticket_type(class_="form-select") }} {{ form.ticket_type.label }}
             </div>
 
             <div class="form-floating mb-3">
-                <input class="form-control" id="email" name="email" type="email" placeholder="Email Address" required/>
-                <label for="email">Email Address</label>
+                {{ form.message(class_="form-control", placeholder_="Message", style_='height:150px') }} {{ form.message.label }}
             </div>
-
-            <div class="form-floating mb-3">
-                <select class="form-select" id="ticketType" name="ticketType" aria-label="Choose one.." required>
-                    <option value="Technical">Technical</option>
-                    <option value="Account">Account</option>
-                    <option value="Orders">Orders</option>
-                    <option value="Payment">Payment</option>
-                    <option value="Returns">Returns</option>
-                </select>
-                <label for="ticketType">Choose one..</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <textarea class="form-control" id="ticketMessage" type="text" name="ticketMessage" placeholder="Message" style="height: 10rem;" required></textarea>
-                <label for="ticketMessage">Message</label>
-            </div>
-
+    
             <div class="d-grid">
-                <button class="btn btn-outline-info btn-outline-info" id="submitButton" type="submit">Submit</button>
+                {{ form.submit(class_="btn btn-outline-info btn-outline-info") }}
             </div>
         </form>
     </div>
