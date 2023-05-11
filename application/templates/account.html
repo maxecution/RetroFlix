@@ -108,10 +108,26 @@
                         <div class="account_maintenance"  style="align-self: center;">
                           <a class="btn btn-outline-info btn-md px-5 mt-3" href="{{ url_for('auth.logout') }}" role="button" type="submit" >Log Out</a>
                         </div>
-
                         <div class="account_maintenance"  style="align-self: center;">
-                          <form method="post" action="{{ url_for('delete_account') }}">
-                          <button class="btn btn-outline-danger btn-md px-5 mt-3" type="submit" id="delete-account-btn" onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</button>
+                          <form method="POST" action="{{ url_for('delete_account') }}">
+                              <button class="btn btn-outline-danger btn-md px-5 mt-3" type="button" onclick="showDeleteForm()">Delete Account</button>
+                          </form>
+                        </div>
+                      
+                        <div id="delete-form" style="display: none;">
+                          <form id="delete-account-form" method="POST" action="{{ url_for('delete_account') }}">
+                            <hr>
+                            <p>Please enter your email and password to confirm your account deletion</p>
+                            <hr>
+                              <div class="form-outline mb-4">
+                                <label for="email">Email:</label>
+                                <input id="confirm_email" type="email" placeholder="Email"  name="email">
+                            
+                                <label for="password">Password:</label>
+                                <input id="confirm_password" type="password" placeholder=""  name="password">
+                              </div>
+                            
+                              <button class="btn btn-outline-danger btn-md px-5 mt-3" type="submit" onclick="return validateDeleteForm()" onclick="return confirmDelete()">Confirm Delete Account</button>
                           </form>
                         </div>
                       </div>

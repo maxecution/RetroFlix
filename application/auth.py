@@ -39,6 +39,36 @@ def logout():
     flash('Successfully logged out')
     return redirect(url_for('index'))
 
+# delete account auth
+
+
+@auth.route('/delete_account', methods=['POST', 'DELETE'])
+@login_required
+def delete_account():
+    if request.method == 'DELETE':
+        email_address = request.form.get('email')
+        password = request.form.get('password')
+        user = User.query.filter_by(email_address=email_address).first()
+        if user and check_password_hash(user.password, password):
+            session['user_id'] = user.id
+            session['user_email'] = user.email_address
+            delete_account(user, remember=True)
+            flash('Your account has been deleted.')
+            return redirect(url_for('index'))
+        else:            
+            flash('Invalid email or password', category='error')
+            return redirect(url_for('delete_account'))
+
+    user = User.query.get(current_user.id)
+    db.session.delete(current_user)
+    db.session.commit()
+
+    session.pop('user_id', None)
+    session.pop('user_email', None)
+
+    flash('Your account has been deleted.')
+    return redirect(url_for('index'))
+
 
 # sign up auth
 @auth.route('/sign_up', methods=['GET', 'POST'])
