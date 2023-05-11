@@ -8,37 +8,42 @@ passwordEls.forEach(passwordEl => {
 
 function validateDeleteForm() {
   var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  var passwordFormat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&*+,\-.:;=?@^_~])[a-zA-Z\d!#$%&*+,\-.:;<=>?@^_~]{8,}$/;
 
-  var userEmail = document.getElementById("email").value;
-  var userPassword = document.getElementById("password").value;
+  var userEmail = document.getElementById("confirm_email").value;
+  var userPassword = document.getElementById("confirm_password").value;
 
-  var confirmEmail = document.getElementById("confirm_email").value;
-  var confirmPassword = document.getElementById("confirm_password").value;
+  var confirmEmail = document.getElementById("email").textContent;
+  var confirmHashedPassword = document.getElementById("password").textContent;
 
   if (userEmail !== confirmEmail) {
-      alert("Email not found.");
+      alert("Emails do not match.");
       return false;
   }
 
-  if (!emailFormat.test(confirmEmail)) {
+  if (!emailFormat.test(userEmail)) {
       alert("Your email address is not valid.");
       return false;
   }
 
-  if (userPassword !== confirmPassword) {
-      alert("Passwords not found.");
-      return false;
-  }
+  // Hash the user's input password using SHA-256
+  var hashedPassword = crypto.subtle.digest("SHA-256", new TextEncoder().encode(userPassword)).then(function(hash) {
+      var hexHash = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
+      return hexHash;
+  });
 
-  if (!passwordFormat.test(confirmPassword)) {
-      alert("Your password is not valid.");
+  // Compare the hashed password with the stored hashed password
+  hashedPassword.then(function(hash) {
+      if (hash !== confirmHashedPassword) {
+          alert("Passwords do not match.");
+          return false;
+      } else {
+          return true;
+      }
+  }).catch(function(err) {
+      console.error(err);
       return false;
-  }
-
-  return true;
+  });
 }
-
 
 function showDeleteForm() {
   
