@@ -7,3 +7,4 @@ python-dotenv~=1.0.0
 mysqlclient==2.1.1
 Werkzeug~=2.2.3
 bleach==6.0.0
+faker==18.7.0

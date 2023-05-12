@@ -62,7 +62,7 @@ class FilmViews(db.Model):
     __tablename__='film_views'
     id = db.Column(db.Integer, primary_key=True)
     film_id = db.Column(db.Integer, db.ForeignKey('films.id'))
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    timestamp = db.Column(db.DateTime, server_default=db.func.now())
     
     film = db.relationship('Film', back_populates='views')
 
@@ -143,7 +143,7 @@ class User(db.Model, UserMixin):
     dob = db.Column(db.Date)
     mailing = db.Column(db.Boolean)
     creation_date = db.Column(db.DateTime, server_default=db.func.now())
-    last_login = db.Column(db.DateTime, default=None, onupdate=datetime.utcnow)
+    last_login = db.Column(db.DateTime, default=None, onupdate=datetime.now)
     pin = db.Column(db.String(255))
 
     subscription_id = db.Column(db.Integer, db.ForeignKey('subscriptions.id'))
@@ -172,11 +172,18 @@ class User(db.Model, UserMixin):
 class Login(db.Model):
     __tablename__="logins"
     id = db.Column(db.Integer, primary_key=True)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    timestamp = db.Column(db.DateTime, server_default=db.func.now())
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     user = db.relationship('User', back_populates='logins')
+
+class Retention(db.Model):
+    __tablename__="retention"
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(255))
+    email_address = db.Column(db.String(255))
+    timestamp = db.Column(db.DateTime, server_default=db.func.now())
 
 
 class CardDetail(db.Model):

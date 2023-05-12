@@ -1,9 +1,9 @@
-from application import db, Actor, Genre, Film, TVSeries, TVSeriesSeason, TVSeriesEpisode, User, CardDetail, Subscription, Login, FilmViews
+from application import db, Actor, Genre, Film, TVSeries, TVSeriesSeason, TVSeriesEpisode, User, CardDetail, Subscription, Login, FilmViews, Retention
 from application import app
 from werkzeug.security import generate_password_hash
-from random import randint
+from random import randint, choice
 from datetime import datetime, timedelta
-from sqlalchemy import func
+from faker import Faker
 
 # Create actors
 
@@ -485,7 +485,7 @@ with app.app_context():
     # db.session.commit()
 
     films = Film.query.all()
-    current_time = datetime.utcnow()
+    current_time = datetime.now()
 
     all_view_times = []
 
@@ -503,6 +503,33 @@ with app.app_context():
         db.session.add(film_view)
 
     db.session.commit()
+
+    # Generte retention entries
+
+    fake = Faker()
+
+    entries = []
+
+    for _ in range(50):
+        email_address = fake.email()
+
+        types = ["create", "delete"]
+        type = choice(types)
+
+        end_date = datetime.now()
+        start_date = end_date - timedelta(days=90) 
+        timestamp = fake.date_time_between(start_date=start_date, end_date=end_date)
+
+        retention_entry = Retention(type=type, email_address=email_address, timestamp=timestamp)
+        entries.append(retention_entry)
+
+    entries.sort(key=lambda x: x.timestamp)
+
+    for entry in entries:
+        db.session.add(entry)
+
+    db.session.commit()
+
 
 
 print('Database seeded successfully!')

@@ -367,12 +367,12 @@ def check_pin():
 def stats():
     registered_users = User.query.count()
     daily_logins = db.session.query(func.date(Login.timestamp).label('date'), func.count().label('count')).group_by(func.date(Login.timestamp)).all()
-    most_watched_films = db.session.query(Film).join(Film.views).group_by(Film).order_by(func.count(FilmViews.id).desc()).limit(5).all()
-    least_watched_films = db.session.query(Film).join(Film.views).group_by(Film).order_by(func.count(FilmViews.id).asc()).limit(5).all()
+    most_watched_films = db.session.query(Film).join(Film.views).group_by(Film).order_by(func.count(FilmViews.id).desc()).limit(3).all()
+    least_watched_films = db.session.query(Film).join(Film.views).group_by(Film).order_by(func.count(FilmViews.id).asc()).limit(3).all()
     
     # Most/least watched films past week:
     
-    end_timestamp = datetime.utcnow()
+    end_timestamp = datetime.now()
     start_timestamp = end_timestamp - timedelta(weeks=1)
 
     most_watched_films_last_week = (
@@ -381,7 +381,7 @@ def stats():
     .filter(FilmViews.timestamp >= start_timestamp, FilmViews.timestamp <= end_timestamp)
     .group_by(Film)
     .order_by(func.count(FilmViews.id).desc())
-    .limit(5)
+    .limit(3)
     .all()
     )
 
@@ -391,11 +391,34 @@ def stats():
         .filter(FilmViews.timestamp >= start_timestamp, FilmViews.timestamp <= end_timestamp)
         .group_by(Film)
         .order_by(func.count(FilmViews.id).asc())
-        .limit(5)
+        .limit(3)
         .all()
     )
+
+    total_created = Retention.query.filter_by(type='create').count()
+    total_deleted = Retention.query.filter_by(type='delete').count()
+
+
+    created_by_month = (
+    db.session.query(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m').label('month'),
+                     db.func.count().label('count'))
+    .filter(Retention.type == 'create')
+    .group_by(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+    .order_by(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+    .all()
+    )   
+
+    deleted_by_month = (
+        db.session.query(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m').label('month'),
+                        db.func.count().label('count'))
+        .filter(Retention.type == 'delete')
+        .group_by(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .order_by(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .all()
+    )
+
     
-    return render_template('stats.html', registered_users=registered_users, daily_logins=daily_logins,
+    return render_template('stats.html', registered_users=registered_users, daily_logins=daily_logins, created_by_month=created_by_month, deleted_by_month=deleted_by_month,
                             most_watched_films=most_watched_films, least_watched_films=least_watched_films,
                             most_watched_films_last_week=most_watched_films_last_week, least_watched_films_last_week=least_watched_films_last_week)
 
