@@ -52,9 +52,19 @@ class Film(db.Model):
     rating = db.Column(db.Float(3,  1))
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    # views = db.Column(db.Integer, default=0)
 
     actors = db.relationship('Actor', secondary='film_actor', back_populates='films')
     genres = db.relationship('Genre', secondary='film_genre', back_populates='films')
+    views = db.relationship('FilmViews', back_populates='film')
+
+class FilmViews(db.Model):
+    __tablename__='film_views'
+    id = db.Column(db.Integer, primary_key=True)
+    film_id = db.Column(db.Integer, db.ForeignKey('films.id'))
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    film = db.relationship('Film', back_populates='views')
 
 
 class Actor(db.Model):

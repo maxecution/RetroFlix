@@ -1,14 +1,16 @@
-from flask import render_template, request, redirect, url_for, session, flash, jsonify
+from flask import render_template, request, redirect, url_for, session, flash
 from builtins import getattr
 from application import app
 from application.models import *
 from application.forms import *
-from flask_login import current_user, login_required, logout_user
+from flask_login import current_user, login_required
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 import bleach
 from sqlalchemy import func
+from datetime import datetime, timedelta
+
 
 import os
 
@@ -311,6 +313,9 @@ def search():
 @login_required
 def film_player(name):
     film = Film.query.filter_by(title=name).first_or_404()
+    film.views += 1
+    db.session.commit()
+
     video_file = "/videos/" + name.lower().replace(" ", "_") + ".mp4"
     pinCheck = False
     if film.age_rating == "R":
@@ -362,11 +367,37 @@ def check_pin():
 def stats():
     registered_users = User.query.count()
     daily_logins = db.session.query(func.date(Login.timestamp).label('date'), func.count().label('count')).group_by(func.date(Login.timestamp)).all()
-    print(daily_logins)
-    # most_watched_films = Film.query.order_by(Film.views.desc()).limit(5).all()
-    # least_watched_films = Film.query.order_by(Film.views.asc()).limit(5).all()
+    most_watched_films = db.session.query(Film).join(Film.views).group_by(Film).order_by(func.count(FilmViews.id).desc()).limit(5).all()
+    least_watched_films = db.session.query(Film).join(Film.views).group_by(Film).order_by(func.count(FilmViews.id).asc()).limit(5).all()
     
-    return render_template('stats.html', registered_users=registered_users, daily_logins=daily_logins)
+    # Most/least watched films past week:
+    
+    end_timestamp = datetime.utcnow()
+    start_timestamp = end_timestamp - timedelta(weeks=1)
+
+    most_watched_films_last_week = (
+    db.session.query(Film, func.count(FilmViews.id).label('view_count'))
+    .join(Film.views)
+    .filter(FilmViews.timestamp >= start_timestamp, FilmViews.timestamp <= end_timestamp)
+    .group_by(Film)
+    .order_by(func.count(FilmViews.id).desc())
+    .limit(5)
+    .all()
+    )
+
+    least_watched_films_last_week = (
+        db.session.query(Film, func.count(FilmViews.id).label('view_count'))
+        .join(Film.views)
+        .filter(FilmViews.timestamp >= start_timestamp, FilmViews.timestamp <= end_timestamp)
+        .group_by(Film)
+        .order_by(func.count(FilmViews.id).asc())
+        .limit(5)
+        .all()
+    )
+    
+    return render_template('stats.html', registered_users=registered_users, daily_logins=daily_logins,
+                            most_watched_films=most_watched_films, least_watched_films=least_watched_films,
+                            most_watched_films_last_week=most_watched_films_last_week, least_watched_films_last_week=least_watched_films_last_week)
 
 
 

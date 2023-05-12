@@ -1,7 +1,9 @@
-from application import db, Actor, Genre, Film, TVSeries, TVSeriesSeason, TVSeriesEpisode, User, CardDetail, Subscription
+from application import db, Actor, Genre, Film, TVSeries, TVSeriesSeason, TVSeriesEpisode, User, CardDetail, Subscription, Login, FilmViews
 from application import app
 from werkzeug.security import generate_password_hash
-import random
+from random import randint
+from datetime import datetime, timedelta
+from sqlalchemy import func
 
 # Create actors
 
@@ -455,6 +457,52 @@ with app.app_context():
         episode.genres.append(mystery)
     db.session.commit()
 
+
+    # Generating random login data for stats
+
+    users = User.query.all()
+    current_time = datetime.utcnow()
+
+    login_entries = []
+
+    for user in users:
+        for _ in range(50):
+            random_days = randint(0, 6) 
+            random_time = current_time - timedelta(days=random_days)
+            login = Login(user_id=user.id, timestamp=random_time)
+            login_entries.append(login)
+
+    sorted_entries = sorted(login_entries, key=lambda x: x.timestamp)  # Sort by timestamp before committing
+
+    db.session.add_all(sorted_entries)
+    db.session.commit()
+
+    # Generating random film view counts for stats
+
+    # films = Film.query.all()
+    # for film in films:
+    #     film.views=randint(0,100)
+    # db.session.commit()
+
+    films = Film.query.all()
+    current_time = datetime.utcnow()
+
+    all_view_times = []
+
+    for film in films:
+        num_views = randint(0, 100) 
+        view_times = [current_time - timedelta(days=i) for i in range(num_views)]
+
+        all_view_times.extend(view_times)
+
+    sorted_view_times = sorted(all_view_times)
+
+    for view_time in sorted_view_times:
+        film_id = randint(1, len(films)) 
+        film_view = FilmViews(film_id=film_id, timestamp=view_time)
+        db.session.add(film_view)
+
+    db.session.commit()
 
 
 print('Database seeded successfully!')
