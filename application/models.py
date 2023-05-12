@@ -141,6 +141,8 @@ class User(db.Model, UserMixin):
     subscription = db.relationship('Subscription', back_populates='users')
     cards = db.relationship('CardDetail', back_populates='users')
 
+    logins = db.relationship('Login', back_populates='user')
+
     
     def get_id(self):
         return str(self.id)
@@ -156,6 +158,15 @@ class User(db.Model, UserMixin):
     @property
     def is_anonymous(self):
         return False
+
+class Login(db.Model):
+    __tablename__="logins"
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    user = db.relationship('User', back_populates='logins')
 
 
 class CardDetail(db.Model):

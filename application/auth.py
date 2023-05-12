@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from .models import User, CardDetail, Subscription
+from .models import User, CardDetail, Subscription, Login
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, current_user, logout_user,  login_required
@@ -20,6 +20,12 @@ def sign_in():
             if check_password_hash(user.password, password):
                 session['user_id'] = user.id
                 session['user_email'] = user.email_address
+
+                # Creating a login entry into DB
+                login_entry = Login(user_id=user.id)
+                db.session.add(login_entry)
+                db.session.commit()
+
                 login_user(user, remember=True)
                 return redirect(url_for('home'))         
             else:            

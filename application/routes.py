@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 import bleach
+from sqlalchemy import func
 
 import os
 
@@ -357,6 +358,15 @@ def check_pin():
         return render_template('film_player.html', film=film, pinCheck=pinCheck, video=video) 
     
     
+@app.route('/stats')
+def stats():
+    registered_users = User.query.count()
+    daily_logins = db.session.query(func.date(Login.timestamp).label('date'), func.count().label('count')).group_by(func.date(Login.timestamp)).all()
+    print(daily_logins)
+    # most_watched_films = Film.query.order_by(Film.views.desc()).limit(5).all()
+    # least_watched_films = Film.query.order_by(Film.views.asc()).limit(5).all()
+    
+    return render_template('stats.html', registered_users=registered_users, daily_logins=daily_logins)
 
 
 

@@ -1,0 +1,39 @@
+<!-- Copy and edit this page for new HTML page -->
+
+{% extends "main_layout.html" %}
+
+{% block head_content %}
+<!-- Styles and CSS sheets in here -->
+<link href="{{ url_for('static', filename='/styles/styles_stats.css') }}" rel="stylesheet" >
+{% endblock %}
+
+{% block body_content%}
+<!--  Main page content-->  
+<h1>Stats</h1>
+    
+<h2>Registered Users: {{ registered_users }}</h2>
+
+<h2>Daily Logins:</h2>
+<ul>
+    {% for login in daily_logins %}
+        <li>{{ login.date.strftime("%Y-%m-%d") }}: {{ login.count }}</li>
+    {% endfor %}
+</ul>
+
+
+<!-- <h2>Most Watched Films:</h2>
+<ul>
+    {% for film in most_watched_films %}
+        <li>{{ film.title }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Least Watched Films:</h2>
+<ul>
+    {% for film in least_watched_films %}
+        <li>{{ film.title }}</li>
+    {% endfor %}
+</ul>       -->
+
+<!-- Can include additional scripts as well-->
+{% endblock %}
