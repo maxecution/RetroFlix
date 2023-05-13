@@ -1,13 +1,16 @@
-from flask import render_template, request, redirect, url_for, session, flash, jsonify
+from flask import render_template, request, redirect, url_for, session, flash
 from builtins import getattr
 from application import app
 from application.models import *
 from application.forms import *
-from flask_login import current_user, login_required, logout_user
+from flask_login import current_user, login_required
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 import bleach
+from sqlalchemy import func
+from datetime import datetime, timedelta
+
 
 import os
 
@@ -310,6 +313,9 @@ def search():
 @login_required
 def film_player(name):
     film = Film.query.filter_by(title=name).first_or_404()
+    film.views += 1
+    db.session.commit()
+
     video_file = "/videos/" + name.lower().replace(" ", "_") + ".mp4"
     pinCheck = False
     if film.age_rating == "R":
@@ -357,6 +363,125 @@ def check_pin():
         return render_template('film_player.html', film=film, pinCheck=pinCheck, video=video) 
     
     
+@app.route('/stats')
+def stats():
+    registered_users = User.query.count()
+    daily_logins = db.session.query(func.date(Login.timestamp).label('date'), func.count().label('count')).group_by(func.date(Login.timestamp)).all()
+    most_watched_films = db.session.query(Film).join(Film.views).group_by(Film).order_by(func.count(FilmViews.id).desc()).limit(3).all()
+    least_watched_films = db.session.query(Film).join(Film.views).group_by(Film).order_by(func.count(FilmViews.id).asc()).limit(3).all()
+    
+    # Most/least watched films past week:
+    
+    end_timestamp = datetime.now()
+    start_timestamp = end_timestamp - timedelta(weeks=1)
+
+    most_watched_films_last_week = (
+    db.session.query(Film, func.count(FilmViews.id).label('view_count'))
+    .join(Film.views)
+    .filter(FilmViews.timestamp >= start_timestamp, FilmViews.timestamp <= end_timestamp)
+    .group_by(Film)
+    .order_by(func.count(FilmViews.id).desc())
+    .limit(3)
+    .all()
+    )
+
+    least_watched_films_last_week = (
+        db.session.query(Film, func.count(FilmViews.id).label('view_count'))
+        .join(Film.views)
+        .filter(FilmViews.timestamp >= start_timestamp, FilmViews.timestamp <= end_timestamp)
+        .group_by(Film)
+        .order_by(func.count(FilmViews.id).asc())
+        .limit(3)
+        .all()
+    )
+
+    total_created = Retention.query.filter_by(type='create').count()
+    total_deleted = Retention.query.filter_by(type='delete').count()
 
 
+    created_by_month = (
+    db.session.query(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m').label('month'),
+                     db.func.count().label('count'))
+    .filter(Retention.type == 'create')
+    .group_by(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+    .order_by(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+    .all()
+    )   
+
+    deleted_by_month = (
+        db.session.query(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m').label('month'),
+                        db.func.count().label('count'))
+        .filter(Retention.type == 'delete')
+        .group_by(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .order_by(db.func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .all()
+    )
+
+    
+    return render_template('stats.html', title="Business Analytics", registered_users=registered_users, daily_logins=daily_logins, created_by_month=created_by_month, deleted_by_month=deleted_by_month,
+                            most_watched_films=most_watched_films, least_watched_films=least_watched_films,
+                            most_watched_films_last_week=most_watched_films_last_week, least_watched_films_last_week=least_watched_films_last_week)
+
+
+@app.route('/chart')
+def chart():
+
+    daily_logins = db.session.query(func.date(Login.timestamp).label('date'), func.count().label('count')).group_by(func.date(Login.timestamp)).all()
+    daily_logins_list = daily_logins_list = [(date.strftime('%Y-%m-%d'), count) for date, count in daily_logins]
+
+    created_by_month = (
+        db.session.query(func.DATE_FORMAT(Retention.timestamp, '%Y-%m').label('month'),
+                        func.count().label('count'))
+        .filter(Retention.type == 'create')
+        .group_by(func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .order_by(func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .all()
+    )
+
+    deleted_by_month = (
+        db.session.query(func.DATE_FORMAT(Retention.timestamp, '%Y-%m').label('month'),
+                        func.count().label('count'))
+        .filter(Retention.type == 'delete')
+        .group_by(func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .order_by(func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .all()
+    )
+
+    months = [entry.month for entry in created_by_month]
+    created_counts = [entry.count for entry in created_by_month]
+    deleted_counts = [entry.count for entry in deleted_by_month]
+
+    end_timestamp = datetime.now()
+    start_timestamp = end_timestamp - timedelta(weeks=1)
+
+    most_watched_films_last_week = (
+        db.session.query(Film.title, func.count(FilmViews.id).label('view_count'))
+        .join(Film.views)
+        .filter(FilmViews.timestamp >= start_timestamp, FilmViews.timestamp <= end_timestamp)
+        .group_by(Film.title)
+        .order_by(func.count(FilmViews.id).desc())
+        .limit(3)
+        .all()
+    )
+
+    most_watched_films_last_week = [{'Film': title, 'view_count': count} for title, count in most_watched_films_last_week]
+
+    least_watched_films_last_week = (
+        db.session.query(Film.title, func.count(FilmViews.id).label('view_count'))
+        .join(Film.views)
+        .filter(FilmViews.timestamp >= start_timestamp, FilmViews.timestamp <= end_timestamp)
+        .group_by(Film.title)
+        .order_by(func.count(FilmViews.id).asc())
+        .limit(3)
+        .all()
+    )
+
+    least_watched_films_last_week = [{'Film': title, 'view_count': count} for title, count in least_watched_films_last_week]
+
+    combined_films_last_week = most_watched_films_last_week + least_watched_films_last_week
+
+
+    return render_template('chart.html', daily_logins_list=daily_logins_list, months=months, created_counts=created_counts, deleted_counts=deleted_counts,
+                           most_watched_films_last_week=most_watched_films_last_week, least_watched_films_last_week=least_watched_films_last_week,
+                           combined_films_last_week=combined_films_last_week)
 

@@ -52,9 +52,19 @@ class Film(db.Model):
     rating = db.Column(db.Float(3,  1))
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    # views = db.Column(db.Integer, default=0)
 
     actors = db.relationship('Actor', secondary='film_actor', back_populates='films')
     genres = db.relationship('Genre', secondary='film_genre', back_populates='films')
+    views = db.relationship('FilmViews', back_populates='film')
+
+class FilmViews(db.Model):
+    __tablename__='film_views'
+    id = db.Column(db.Integer, primary_key=True)
+    film_id = db.Column(db.Integer, db.ForeignKey('films.id'))
+    timestamp = db.Column(db.DateTime, server_default=db.func.now())
+    
+    film = db.relationship('Film', back_populates='views')
 
 
 class Actor(db.Model):
@@ -133,13 +143,15 @@ class User(db.Model, UserMixin):
     dob = db.Column(db.Date)
     mailing = db.Column(db.Boolean)
     creation_date = db.Column(db.DateTime, server_default=db.func.now())
-    last_login = db.Column(db.DateTime, default=None, onupdate=datetime.utcnow)
+    last_login = db.Column(db.DateTime, default=None, onupdate=datetime.now)
     pin = db.Column(db.String(255))
 
     subscription_id = db.Column(db.Integer, db.ForeignKey('subscriptions.id'))
     
     subscription = db.relationship('Subscription', back_populates='users')
     cards = db.relationship('CardDetail', back_populates='users')
+
+    logins = db.relationship('Login', back_populates='user')
 
     
     def get_id(self):
@@ -156,6 +168,22 @@ class User(db.Model, UserMixin):
     @property
     def is_anonymous(self):
         return False
+
+class Login(db.Model):
+    __tablename__="logins"
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime, server_default=db.func.now())
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    user = db.relationship('User', back_populates='logins')
+
+class Retention(db.Model):
+    __tablename__="retention"
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(255))
+    email_address = db.Column(db.String(255))
+    timestamp = db.Column(db.DateTime, server_default=db.func.now())
 
 
 class CardDetail(db.Model):

@@ -13,7 +13,7 @@
 
 <h1>Search results for: {{ query }}</h1>
 <br>
-{% if not (films and tv_series and actors and genres) %}
+{% if not (films or tv_series or actors or genres) %}
   <h5>Sorry, no results found for "{{ query }}"</h5>
 {% endif %}
 

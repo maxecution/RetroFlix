@@ -1,0 +1,72 @@
+{% extends "main_layout.html" %}
+
+{% block head_content %}
+<!-- Styles and CSS sheets in here -->
+<link href="{{ url_for('static', filename='/styles/styles_stats.css') }}" rel="stylesheet" >
+{% endblock %}
+
+{% block body_content%}
+<!--  Main page content-->  
+<div class="container">
+    <h1>Stats</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Registered Users: {{ registered_users }}</h2>
+
+            <h2><a href="{{url_for('chart')}}#loginsChart">Daily Logins:</a></h2>
+            <ul>
+                {% for login in daily_logins %}
+                    <li>{{ login.date.strftime("%Y-%m-%d") }}: {{ login.count }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2><a href="{{url_for('chart')}}#retentionChart">Users created:</a></h2>
+            <ul>
+                {% for entry in created_by_month %}
+                    <li>{{ entry.month }}: {{ entry.count }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2><a href="{{url_for('chart')}}#retentionChart">Users deleted:</a></h2>
+            <ul>
+                {% for entry in deleted_by_month %}
+                    <li>{{ entry.month }}: {{ entry.count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <h2><a href="{{url_for('chart')}}#watchedFilmsChart">Most Watched Films (Last Week):</a></h2>
+            <ul>
+                {% for film, view_count in most_watched_films_last_week %}
+                    <li>{{ film.title }}: {{ view_count }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2><a href="{{url_for('chart')}}#watchedFilmsChart">Least Watched Films (Last Week):</a></h2>
+            <ul>
+                {% for film, view_count in least_watched_films_last_week %}
+                    <li>{{ film.title }}: {{ view_count }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Most Watched Films (All Time):</h2>
+            <ul>
+                {% for film in most_watched_films %}
+                    <li>{{ film.title }}: {{ film.views | length }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Least Watched Films (All Time):</h2>
+            <ul>
+                {% for film in least_watched_films %}
+                    <li>{{ film.title }}: {{ film.views | length }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Can include additional scripts as well-->
+{% endblock %}
