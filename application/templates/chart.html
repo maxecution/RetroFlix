@@ -2,7 +2,7 @@
 
 {% block head_content %}
 <!-- Styles and CSS sheets in here -->
-<link href="{{ url_for('static', filename='/styles/styles_retention_chart.css') }}" rel="stylesheet" >
+<link href="{{ url_for('static', filename='/styles/styles_chart.css') }}" rel="stylesheet" >
 
 {% endblock %}
 
@@ -16,14 +16,19 @@
     <canvas id="retentionChart" width="900" height="400"></canvas>
 </div>  
 
+<div id="chartDiv">
+    <canvas id="watchedFilmsChart" width="900" height="400"></canvas>
+</div>  
+
 <!-- Can include additional scripts as well-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 
+    // Daily logins
+
     document.addEventListener('DOMContentLoaded', function() {
         var ctx = document.getElementById('loginsChart').getContext('2d');
         
-        // Extract the dates and login counts from the data passed to the template
         var data = {{ daily_logins_list|tojson }};
         var dates = data.map(entry => entry[0]);
         var counts = data.map(entry => entry[1]);
@@ -57,43 +62,104 @@
         });
     });
 
+    // User churn
+
     document.addEventListener('DOMContentLoaded', function() {
-    var ctx = document.getElementById('retentionChart').getContext('2d');
-    var chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: {{ months|tojson }},
-            datasets: [{
-                label: 'Users Created',
-                data: {{ created_counts|tojson }},
-                backgroundColor: 'rgba(75, 192, 192, 0.5)', // Green color for Users Created
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
+        var ctx = document.getElementById('retentionChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ months|tojson }},
+                datasets: [{
+                    label: 'Users Created',
+                    data: {{ created_counts|tojson }},
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Users Deleted',
+                    data: {{ deleted_counts|tojson }},
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
             },
-            {
-                label: 'Users Deleted',
-                data: {{ deleted_counts|tojson }},
-                backgroundColor: 'rgba(255, 99, 132, 0.5)', // Red color for Users Deleted
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: false,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Customer Churn',
+            options: {
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Customer Churn',
+                    }
                 }
             }
-        }
+        });
     });
-});
+
+    // Most/Least watched films 
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var watchedFilmsData = {
+            combinedFilms: [
+                {% for film in combined_films_last_week %}
+                    {
+                        'title': '{{ film.Film }}',
+                        'views': {{ film.view_count|float }}
+                    },
+                {% endfor %}
+            ]
+        };
+
+        var combinedFilmTitles = watchedFilmsData.combinedFilms.map(film => film.title);
+        var combinedFilmViews = watchedFilmsData.combinedFilms.map(film => film.views);
+
+        var chartData = {
+            labels: combinedFilmTitles,
+            datasets: [
+                {
+                    data: combinedFilmViews,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(75, 192, 192, 0.9)',
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(255, 99, 132, 0.9)'
+                    ],
+                    borderColor: 'rgba(255, 255, 255, 1)',
+                    borderWidth: 1
+                }
+            ]
+        };
+
+        var watchedFilmsChartCtx = document.getElementById('watchedFilmsChart').getContext('2d');
+
+        new Chart(watchedFilmsChartCtx, {
+            type: 'doughnut',
+            data: chartData,
+            options: {
+                responsive: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Most/Least Watched Films (Last Week)',
+                    },
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        });
+    });
 </script>
 
 

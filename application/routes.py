@@ -451,5 +451,37 @@ def chart():
     created_counts = [entry.count for entry in created_by_month]
     deleted_counts = [entry.count for entry in deleted_by_month]
 
-    return render_template('chart.html', daily_logins_list=daily_logins_list, months=months, created_counts=created_counts, deleted_counts=deleted_counts)
+    end_timestamp = datetime.now()
+    start_timestamp = end_timestamp - timedelta(weeks=1)
+
+    most_watched_films_last_week = (
+        db.session.query(Film.title, func.count(FilmViews.id).label('view_count'))
+        .join(Film.views)
+        .filter(FilmViews.timestamp >= start_timestamp, FilmViews.timestamp <= end_timestamp)
+        .group_by(Film.title)
+        .order_by(func.count(FilmViews.id).desc())
+        .limit(3)
+        .all()
+    )
+
+    most_watched_films_last_week = [{'Film': title, 'view_count': count} for title, count in most_watched_films_last_week]
+
+    least_watched_films_last_week = (
+        db.session.query(Film.title, func.count(FilmViews.id).label('view_count'))
+        .join(Film.views)
+        .filter(FilmViews.timestamp >= start_timestamp, FilmViews.timestamp <= end_timestamp)
+        .group_by(Film.title)
+        .order_by(func.count(FilmViews.id).asc())
+        .limit(3)
+        .all()
+    )
+
+    least_watched_films_last_week = [{'Film': title, 'view_count': count} for title, count in least_watched_films_last_week]
+
+    combined_films_last_week = most_watched_films_last_week + least_watched_films_last_week
+
+
+    return render_template('chart.html', daily_logins_list=daily_logins_list, months=months, created_counts=created_counts, deleted_counts=deleted_counts,
+                           most_watched_films_last_week=most_watched_films_last_week, least_watched_films_last_week=least_watched_films_last_week,
+                           combined_films_last_week=combined_films_last_week)
 
