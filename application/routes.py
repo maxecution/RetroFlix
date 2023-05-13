@@ -418,9 +418,35 @@ def stats():
     )
 
     
-    return render_template('stats.html', registered_users=registered_users, daily_logins=daily_logins, created_by_month=created_by_month, deleted_by_month=deleted_by_month,
+    return render_template('stats.html', title="Business Analytics", registered_users=registered_users, daily_logins=daily_logins, created_by_month=created_by_month, deleted_by_month=deleted_by_month,
                             most_watched_films=most_watched_films, least_watched_films=least_watched_films,
                             most_watched_films_last_week=most_watched_films_last_week, least_watched_films_last_week=least_watched_films_last_week)
 
 
+@app.route('/retention_chart')
+def retention_chart():
+
+    created_by_month = (
+        db.session.query(func.DATE_FORMAT(Retention.timestamp, '%Y-%m').label('month'),
+                        func.count().label('count'))
+        .filter(Retention.type == 'create')
+        .group_by(func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .order_by(func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .all()
+    )
+
+    deleted_by_month = (
+        db.session.query(func.DATE_FORMAT(Retention.timestamp, '%Y-%m').label('month'),
+                        func.count().label('count'))
+        .filter(Retention.type == 'delete')
+        .group_by(func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .order_by(func.DATE_FORMAT(Retention.timestamp, '%Y-%m'))
+        .all()
+    )
+
+    months = [entry.month for entry in created_by_month]
+    created_counts = [entry.count for entry in created_by_month]
+    deleted_counts = [entry.count for entry in deleted_by_month]
+
+    return render_template('retention_chart.html', months=months, created_counts=created_counts, deleted_counts=deleted_counts)
 
