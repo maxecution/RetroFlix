@@ -7,14 +7,58 @@
 {% endblock %}
 
 {% block body_content%}
-<!--  Main page content-->        
-<canvas id="userChart" width="900" height="400"></canvas>
+<!--  Main page content-->
+<div id="chartDiv">
+    <canvas id="loginsChart" width="900" height="400"></canvas>
+</div>  
+
+<div id="chartDiv">
+    <canvas id="retentionChart" width="900" height="400"></canvas>
+</div>  
 
 <!-- Can include additional scripts as well-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+
     document.addEventListener('DOMContentLoaded', function() {
-    var ctx = document.getElementById('userChart').getContext('2d');
+        var ctx = document.getElementById('loginsChart').getContext('2d');
+        
+        // Extract the dates and login counts from the data passed to the template
+        var data = {{ daily_logins_list|tojson }};
+        var dates = data.map(entry => entry[0]);
+        var counts = data.map(entry => entry[1]);
+        
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Daily Logins',
+                    data: counts,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Daily User Logins',
+                    }
+                }
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var ctx = document.getElementById('retentionChart').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'bar',
         data: {

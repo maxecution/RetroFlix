@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from .models import User, CardDetail, Subscription, Login
+from .models import User, CardDetail, Subscription, Login, Retention
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, current_user, logout_user,  login_required
@@ -69,6 +69,10 @@ def delete_account():
 
     user = User.query.get(current_user.id)
     db.session.delete(current_user)
+
+    retention_entry = Retention(type="delete", email_address=user.email_address)
+    db.session.add(retention_entry)
+
     db.session.commit()
 
     session.pop('user_id', None)
@@ -116,6 +120,10 @@ def sign_up():
         new_user = User(email_address=email, password=password, first_name=first_name, last_name=last_name, dob=dob, mailing=mailing, pin=pin, subscription_id=sub_id, cards=[user_card])
         
         db.session.add(new_user)
+
+        retention_entry = Retention(type="create", email_address=email)
+        db.session.add(retention_entry)
+
         db.session.commit()
 
 

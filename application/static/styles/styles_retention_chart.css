@@ -3,6 +3,17 @@ body {
     color: white;
 }
 
-#userChart {
+#chartDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+}
+
+#loginsChart {
+    background-color: white;
+}
+
+#retentionChart {
     background-color: white;
 }

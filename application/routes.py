@@ -423,8 +423,11 @@ def stats():
                             most_watched_films_last_week=most_watched_films_last_week, least_watched_films_last_week=least_watched_films_last_week)
 
 
-@app.route('/retention_chart')
-def retention_chart():
+@app.route('/chart')
+def chart():
+
+    daily_logins = db.session.query(func.date(Login.timestamp).label('date'), func.count().label('count')).group_by(func.date(Login.timestamp)).all()
+    daily_logins_list = daily_logins_list = [(date.strftime('%Y-%m-%d'), count) for date, count in daily_logins]
 
     created_by_month = (
         db.session.query(func.DATE_FORMAT(Retention.timestamp, '%Y-%m').label('month'),
@@ -448,5 +451,5 @@ def retention_chart():
     created_counts = [entry.count for entry in created_by_month]
     deleted_counts = [entry.count for entry in deleted_by_month]
 
-    return render_template('retention_chart.html', months=months, created_counts=created_counts, deleted_counts=deleted_counts)
+    return render_template('chart.html', daily_logins_list=daily_logins_list, months=months, created_counts=created_counts, deleted_counts=deleted_counts)
 
