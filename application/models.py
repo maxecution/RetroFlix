@@ -52,7 +52,6 @@ class Film(db.Model):
     rating = db.Column(db.Float(3,  1))
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
-    # views = db.Column(db.Integer, default=0)
 
     actors = db.relationship('Actor', secondary='film_actor', back_populates='films')
     genres = db.relationship('Genre', secondary='film_genre', back_populates='films')
