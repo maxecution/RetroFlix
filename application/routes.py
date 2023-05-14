@@ -330,7 +330,8 @@ def search():
 @login_required
 def film_player(name):
     film = Film.query.filter_by(title=name).first_or_404()
-    film.views += 1
+    film_view = FilmViews(film_id=film.id)
+    db.session.add(film_view)
     db.session.commit()
 
     video_file = "/videos/" + name.lower().replace(" ", "_") + ".mp4"
@@ -411,9 +412,6 @@ def stats():
         .limit(3)
         .all()
     )
-
-    total_created = Retention.query.filter_by(type='create').count()
-    total_deleted = Retention.query.filter_by(type='delete').count()
 
 
     created_by_month = (

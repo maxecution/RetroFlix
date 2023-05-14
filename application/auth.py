@@ -111,7 +111,7 @@ def sign_up():
 
         # Adding new user to db
 
-        password = generate_password_hash(password, method='sha256')
+        password = generate_password_hash(password)
         sub=Subscription.query.filter_by(sub_type=user_sub).first()
         sub_id = sub.id
 

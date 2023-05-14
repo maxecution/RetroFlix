@@ -479,11 +479,6 @@ with app.app_context():
 
     # Generating random film view counts for stats
 
-    # films = Film.query.all()
-    # for film in films:
-    #     film.views=randint(0,100)
-    # db.session.commit()
-
     films = Film.query.all()
     current_time = datetime.now()
 
