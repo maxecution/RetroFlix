@@ -43,8 +43,8 @@
                       <label class="form-label" for="password">Password</label>
                     </div>
               
-                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="">Forgotten Password?</a></p>
-                    <button class="btn btn-outline-info btn-lg px-5" type="submit">Sign In</button>
+                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{{ url_for('forgot_password') }}">Forgotten Password?</a></p>
+                    <button class="btn btn-outline-info btn-lg px-5" id="sign_inButton" type="submit">Sign In</button>
                   </form>
     
                   <br>
@@ -58,5 +58,5 @@
       </div>
     </section>
 
-
+    
 {% endblock %}

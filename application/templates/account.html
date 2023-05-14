@@ -90,7 +90,7 @@
                     </div>
                   </form>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -106,28 +106,28 @@
                   <div class="card_logout bg-dark text-white">
                       <div class="card-body p-5">
                         <div class="account_maintenance"  style="align-self: center;">
-                          <a class="btn btn-outline-info btn-md px-5 mt-3" href="{{ url_for('auth.logout') }}" role="button" type="submit" >Log Out</a>
+                          <a class="btn btn-outline-info btn-md px-5 mt-3" href="{{ url_for('auth.logout') }}" id="sign_outButton" role="button" type="submit" >Log Out</a>
                         </div>
                         <div class="account_maintenance"  style="align-self: center;">
-                          <form method="POST" action="{{ url_for('delete_account') }}">
+                          <form method="POST" action="{{ url_for('auth.delete_account') }}">
                               <button class="btn btn-outline-danger btn-md px-5 mt-3" type="button" onclick="showDeleteForm()">Delete Account</button>
                           </form>
                         </div>
                       
                         <div id="delete-form" style="display: none;">
-                          <form id="delete-account-form" method="POST" action="{{ url_for('delete_account') }}">
+                          <form id="delete-account-form" method="POST" action="{{ url_for('auth.delete_account') }}">
                             <hr>
-                            <p>Please enter your email and password to confirm your account deletion</p>
+                            <p>Please enter your email and PIN number to confirm your account deletion</p>
                             <hr>
                               <div class="form-outline mb-4">
                                 <label for="email">Email:</label>
-                                <input id="confirm_email" type="email" placeholder="Email"  name="email">
+                                <input id="confirm_email" type="email" name="email">
                             
-                                <label for="password">Password:</label>
-                                <input id="confirm_password" type="password" placeholder=""  name="password">
+                                <label for="pin">PIN:</label>
+                                <input id="confirm_pin" type="password" name="pin">
                               </div>
                             
-                              <button class="btn btn-outline-danger btn-md px-5 mt-3" type="submit" onclick="return confirmDelete() && validateDeleteForm()">Confirm Delete Account</button>
+                              <button class="btn btn-outline-danger btn-md px-5 mt-3" type="submit" onclick="return confirmDelete()">Confirm Delete Account</button>
                           </form>
                         </div>
                       </div>

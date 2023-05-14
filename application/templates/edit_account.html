@@ -262,14 +262,14 @@ var confirmFirstNameInput = document.getElementById("confirm_first_name");
 newFirstNameInput.addEventListener("blur", function() {
   var name = newFirstNameInput.value;
   newFirstNameInput.value = name.charAt(0).toUpperCase() + name.slice(1);
-});
 
 confirmFirstNameInput.addEventListener("blur", function() {
-  var name = confirmFirstNameInput.value;
-  confirmFirstNameInput.value = name.charAt(0).toUpperCase() + name.slice(1);
+ var name = confirmFirstNameInput.value;
+ confirmFirstNameInput.value = name.charAt(0).toUpperCase() + name.slice(1);
 });
 
 
+});
 
 function validateLastNameForm() {
     var nameFormat = /^[a-zA-Z]{3,50}$/;
@@ -300,11 +300,13 @@ var confirmLastNameInput = document.getElementById("confirm_last_name");
 newLastNameInput.addEventListener("blur", function() {
   var name = newLastNameInput.value;
   newLastNameInput.value = name.charAt(0).toUpperCase() + name.slice(1);
-});
+
 
 confirmLastNameInput.addEventListener("blur", function() {
   var name = confirmLastNameInput.value;
   confirmLastNameInput.value = name.charAt(0).toUpperCase() + name.slice(1);
+});
+
 });
 
 function validatePinForm() {

@@ -181,6 +181,33 @@ def home():
 def index():
     return render_template('index.html', title='Index')
 
+#forgot password render
+@app.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form['email_address']
+        pin = request.form['pin']
+        user = User.query.filter_by(email_address=email, pin=pin).first()
+
+        if user:
+            new_password = request.form['new_password']
+            confirm_password = request.form['confirm_password']
+
+            if new_password != confirm_password:
+                flash('New passwords do not match.')
+                return render_template('forgot_password.html')
+
+            user.password = generate_password_hash(new_password)
+            db.session.commit()
+
+            flash('Your password has been reset. Please log in with your new password.')
+            return redirect(url_for('auth.sign_in'))
+        else:
+            flash('Incorrect email or PIN.')
+            return render_template('forgot_password.html')
+
+    return render_template('forgot_password.html')
+
 #account render
 @app.route('/account', methods=['GET'])
 @login_required
@@ -190,7 +217,7 @@ def account():
         user = User.query.get(user_id)
         return render_template('account.html', title='Account', user=user)
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('auth.sign_in'))
 
 #edit account render
 @app.route('/edit_account/<string:field>', methods=['GET', 'POST'])
@@ -200,7 +227,7 @@ def edit_account(field):
         user = User.query.get(user_id) 
     else:
         flash('Please log in to access your account.')
-        return redirect(url_for('login'))
+        return redirect(url_for('auth.sign_in'))
     
     current_value = getattr(user, field)
 
@@ -259,16 +286,6 @@ def edit_account(field):
         return redirect(url_for('account'))
     else:
         return render_template('edit_account.html', field=field, user=user, current_value=current_value)
-    
-@app.route('/delete_account', methods=['POST'])
-def delete_account():
-
-    email = user.email_address
-
-    user = User.query.filter_by(email).first()
-    db.session.delete(user)
-    db.session.commit()
-    return redirect(url_for('index'))
     
 
 #search bar render'
