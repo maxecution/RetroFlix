@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash, make_response, abort
 from .models import User, CardDetail, Subscription, Login, Retention
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -27,7 +27,12 @@ def sign_in():
                 db.session.commit()
 
                 login_user(user, remember=True)
-                return redirect(url_for('home'))         
+
+                # Set a cookie for the user
+                response = make_response(redirect(url_for('home')))
+                response.set_cookie('user_id', str(user.id))
+
+                return response      
             else:            
                 flash('Invalid email or password', category='error')
         else:           
@@ -45,42 +50,32 @@ def logout():
     logout_user()
     session['user_id'] = None
     flash('Successfully logged out')
-    return redirect(url_for('index'))
+    
+    # Erase cookie preferences
+    response = make_response(redirect(url_for('index')))
+    response.set_cookie('cookieSetPreferences', '', expires=0)
+    return response
 
 # delete account auth
-
-
 @auth.route('/delete_account', methods=['POST', 'DELETE'])
 @login_required
 def delete_account():
-    if request.method == 'DELETE':
-        email_address = request.form.get('email')
-        password = request.form.get('password')
-        user = User.query.filter_by(email_address=email_address).first()
-        if user and check_password_hash(user.password, password):
-            session['user_id'] = user.id
-            session['user_email'] = user.email_address
-            delete_account(user, remember=True)
-            flash('Your account has been deleted.')
-            return redirect(url_for('index'))
-        else:            
-            flash('Invalid email or password', category='error')
-            return redirect(url_for('delete_account'))
+    if request.method == 'POST':
+        if request.form.get('_method') == 'DELETE':
+            email_address = request.form.get('email_address')
+            password = request.form.get('password')
+            user = User.query.filter_by(email_address=email_address).first()
+            if user and check_password_hash(user.password, password) and user.id == current_user.id:
+                db.session.delete(user)
+                db.session.commit()
+                flash('Your account has been deleted.')
+                return redirect(url_for('index'))
+            else:
+                flash('Invalid email or password', category='error')
+                return redirect(url_for('account'))
 
-    user = User.query.get(current_user.id)
-    db.session.delete(current_user)
-
-    retention_entry = Retention(type="delete", email_address=user.email_address)
-    db.session.add(retention_entry)
-
-    db.session.commit()
-
-    session.pop('user_id', None)
-    session.pop('user_email', None)
-
-    flash('Your account has been deleted.')
-    return redirect(url_for('index'))
-
+    flash('Method Not Allowed', category='error')
+    return redirect(url_for('account'))
 
 # sign up auth
 @auth.route('/sign_up', methods=['GET', 'POST'])

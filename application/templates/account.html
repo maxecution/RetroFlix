@@ -116,15 +116,16 @@
                       
                         <div id="delete-form" style="display: none;">
                           <form id="delete-account-form" method="POST" action="{{ url_for('auth.delete_account') }}">
+                            <input type="hidden" name="_method" value="DELETE">
                             <hr>
                             <p>Please enter your email and PIN number to confirm your account deletion</p>
                             <hr>
                               <div class="form-outline mb-4">
                                 <label for="email">Email:</label>
-                                <input id="confirm_email" type="email" name="email">
+                                <input id="confirm_email" type="email_address" name="email_address">
                             
-                                <label for="pin">PIN:</label>
-                                <input id="confirm_pin" type="password" name="pin">
+                                <label for="password">Password:</label>
+                                <input id="confirm_password" type="password" name="password">
                               </div>
                             
                               <button class="btn btn-outline-danger btn-md px-5 mt-3" type="submit" onclick="return confirmDelete()">Confirm Delete Account</button>

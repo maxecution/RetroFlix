@@ -12,14 +12,24 @@ function showDeleteForm() {
 }
 
 function confirmDelete() {
-  return confirm('Are you sure you want to delete your account? Once deleted, your details will be permanently removed.');
-}
+    if (confirm("Are you sure you want to delete your account?")) {
+      var form = document.getElementById("delete-account-form");
+      form.method = "POST";
+      var methodInput = document.createElement("input");
+      methodInput.setAttribute("type", "hidden");
+      methodInput.setAttribute("name", "_method");
+      methodInput.setAttribute("value", "DELETE");
+      form.appendChild(methodInput);
+      form.submit();
+    }
+    return false;
+  }
 
 // for cookie preferences
 document.getElementById('sign_outButton').addEventListener('click', function() {
 
   // Remove the 'cookieSetPreferences' cookie
-  document.cookie = 'cookieSetPreferences=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  document.cookie = 'cookieSetPreferences=; expires=0';
 
 });
 
