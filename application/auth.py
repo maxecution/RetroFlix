@@ -92,9 +92,9 @@ def sign_up():
         dob = request.form.get('dob')
         mailing = request.form.get('mail_list')
         if mailing:
-            mailing = True
-        else:
             mailing = False
+        else:
+            mailing = True
         pin = request.form.get('pin')
         user_sub = request.form.get('subs-select')
         ccName = request.form.get('cc-name')
