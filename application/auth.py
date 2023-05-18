@@ -91,6 +91,10 @@ def sign_up():
         password = request.form.get('password_check')
         dob = request.form.get('dob')
         mailing = request.form.get('mail_list')
+        if mailing:
+            mailing = True
+        else:
+            mailing = False
         pin = request.form.get('pin')
         user_sub = request.form.get('subs-select')
         ccName = request.form.get('cc-name')
